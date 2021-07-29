@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Responsive Sidebar Menu</title>
+		<link rel="stylesheet" href="dashboard.css" />
+		<link rel="stylesheet" href="table-responsive.css">
+		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+		<!-- Box Icons -->
+		<link
+			rel="stylesheet"
+			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		/>
+		<!-- google charts -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			<!-- pie chart logic -->
+		<script type="text/javascript">
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+	  
+			function drawChart() {
+	  
+			  var data = google.visualization.arrayToDataTable([
+				['Task', 'Hours per Day'],
+				['Work',     11],
+				['Eat',      2],
+				['Commute',  2],
+				['Watch TV', 2],
+				['Sleep',    7]
+			  ]);
+	  
+			  var options = {
+				title: 'My Daily Activities'
+			  };
+	  
+			  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	  
+			  chart.draw(data, options);
+			}
+		  </script>
+		  <script>
+			  google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(drawBasic);
+
+				function drawBasic() {
+
+					var data = google.visualization.arrayToDataTable([
+						['City', '2010 Population',],
+						['New York City, NY', 8175000],
+						['Los Angeles, CA', 3792000],
+						['Chicago, IL', 2695000],
+						['Houston, TX', 2099000],
+						['Philadelphia, PA', 1526000]
+					]);
+
+					var options = {
+						title: 'Population of Largest U.S. Cities',
+						chartArea: {width: '50%'},
+						hAxis: {
+						title: 'Total Population',
+						minValue: 0
+						},
+						vAxis: {
+						title: 'City'
+						}
+					};
+
+					var chart = new google.visualization.BarChart(document.getElementById('lineChart'));
+
+					chart.draw(data, options);
+					}
+		  </script> 
+	
+	</head>
+	<body>
+		<div class="main">
+			<div class="MYside-navbar">
+				<ul>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-tachometer-alt"></i
+							></span>
+							<span class="text"><h2>DoctorCo</h2></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-home"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-plus-square"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-comments"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-user"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-upload"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-cog"></i>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i
+									class="
+										fas
+										fa-sign-out-alt fa-flip-horizontal
+									"
+								></i
+							></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="top-navbar">
+					<div style="color: white;" class="fas fa-bars" id="menu-icon"></div>
+					<div class="profile">
+						<img src="images/admin.JPG" alt="" />
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="ContenCcontainer">
+					<div class="statsContainer">
+
+						<div class="stats">
+							<p class="title">Number of doctors</p>
+							<div class="Holder">
+								<i class="fas fa-user-nurse fa-3x"></i>
+								<div class="numberHolder">125</div>
+							</div>
+						</div>
+							
+						<div class="stats">
+							<p class="title">Number of Clients</p>
+							<div class="Holder">
+								<i class="fas fa-users fa-3x"></i>
+								<div class="numberHolder">507</div>
+							</div>
+						</div>
+
+						<div class="stats">
+							<p class="title">Number of Posts</p>
+							<div class="Holder">
+								<i class="far fa-newspaper fa-3x"></i>
+								<div class="numberHolder">987</div>
+							</div>
+						</div>
+
+						<div class="stats">
+							<p class="title">Number of Messages</p>
+							<div class="Holder">
+								<i class="fas fa-comments fa-3x"></i>
+								<div class="numberHolder">347</div>
+							</div>
+						</div>
+					</div>
+					<div class="chartWrapper">
+						<div class="chartsContainer">
+								<div id="piechart"></div>
+								<div id="lineChart"></div>
+						</div>
+					</div>
+						<div class="userOperationContainer">
+							
+							<div id="wrapper">
+								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;"><u>Users section</u></h4>
+								<table class="table-primary">
+								  <thead>
+									<tr>
+									  <th>avatar</th>
+									  <th>Role</th>
+									  <th>Username</th>
+									  <th>Phone</th>
+									  <th>Age</th>
+									  <th colspan="2">Action</th>
+									 
+									</tr>
+								  </thead>
+								  <tbody id="DataHolder">
+								  
+								  </tbody>
+								</table>
+								
+							</div>	
+						</div>
+						<div class="OperationContainerDoctor">
+							
+							<div id="wrapper">
+								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px;"><u>Doctors section</u></h4>
+								<table class="table-primary">
+								  <thead>
+									<tr>
+									  <th>user id</th>
+									  <th>speciality id</th>
+									  <th>matricule</th>
+									  <th>validated</th>
+									  <th colspan="2">Action</th>
+									 
+									</tr>
+								  </thead>
+								  <tbody id="doctorDataHolder">
+								  
+								  </tbody>
+								</table>
+								
+							</div>	
+						</div>	
+							<!-- location and speciality settings -->
+						<div class="settings">
+							<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px; text-align: center;">Location and speciality settings</h4>
+						<div class="locationSpecialityHolder">
+
+							<!-- location  settings -->
+
+							<div class="locationSelect">
+								<label for="">locations</label>
+								<div class="input-group mb-3">
+									<select type="text" class="form-control" id="locationSettings">
+										<option disabled selected>Choose your location</option>
+									</select>
+									<button style="height: 40px;" class="button" type="button" id="button-addon2">Delete</button>
+								  </div>
+								  <div class="input-group mb-3">
+									<input id="locationAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+										
+									<button style="height: 40px;background-color: #354046;" onclick="addLocation()"  class="button" type="button" id="button-addon2">Add</button>
+								  </div>
+							</div>
+							<!-- speciality settings -->
+
+							<div class="locationSelect">
+								<label for="">Specialites</label>
+								<div class="input-group mb-3">
+									<select id="specialitySettings" type="text" class="form-control">
+										<option disabled selected>Choose your Speciality</option>
+									</select>
+									<button style="height: 40px;" onclick="deleteSpeciality()" class="button" type="button" id="button-addon2">Delete</button>
+								  </div>
+								  <div class="input-group mb-3">
+									<input id="specialityAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+										
+									<button style="height: 40px;background-color: #354046;" onclick="addSpeciality()"  class="button" type="button" id="button-addon2">Add</button>
+								  </div>
+							</div>
+									 
+						</div>
+					</div>
+				<!-- pop uo modal 1 -->
+
+				<div class="zindex modal fade" id="exampleModal1" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">User Informations</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+
+						<!-- form will be used to update user data -->
+
+							<div class="formContainer">
+								<form name="registerForm">
+									<div style="display: none;" id="updateduser" class="alert alert-success" role="alert">
+										The data was updated succefuly
+									  </div>
+									<input type="hidden" name="user_id" id="user_id">
+									
+									<div class="form-group mar inputInline">
+									  <input type="text" placeholder="First Name..." id="FirstName" name="FirstName" class="form-control">
+									  <input type="text" placeholder="Last Name..." id="LastName" name="LastName" class="form-control">
+									</div>
+							  
+									<div class="form-group mar inputInline">
+									  <input type="text" placeholder="Phone..." id="phone" name="phone" class="form-control">
+									  <input type="text" placeholder="Email..." id="email" name="email" class="form-control">
+									</div>
+							  
+									<div class="mar input-group">
+									  <input type="number" placeholder="Age..." id="age" name="age" class="form-control">
+									</div>
+							  
+									<div class="mar input-group">
+									  <input type="text"  placeholder="Adresse..." id="adresse" name="adresse" class="form-control">
+									</div>
+							  
+									<div class="mar input-group">
+									  <input type="file" placeholder="Avatar..." name="avatar" id="avatar" class="form-control">
+									</div>
+							  
+									<div class="mar form-group inputInline">
+									  <select name="location_id" id="locations" class="form-select">
+										<option disabled selected>Choose your location</option>
+									  </select>
+						   
+									  <select id="role" name="role" class="mar form-select" >
+										<option disabled selected>Shoose your position</option>
+										<option value="Client">Client</option>
+										<option value="Doctor">Doctor</option>
+									  </select>      
+									</div>
+							  
+									<div class="mar form-group inputInline">
+									  <input type="text" placeholder="Username..." id="username" name="username" class="form-control">
+									  <input type="text" placeholder="Password..." id="password" name="password" class="form-control">
+									</div>
+								</div>
+							</div>
+						<div class="modal-footer">
+							<button id="exitUserModel" type="button" class=" button" data-bs-dismiss="modal">Close</button>
+							<button type="button" onclick="updateUser()" class=" button">Update</button>
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- pop up modal 2 -->
+
+				
+				<div class="zindex modal fade" id="exampleModal2" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Doctor Informations</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+
+						<!-- form will be used to update user data -->
+
+						<div  class="formContainer">
+
+							<form name="registerForm">
+								<div style="display: none;" id="updatedoctor" class="alert alert-success" role="alert">
+									The data was updated succefuly
+								  </div>
+								<input type="hidden" name="doctor_id" id="doctor_id">
+							 <div class="mb-1 form-group inputInline">
+							  <select name="speciality" id="speciality" class="form-select">
+								<option disabled selected>Choose speciality</option>
+							  </select>
+							  <input type="text" id="matricule" placeholder="Matricule..." name="matricule" class="form-control">
+							 </div>
+					   
+							<div class="mb-1 input-group">
+							  <input type="text" id="description" placeholder="Description..." name="description" class="form-control">
+							  </div>
+					
+							  <div class="schedule">
+								<div class="mb-1 input-group">
+								  <select name="days" id="days" class="form-select">
+								  </select>
+								</div>
+						
+								<div class="mb-1 form-group inputInline">
+								  <div  style="width: 49%;" class="input-group">
+									<span class="input-group-text" >start Time</span>
+									<input type="time" id="startTime" name="startTime" class="form-control">
+								  </div>
+								  <div  style="width: 49%;"  class="input-group">
+									<span class="input-group-text" >close Time</span>
+									<input type="time" id="closeTime" name="closeTime" class="form-control">
+								  </div>         
+								</div>
+								<div  class="mb-1 inputInline">
+								  <button style="width: 49%;background-color: #0188DF;color: white;" id="scheduleBtn" class="button" type="button">Send</button>
+								  <button onclick="reset()" style="width: 49%;background-color: #0188DF;color: white;" id="resetBtn" class="button" type="button">reset</button>
+								</div>
+
+								<textarea disabled class="form-control" id="displaySchedule" rows="3"></textarea>
+					
+							  </div>			
+						</form>
+						
+						 </div>
+							
+							</div>
+						<div class="modal-footer">
+							<button id="exitDoctorModel" type="button" class=" button" data-bs-dismiss="modal">Close</button>
+							<button type="button" onclick="updateDoctor()" class=" button">Update</button>
+						</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+		<footer>
+			<div class="footerSection footerSectionRight">
+				<img src="images/DoctorCoWhite.png" alt="">
+			</div>
+			<div class="footerSection footerSectionMiddle">
+				<h5>All right reserved 2021</h5>
+			</div>
+			<div class="footerSection footerSectionLeft">
+				<div class="icons">
+					<i class="fab fa-twitter-square fa-3x"></i>
+					<i class="fab fa-facebook-square fa-3x"></i>
+					<i class="fab fa-linkedin fa-3x"></i>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+		<script src="js/dashboard.js"></script>
+		<script src="Bootstrap/bootstrap.bundle.min.js"></script>
+		
+		
+		<script>
+
+			//pinding DOM element to my functions
+
+			window.addEventListener('load',getUserData);
+			window.addEventListener('load',getLocations);
+			window.addEventListener('load',readAllDoctors);
+			window.addEventListener('load', reset);
+			window.addEventListener('load', getSpecialities);
+			document.getElementById('resetBtn').addEventListener('click',reset);
+			document.getElementById('scheduleBtn').addEventListener('click',test);
+			document.getElementById('exitDoctorModel').addEventListener('click',reloadPage);
+			document.getElementById('exitUserModel').addEventListener('click',reloadPage);
+
+			//reload the page at command
+			function reloadPage() {
+				setTimeout(function(){
+					location.reload();
+				},250);
+			}
+
+
+			
+/********************************************************************/
+
+			function getLocations() {
+
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/getAllLocation", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					var data = JSON.parse(result);
+
+					data.forEach( da => {
+					document.getElementById('locations').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
+					});
+					data.forEach( da => {
+					document.getElementById('locationSettings').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
+					});
+					
+				})
+				.catch(error => console.log('error', error));
+			}
+
+/********************************************************************/
+
+			function getUserData() {
+
+				var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			redirect: 'follow'
+			};
+
+			fetch("http://localhost/fileRouge/user/getAllUsers", requestOptions)
+			.then(response => response.text())
+			.then(function(result) {
+				console.log(result);
+									 
+				var userData = JSON.parse(result);
+				userData.forEach( da => {
+          		document.getElementById('DataHolder').innerHTML += `
+				  <tr>	
+				  <td  data-label="avatar"><img style="max-width: 50px; max-height: 70px;" src="../uploads/${da.avatar}" alt=""></td>		
+				  <td data-label="role">${da.role}</td>
+				  <td data-label="role">${da.username}</td>
+				  <td data-label="phone">${da.phone}</td>
+				  <td data-label="age">${da.age}</td>
+				  <td data-label="Actions">
+					<button style="background-color:#0188DF;color:white;" id="delete" onclick="deleteUser(${da.user_id})" class="button" type="button" >delete</button>	
+				  </td>
+					<td data-label="Actions">
+							<button style="background-color:#0188DF;color:white;text-align:center;" type="button" onclick="readSingleUser(${da.user_id})" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+							More
+							</button>		
+							</tr>
+				  	`;
+				});  
+			})
+			.catch(error => console.log('error', error));
+			}
+
+/********************************************************************/
+
+
+			function deleteUser(id) {
+				
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"user_id": id
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/DeleteUser", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+
+				setTimeout(function(){
+					location.reload();
+				},500);
+			}
+/********************************************************************/
+
+
+			function readSingleUser(id) {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"user_id": id
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/readSingleUser", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					console.log(result);
+					userData  = JSON.parse(result);
+					console.log(userData);
+					document.getElementById('user_id').value = userData.user_id;
+					document.getElementById('FirstName').value = userData.FirstName;
+					document.getElementById('LastName').value = userData.FirstName;
+					document.getElementById('phone').value = userData.phone;
+					document.getElementById('email').value = userData.email;
+					document.getElementById('age').value = userData.age;
+					document.getElementById('adresse').value = userData.adresse;
+					document.getElementById('username').value = userData.username;
+					document.getElementById('password').value = userData.password;
+
+				})
+				.catch(error => console.log('error', error));
+			}
+/********************************************************************/
+
+			function uploadImage() {
+
+				var formData = new FormData();
+				var imgFile = document.getElementById('avatar').files[0];
+				if(imgFile === undefined) 
+				return null;
+
+				var ext = imgFile.name.split('.').pop();
+				var uniqName = Math.floor(Math.random()*Math.pow(10,10)).toString() + '.' + ext;
+				formData.append('uniqName', uniqName);
+				formData.append('avatar', imgFile);
+				// console.log(...formData);
+
+				fetch("http://localhost/fileRouge/Includes/upload.php", {
+				method: "post",
+				body: formData
+
+				}).catch(console.error);
+
+				return uniqName;
+			}
+/********************************************************************/
+
+			function updateUser() {
+
+				var uniqName = uploadImage();
+
+				document.getElementById('updateduser').style.display = "block";
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"user_id": document.getElementById('user_id').value,
+				"location_id": document.getElementById('locations').value,
+				"role": document.getElementById('role').value,
+				"FirstName": document.getElementById('FirstName').value,
+				"LastName": document.getElementById('LastName').value,
+				"phone": document.getElementById('phone').value,
+				"email": document.getElementById('email').value,
+				"password": document.getElementById('password').value,
+				"age": document.getElementById('age').value,
+				"username": document.getElementById('username').value,
+				"adresse": document.getElementById('adresse').value,
+				"avatar": uniqName
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/updateUser", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+			}
+
+/********************************************************************/
+
+			function readAllDoctors() {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/ReadAllDoctors", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+					doctorData = JSON.parse(result);
+					
+								   var varlidation;
+					doctorData.forEach( da => {
+						if (da.validated==null) {
+							varlidation = `<button onclick='validateDoctor(${da.doctor_id})' class='button' style='background-color:red;''>Unvalid</button>`;
+						}else {
+							varlidation = "<button class='button' style='background-color:green;''>Validated</button>";
+
+						}
+				document.getElementById('doctorDataHolder').innerHTML += `
+				<tr>	
+				<td data-label="user id">${da.user_id}</td>	
+				<td data-label="speciality">${da.speciality_id}</td>
+				<td data-label="matricule">${da.matricule}</td>
+				<td data-label="validation">${varlidation}</td>
+				<td data-label="Actions">
+					<button style="background-color:#0188DF;color:white;" id="delete" onclick="deleteDoctor(${da.doctor_id})" class="button" type="button" >delete</button>	
+				</td>
+				<td data-label="Actions">
+							<button style="background-color:#0188DF;color:white;" type="button" onclick="readSingleDoctor(${da.doctor_id})" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+							More
+							</button>		
+							</tr>
+						`;
+					});
+				})
+				.catch(error => console.log('error', error));
+			}
+/********************************************************************/
+
+			function deleteDoctor(id) {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"doctor_id": id
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/DeleteDoctor", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+
+				setTimeout(function(){
+					location.reload();
+				},500);
+			}
+
+/********************************************************************/
+
+			//array of object 
+			var arraySchedule = [];
+
+			function reset() {
+                //arraySchedule = [];
+                document.getElementById('displaySchedule').innerHTML = "";
+                //console.log(arraySchedule);
+                 
+                document.getElementById('days').innerHTML = `
+                <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday ">Saturday </option>
+                  <option value="Sunday">Sunday</option>`; 
+			}
+
+/********************************************************************/
+			
+	function test() {
+      var daysList = document.getElementById('days');
+      var startTime = document.getElementById('startTime');
+      var closeTime = document.getElementById('closeTime');
+      var displaySchedule = document.getElementById('displaySchedule');
+        if (daysList.options[daysList.selectedIndex] != undefined) {
+
+            console.log(daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value);
+            displaySchedule.innerHTML+= daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value+' / ';
+
+                  var object = {
+                    day : daysList.options[daysList.selectedIndex].value,
+                    startTime : startTime.value,
+                    closeTime : closeTime.value
+                  };
+
+                  arraySchedule.push(object);
+                  
+            daysList.options[daysList.selectedIndex].remove();
+        }
+    }
+
+/********************************************************************/
+
+			function updateDoctor() {
+
+				document.getElementById('updatedoctor').style.display = "block";
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"doctor_id": document.getElementById('doctor_id').value,
+				"matricule": document.getElementById('matricule').value,
+				"description": document.getElementById('description').value,
+				"schedule": JSON.stringify(arraySchedule)
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/updateDoctor", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+			}
+
+/********************************************************************/
+
+			function getSpecialities() {
+
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+				fetch("http://localhost/fileRouge/user/getAllSpecialites", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+					//console.log(result);
+					var data = JSON.parse(result);
+					data.forEach( da => {
+						document.getElementById('speciality').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
+					});
+					data.forEach( da => {
+						document.getElementById('specialitySettings').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
+					});
+				})
+				.catch(error => console.log('error', error));
+    		}
+
+/********************************************************************/
+
+			function readSingleDoctor(id) {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"doctor_id": id
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/readSingleDoctor", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					console.log(result);
+					doctorData = JSON.parse(result);
+					var toDisplay = "";
+					var schedule = JSON.parse(doctorData.schedule);
+					console.log(schedule);
+					schedule.forEach( sh => {
+						toDisplay += sh.day +' from '+sh.startTime+' to '+ sh.closeTime +' / ';
+					}); 
+					document.getElementById('matricule').value = doctorData.matricule;
+					document.getElementById('description').value = doctorData.description;
+					document.getElementById('displaySchedule').value =JSON.stringify(toDisplay);
+					document.getElementById('doctor_id').value = doctorData.doctor_id;
+					
+					
+					
+
+				})
+				.catch(error => console.log('error', error));
+			}
+/********************************************************************/
+
+			function validateDoctor(id) {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"doctor_id": id
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/validateDoctor", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+				setTimeout(function(){
+					location.reload();
+				},250);
+			}
+
+			function deleteLocation(id) {
+				
+			}
+
+			function deleteSpeciality() {
+
+				
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"speciality_id": document.getElementById('specialitySettings').value
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/DeleteSpeciality", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+
+				reloadPage();
+			}
+			function addLocation() {
+
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"location": document.getElementById('locationAddition').value
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/addLocation", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+
+				reloadPage();
+			}
+
+			function addSpeciality() {
+				
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"speciality": document.getElementById('specialityAddition').value
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/addSpeciality", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+
+				reloadPage();
+			}
+		</script>
+	</body>
+</html>

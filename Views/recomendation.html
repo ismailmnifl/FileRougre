@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Complete Responsive Hospital Website Design Tutorial</title>
+
+		<!-- aos css file cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+		/>
+
+		<!-- bootstrap cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+		/>
+
+		<!-- font awesome cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		/>
+		<!-- custom css file link  -->
+		<link rel="stylesheet" href="recomendation.css" />
+	</head>
+	<body>
+		<!-- header section starts  -->
+
+		<header>
+			<div class="container">
+				<a href="index.html" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
+
+				<nav class="nav">
+					<ul>
+						<li><a href="#home">home</a></li>
+						<li><a href="#about">about</a></li>
+						<li><a href="#review">review</a></li>
+						<li><a href="#contact">contact</a></li>
+						<li><a href="#post">post</a></li>
+						<li>
+							<a href="#"
+								><a href="login.html"
+									><button class="button">Join</button></a
+								></a
+							>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="fas fa-bars"></div>
+			</div>
+		</header>
+		<!-- to keep the header away from the content -->
+		<div class="spacer"></div>
+		<!-- bage heading -->
+		<div class="headerTitle">
+			<h1 class="heading">
+				<span>'</span> Recommendation <span>'</span>
+			</h1>
+		</div>
+		<!-- content section start -->
+		<section class="filterSection">
+			<div class="filter">
+				<!--  -->
+				<div class="input-group">
+					<select id="specialities" class="form-select form-control">
+						<option disabled selected>Speciality Filter</option>
+					  </select>				  
+					</div>
+				  <div class="input-group">
+					<select id="locations" class="form-select form-control" aria-label="Default select example">
+						<option disabled selected>Location Filter</option>
+						
+					  </select>				 
+					 </div>
+					<div class="input-group">
+						<input type="text"  placeholder="Search..." class="form-control">
+						<button class="buttonReverse">Search</button>
+					  </div>
+				
+			</div>
+		</section>
+		<section id="doctorCardSection" class="doctorCardSection">
+
+		</section>
+
+		<!-- content section end -->
+
+		<section class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<a href="#" class="logo"
+							><img width="70px" src="images/DoctorCoFooter.png" alt=""><span>D</span>octor<span>C</span>o.</a
+						>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing
+							elit. Tenetur nemo porro quasi minima consequuntur
+							dolorum, quas amet in autem id?
+						</p>
+					</div>
+
+					<div class="col-md-4 text-center">
+						<h3>links</h3>
+						<a href="#">home</a>
+						<a href="#">about</a>
+						<a href="#">review</a>
+						<a href="#">contact</a>
+						<a href="#">post</a>
+					</div>
+
+					<div class="col-md-4 text-center">
+						<h3>share</h3>
+						<a href="#">facebook</a>
+						<a href="#">twitter</a>
+						<a href="#">instagram</a>
+						<a href="#">github</a>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="credit text-center mx-auto">
+				created by <span>mr. ismail MNIFL</span> | all rights reserved.
+			</h3>
+		</section>
+
+		<!-- footer section ends -->
+
+		<!-- jquery cdn link  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- aos js file cdn link  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+		<script src="js/main.js"></script>
+		<script>
+			AOS.init({
+				duration: 1000,
+				delay: 400,
+			});
+		</script>
+
+
+			<script>
+
+				// pinding the DOM element with my function
+				/********************************************************************/
+				window.addEventListener('load',getSpecialities);
+				window.addEventListener('load',getLocations);
+				window.addEventListener('load',readAllDoctors);
+				
+
+				//functions are bellow
+				/********************************************************************/
+
+			function getSpecialities() {
+
+					var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+					var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					redirect: 'follow'
+					};
+					fetch("http://localhost/fileRouge/user/getAllSpecialites", requestOptions)
+					.then(response => response.text())
+					.then(function(result) {
+						//console.log(result);
+						var data = JSON.parse(result);
+						console.log(data);
+						data.forEach( da => {
+							document.getElementById('specialities').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
+						});
+					})
+					.catch(error => console.log('error', error));
+			}
+				
+			
+/********************************************************************/
+
+			function getLocations() {
+
+					var myHeaders = new Headers();
+					myHeaders.append("Content-Type", "application/json");
+
+					var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					redirect: 'follow'
+					};
+
+					fetch("http://localhost/fileRouge/user/getAllLocation", requestOptions)
+					.then(response => response.text())
+					.then(function(result) {
+
+						var data = JSON.parse(result);
+
+						data.forEach( da => {
+						document.getElementById('locations').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
+						});
+						
+					})
+					.catch(error => console.log('error', error));
+			}
+
+/********************************************************************/
+
+			function readAllDoctors() {
+
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/doctor/retreveDoctorRecomendation", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					console.log(result);
+					data = JSON.parse(result);
+					console.log(data);
+					data.forEach( da => {
+						var stars = "" ;
+
+							for (let index = 0; index < Math.round(da.AVGstars); index++) {
+								stars += '<img src="images/star.png" alt="">';
+								
+							}
+							for (let j = 0; j < 5-Math.round(da.AVGstars); j++) {
+									
+									stars += '<img src="images/emptystar.png" alt="">';
+							}
+							document.getElementById('doctorCardSection').innerHTML +=`
+							
+							<div data-aos="fade-up" class="cardContainer">
+							<div class="img-container">
+						<img src="../uploads/${da.avatar}" alt="">
+					</div>
+					
+					<div class="cardContent">
+					<div class="cardHead">
+						<a onclick="getSelectedDoctor(${da.doctorID})" href="doctorProfile.html"><p>${da.FirstName} ${da.LastName}</p></a>
+						<span class="speciality">${da.speciality}</span>
+					</div>
+					<div class="cardData">
+						<div class="description">
+						<p>${da.description}</p>
+						</div>
+						
+						<div class="rating">
+							<p>${Math.round(da.AVGstars)}</p>
+						<div class="stars">
+							${stars}
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+							
+							
+							`;						
+					});
+				})
+				.catch(error => console.log('error', error));
+
+			}
+			function getSelectedDoctor(id) {
+				sessionStorage.setItem('doctorID', id);
+					console.log(sessionStorage.getItem('doctorID'));
+				return sessionStorage.getItem('doctorID');
+			}
+  			 function reloadPage() {
+				setTimeout(function(){
+					sessionStorage.clear();
+				},1000);
+            } 
+			</script>
+	</body>
+</html>
