@@ -580,37 +580,32 @@
 
       return $stmt;
 
-      /* $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      // Set properties
-      $this->user_id = $row['user_id'];
-      $this->location_id = $row['location_id'];
-      $this->role = $row['role'];
-      $this->FirstName = $row['FirstName'];
-      $this->LastName = $row['LastName'];
-      $this->phone = $row['phone'];
-      $this->email = $row['email'];
-      $this->password = $row['password'];
-      $this->age = $row['age'];
-      $this->username = $row['username'];
-      $this->adresse = $row['adresse'];
-      $this->avatar = $row['avatar'];
-      $this->latitude = $row['latitude'];
-      $this->longitude = $row['longitude'];
-      $this->doctor_id = $row['doctor_id'];
-      $this->speciality_id = $row['speciality_id'];
-      $this->matricule = $row['matricule'];
-      $this->description = $row['description'];
-      $this->schedule = $row['schedule'];
-      $this->validated = $row['validated'];
-      $this->speciality = $row['speciality'];
-      $this->review_id = $row['review_id'];
-      $this->stars = $row['stars'];
-      $this->review = $row['review'];
-      $this->dateCreated = $row['dateCreated'];
-      $this->AVGstars = $row['AVGstars'];
-      $this->doctorID = $row['doctorID']; */
   }
 
-  
+  function insertReview() {
+    // Create query
+    $query = 'INSERT INTO review (user_id, doctor_id, stars, review) VALUES (:user_id, :doctor_id, :stars, :review)';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Clean data
+
+    $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+    $this->doctor_id = htmlspecialchars(strip_tags($this->doctor_id));
+    $this->stars = htmlspecialchars(strip_tags($this->stars));
+    $this->review = htmlspecialchars(strip_tags($this->review));
+
+    // Bind data
+
+    $stmt->bindParam(':user_id', $this->user_id);
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    $stmt->bindParam(':stars', $this->stars);
+    $stmt->bindParam(':review', $this->review);
+
+    // Execute query
+    if($stmt->execute()) {
+    return true;
+    }
+  }
 }

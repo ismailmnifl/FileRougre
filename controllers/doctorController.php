@@ -266,49 +266,25 @@ class doctorController {
     }
 }
 
+    function insertReview() {
+
+        $this->user->user_id = $this->data->user_id;
+        $this->user->doctor_id = $this->data->doctor_id;
+        $this->user->stars = $this->data->stars;
+        $this->user->review =  $this->data->review;
+
+        // Create doctor
+        if($this->user->insertReview()) {
+            echo json_encode(
+            array('message' => 'doctor Created')
+            );
+        } else {
+            echo json_encode(
+            array('message' => 'doctor Not Created')
+            );
+        }
+    }
 }
 
 
 
-
-
-
-/*
-$this->user->doctorID = $this->data->doctorID;
-// Get user
-$this->user->retreveSingleDoctorProfileData();
-
-// Create array
-$user_item = array(
-'user_id' => $user_id,
-'location_id' => $location_id,
-'role' => $role,
-'FirstName' => $FirstName,
-'LastName' => $LastName,
-'phone' => $phone,
-'email' => $email,
-'password' => $password,
-'age' => $age,
-'username' => $username,
-'adresse' => $adresse,
-'avatar' => $avatar,
-'latitude' => $latitude,
-'longitude' => $longitude,
-'doctor_id' => $doctor_id,
-'speciality_id' => $speciality_id,
-'matricule' => $matricule,
-'description' => $description,
-'schedule' => $schedule,
-'validated' => $validated,
-'speciality' => $speciality,
-'review_id' => $review_id,
-'stars' => $stars,
-'review' => $review,
-'dateCreated' => $dateCreated,
-'AVGstars' => $AVGstars,
-'doctorID' => $doctorID,
-);
-
-// Make JSON
-print_r(json_encode($user_item));
-*/

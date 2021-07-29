@@ -71,52 +71,51 @@
 					<div class="cardContent">
                         
                     <div class="info">
-                        <table>
-                            <tr>
-                                <th><h3 id="lastname" style="color: #354046;"></h3></th>
-                            </tr>
-                            <tr>
-                              <th>Speciality:</th>
-                              <td id="speciality">cardiologist </td>
-                            </tr>
-                            <tr>
-                              <th>Location:</th>
-                              <td id="location">Safi</td>
-                            </tr>
-                            <tr>
-                                <th>Adresse:</th>
-                                <td id="addresse">09 lotis sakya hamra Qu course Safi</td>
-                            </tr>
-                            <tr>
-                              <th>Telephone:</th>
-                            <td id="phone">+212 37 27 36 55</td>
-                            </tr>
-                            <tr>
-                                <th>Email:</th>
-                                <td id="email">ismailmnifil@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <th><h3 style="color: #354046;">Overall rating</h3></th>
-                            </tr>
-                            <tr>
-                                <th>User rating</th>
-                                <td><div class="stars">
-                                    <img src="images/star.png" alt="">
-                                    <img src="images/star.png" alt="">
-                                    <img src="images/star.png" alt="">
-                                    <img src="images/star.png" alt="">
-                                    <img src="images/emptystar.png" alt="">
+                        
+                        <h3 id="lastname" style="color: #354046;"></h3>
+                            
+                        <div class="mb">
+                            <span  class="colmnA">Speciality : </span>
+                            <span id="speciality" class="colmn"></span>
+                        </div>
+
+                        <div class="mb">
+                            <span class="colmnA">Location : </span>
+                            <span id="location" class="colmn"></span>
+                        </div>
+                            
+                            <div class="mb">
+                                <span  class="colmnA">Adresse : </span>
+                                <span id="addresse" class="colmn"></span>
+                            </div>
+
+                            <div class="mb">
+                                <span  class="colmnA">Telephone : </span>
+                                <span id="phone" class="colmn"></span>
+                            </div>
+
+                            <div class="mb">
+                                <span  class="colmnA">Email : </span>
+                                <span id="email" class="colmn"></span>
+                            </div>
+
+                            <div class="mb">
+                                <h3 style="color: #354046;">Overall rating</h3>
+                            </div>
+    
+                           
+                                <p>User rating</p>
+                                <div id="stars" class="stars">
+                                    
                                 </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="color: #354046;font-weight: 100;">4 based on 254 reviews.</th>
-                            </tr>
-                          </table>
+                             
+                            <p>
+                                <p style="color: #354046;font-weight: 100;">4 based on 254 reviews.</p>
+                            </p>
                     </div>
 
                     <div class="map">
-                        <iframe src="https://maps.google.com/maps?q=7QR8+8G Safi&output=embed"></iframe>
+                        <iframe id="maps" src=""></iframe>
                     </div>
 
 				</div>
@@ -139,7 +138,7 @@
                         <img onclick="changeImg(5)" id="star-5" src="images/emptystar.png" alt="">
                     </div>
                     </div>
-                    <textarea class="form-control" placeholder="Enter your review..." name="" id="" cols="30" rows="3"></textarea>
+                    <textarea class="form-control" placeholder="Enter your review..." name="" id="reviewBody" cols="30" rows="3"></textarea>
                     <button class="buttonReverse">Send</button>
                 </div>
 			</div>
@@ -148,7 +147,7 @@
                 <div class="review">
                     <div class="box">
                         <h3>Ahmad salami</h3>
-                        <div class="stars">
+                        <div class="stars1">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
@@ -166,7 +165,7 @@
                 <div class="review">
                     <div class="box">
                         <h3>hamza seaferer</h3>
-                        <div class="stars">
+                        <div class="stars1">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
@@ -184,7 +183,7 @@
                 <div class="review">
                     <div class="box">
                         <h3>said mnifil</h3>
-                        <div class="stars">
+                        <div class="stars1">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
                             <img src="images/star.png" alt="">
@@ -260,7 +259,14 @@
 			});
 		</script>
         <script>
+
+            var StarsCount = "";
             function changeImg(id) {
+
+                for (let j = 1; j < 6; j++) {
+                    var star = document.getElementById('star-'+j);
+                star.src = 'images/emptystar.png';
+                }
                 
                 for (let index = 1; index < id+1; index++) {
 
@@ -268,7 +274,9 @@
                 star.src = 'images/star.png';
                     
                 }
-                return id;
+                console.log(id);
+                StarsCount = id;
+                console.log('stats'+StarsCount);
             }
             window.addEventListener('load',retreaveData);
             
@@ -294,17 +302,56 @@
                     console.log(result);
                     var data = JSON.parse(result);
                     console.log(data[0].avatar);
-
+                    console.log(data[0].adresse);
                     document.getElementById('avatar').src = '../uploads/'+data[0].avatar;
-                    document.getElementById('lastname').innerHTML ='Dr'+ data[0].LastName ;
+                    document.getElementById('lastname').innerHTML ='Dr. '+ data[0].LastName ;
                     document.getElementById('speciality').innerHTML = data[0].speciality;
                     document.getElementById('location').innerHTML = data[0].location_id;
                     document.getElementById('addresse').innerHTML = data[0].adresse;
                     document.getElementById('phone').innerHTML = data[0].phone;
                     document.getElementById('email').innerHTML = data[0].email;
+                    document.getElementById('maps').src = `https://maps.google.com/maps?q=${data[0].adresse}&output=embed`;
 
-                    
+                    console.log('AVGstars : '+data[0].AVGstars);
+                    var stars = "";
+
+                    for (let index = 0; index < Math.round(data[0].AVGstars); index++) {
+								stars += '<img src="images/star.png" alt="">';
+								
+							}
+							for (let j = 0; j < 5-Math.round(data[0].AVGstars); j++) {
+									
+									stars += '<img src="images/emptystar.png" alt="">';
+							}
+                    console.log(stars);
+
+                    document.getElementById('stars').innerHTML = stars;
+
                 })
+                .catch(error => console.log('error', error));
+            }
+
+            function insertReview() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "user_id": "50",
+                "doctor_id": sessionStorage.getItem('doctorID'),
+                "stars": StarsCount,
+                "review": document.getElementById('reviewBody').value
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/doctor/insertReview", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
                 .catch(error => console.log('error', error));
             }
           

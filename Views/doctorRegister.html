@@ -13,7 +13,7 @@
   <title>Register</title>
 </head>
 <body>
-  <h3 style="z-index: 100; position: relative; top: 70px;">Register</h3> 
+  <h3 style="z-index: 100; position: relative; top: 70px;">Doctor Register</h3> 
 
  <div data-aos="flip-up" data-aos-duration="3000" class="loginContainer">
    
@@ -33,7 +33,7 @@
           </div>
 
           <div class="input-group">
-            <input type="text" id="" placeholder="Maps code..." name="description" class="form-control">
+            <input type="text" id="mapsCode" placeholder="Maps code..." name="mapsCode" class="form-control">
             </div>
 
           <div class="schedule">
@@ -174,6 +174,7 @@
             "speciality_id": document.getElementById('speciality').value,
             "matricule": document.getElementById('matricule').value,
             "description": document.getElementById('description').value,
+            "mapsCode": document.getElementById('mapsCode').value,
             "schedule": JSON.stringify(arraySchedule)
           });
 

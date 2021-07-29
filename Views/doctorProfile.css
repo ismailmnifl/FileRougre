@@ -242,13 +242,15 @@ header .fa-times {
     margin-bottom: 15px;
 }
 .cardContent .info table tr th {
+    
+}
+.cardContent .info .mb{
+    margin-bottom: 5px;
+}
+.cardContent .info .mb .colmnA{
     color: var(--blue);
 }
-.cardContent .info table {
-    border-collapse:separate;
-    border-spacing:0 10px; 
-}
-.cardContent .info table tr .stars img {
+.stars img {
     width: 30px;
 }
 .cardContent .info {
@@ -362,10 +364,10 @@ header .fa-times {
     color: grey;
     font-style: italic;
 }
-.usersReviews .review .box .stars img {
+.usersReviews .review .box .stars1 img {
     width: 30px;
 }
-.usersReviews .review .box .stars  {
+.usersReviews .review .box .stars1  {
     margin-bottom: 10px;
 }
 .usersReviews .review .box{
