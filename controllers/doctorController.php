@@ -256,6 +256,7 @@ class doctorController {
                   'dateCreated' => $dateCreated,
                   'AVGstars' => $AVGstars,
                   'doctorID' => $doctorID,
+                  'nReviews' => $nReviews
                 );
           // Make JSON
           array_push($doctors_arr, $user_item);
@@ -284,6 +285,86 @@ class doctorController {
             );
         }
     }
+    function getReviews() {
+
+      $this->user->doctor_id = $this->data->doctor_id;
+          // Get user
+          $result = $this->user->getReviews();
+
+          $num = $result->rowCount();
+
+        if($num > 0) {
+                  $reviews_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+        
+          // Create array
+          $review_item = array(
+                  'review_id' => $review_id,
+                  'user_id' => $user_id,
+                  'doctor_id' => $doctor_id,
+                  'stars' => $stars,
+                  'review' => $review,
+                  'dateCreated' => $dateCreated,
+                  'user_id' => $user_id,
+                  'location_id' => $location_id,
+                  'role' => $role,
+                  'FirstName' => $FirstName,
+                  'LastName' => $LastName,
+                  'phone' => $phone,
+                  'email' => $email,
+                  'password' => $password,
+                  'age' => $age,
+                  'username' => $username,
+                  'adresse' => $adresse,
+                  'avatar' => $avatar,
+                  'latitude' => $latitude,
+                  'longitude' => $longitude,
+                );
+          // Make JSON
+          array_push($reviews_arr, $review_item);
+        }
+        echo json_encode($reviews_arr);
+        }else {
+          echo json_encode(array('message' => 'No review Found'));
+        }
+      }
+      function fiveStarsPersontage() {
+
+        $this->user->doctor_id = $this->data->doctor_id;
+
+        $five = $this->user->fiveStarsPersontage();
+        $fiveRow = $five->fetch(PDO::FETCH_ASSOC);
+          extract($fiveRow);
+
+        $four = $this->user->fourStarsPersontage();
+        $fourRow = $four->fetch(PDO::FETCH_ASSOC);
+          extract($fourRow);
+
+          $three = $this->user->threeStarsPersontage();
+        $threeRow = $three->fetch(PDO::FETCH_ASSOC);
+          extract($threeRow);
+
+        $two = $this->user->twoStarsPersontage();
+        $twoRow = $two->fetch(PDO::FETCH_ASSOC);
+          extract($twoRow);
+
+        $one = $this->user->oneStarsPersontage();
+        $oneRow = $one->fetch(PDO::FETCH_ASSOC);
+          extract($oneRow);
+
+          $review_item = array(
+            'fiveStarsCount' => $fiveStarsCount,
+            'fourStarsCount' => $fourStarsCount,
+            'threeStarsCount' => $threeStarsCount,
+            'twoStarsCount' => $twoStarsCount,
+            'oneStarsCount' => $oneStarsCount,
+            
+          );
+        // Make JSON
+        print_r(json_encode($review_item));
+      }
 }
 
 

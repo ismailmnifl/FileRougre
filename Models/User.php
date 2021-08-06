@@ -31,6 +31,7 @@
     //the average star rating for each doctor
     public $AVGstars;
     public $doctorID;
+    public $nReviews;
     
 
 
@@ -556,7 +557,7 @@
   function retreveSingleDoctorProfileData() {
 
     // Create query
-        $query = 'SELECT *,doctor.doctor_id as "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
+        $query = 'SELECT *,COUNT(review.review_id) as "nReviews", doctor.doctor_id as "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
         FROM doctor 
           inner JOIN user on doctor.user_id = user.user_id
           
@@ -607,5 +608,100 @@
     if($stmt->execute()) {
     return true;
     }
+  }
+  function getReviews() {
+
+    $query = 'SELECT * FROM review INNER JOIN user ON review.user_id = user.user_id
+              WHERE review.doctor_id = :doctor_id';
+        
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+  
+        $stmt->bindParam(':doctor_id', $this->doctor_id);
+        // Execute query
+        $stmt->execute();
+  
+        return $stmt;
+  }
+  /*************************review persentage***************************/
+  function fiveStarsPersontage() {
+    $query = 'SELECT ((SELECT COUNT(review.review_id) FROM review
+              WHERE review.stars = 5 and review.doctor_id = :doctor_id)*100)
+              / COUNT(review.review_id) as "fiveStarsCount" 
+              FROM review WHERE review.doctor_id = :doctor_id';
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+  }
+  function fourStarsPersontage() {
+    $query = 'SELECT ((SELECT COUNT(review.review_id) FROM review
+              WHERE review.stars = 4 and review.doctor_id = :doctor_id)*100)
+              / COUNT(review.review_id) as "fourStarsCount" 
+              FROM review WHERE review.doctor_id = :doctor_id';
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+  }
+  function threeStarsPersontage() {
+    $query = 'SELECT ((SELECT COUNT(review.review_id) FROM review
+              WHERE review.stars = 3 and review.doctor_id = :doctor_id)*100)
+              / COUNT(review.review_id) as "threeStarsCount" 
+              FROM review WHERE review.doctor_id = :doctor_id';
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+  }
+  function twoStarsPersontage() {
+    $query = 'SELECT ((SELECT COUNT(review.review_id) FROM review
+              WHERE review.stars = 2 and review.doctor_id = :doctor_id)*100)
+              / COUNT(review.review_id) as "twoStarsCount" 
+              FROM review WHERE review.doctor_id = :doctor_id';
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+  }
+  function oneStarsPersontage() {
+    $query = 'SELECT ((SELECT COUNT(review.review_id) FROM review
+              WHERE review.stars = 1 and review.doctor_id = :doctor_id)*100)
+              / COUNT(review.review_id) as "oneStarsCount" 
+              FROM review WHERE review.doctor_id = :doctor_id';
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(':doctor_id', $this->doctor_id);
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
   }
 }

@@ -29,7 +29,7 @@
 		<!-- header section starts  -->
 
 		<header>
-			<div class="container">
+			<div class="headeCcontainer">
 				<a href="index.html" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
 
 				<nav class="nav">
@@ -60,149 +60,144 @@
 				<span>'</span> Doctor profile <span>'</span>
 			</h1>
 		</div>
+        
 		<!-- Doctor detail section start -->
-		<section class="DoctorProfileSection">
-
-            <div data-aos="fade-up" class="cardContainer">
-				<div class="img-container">
-						<img id="avatar" src="" alt="">
-					</div>
-					
-					<div class="cardContent">
-                        
-                    <div class="info">
-                        
-                        <h3 id="lastname" style="color: #354046;"></h3>
-                            
-                        <div class="mb">
-                            <span  class="colmnA">Speciality : </span>
-                            <span id="speciality" class="colmn"></span>
-                        </div>
-
-                        <div class="mb">
-                            <span class="colmnA">Location : </span>
-                            <span id="location" class="colmn"></span>
-                        </div>
-                            
-                            <div class="mb">
-                                <span  class="colmnA">Adresse : </span>
-                                <span id="addresse" class="colmn"></span>
-                            </div>
-
-                            <div class="mb">
-                                <span  class="colmnA">Telephone : </span>
-                                <span id="phone" class="colmn"></span>
-                            </div>
-
-                            <div class="mb">
-                                <span  class="colmnA">Email : </span>
-                                <span id="email" class="colmn"></span>
-                            </div>
-
-                            <div class="mb">
-                                <h3 style="color: #354046;">Overall rating</h3>
-                            </div>
-    
-                           
-                                <p>User rating</p>
-                                <div id="stars" class="stars">
-                                    
-                                </div>
-                             
-                            <p>
-                                <p style="color: #354046;font-weight: 100;">4 based on 254 reviews.</p>
-                            </p>
-                    </div>
-
-                    <div class="map">
-                        <iframe id="maps" src=""></iframe>
-                    </div>
-
-				</div>
-			</div>
-        </section>
-           <!-- Doctor detail section end -->
-
-            <!-- review section start -->
-
-        <section class="reviewSection">
-            <div data-aos="fade-up" class="reviewCardContainer">
-				<div class="addReview">
-                    <div class="reviewStars">
-                        <h5>Select how many stars : </h5>
-                        <div class="starsGroup">
-                        <img onclick="changeImg(1)" id="star-1" src="images/emptystar.png" alt="">
-                        <img onclick="changeImg(2)" id="star-2" src="images/emptystar.png" alt="">
-                        <img onclick="changeImg(3)" id="star-3" src="images/emptystar.png" alt="">
-                        <img onclick="changeImg(4)" id="star-4" src="images/emptystar.png" alt="">
-                        <img onclick="changeImg(5)" id="star-5" src="images/emptystar.png" alt="">
-                    </div>
-                    </div>
-                    <textarea class="form-control" placeholder="Enter your review..." name="" id="reviewBody" cols="30" rows="3"></textarea>
-                    <button class="buttonReverse">Send</button>
+        <section class="DoctorProfileSection">
+            <div class="newProfileWrapper">
+            <div class="smallInfoContainer">
+                <div class="imageCon">
+                    <img id="avatar" src="" alt="">
                 </div>
-			</div>
-            <!-- user reviews  -->
-            <div data-aos="fade-up" class="usersReviews">
-                <div class="review">
-                    <div class="box">
-                        <h3>Ahmad salami</h3>
-                        <div class="stars1">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/emptystar.png" alt="">
-                        </div>
-                    </div>
-                    
-                    <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Vel, a eaque laboriosam ducimus consequuntur voluptas
-                        commodi? Nesciunt cumque tempore </p>
-                        <p class="date">created at : 22/07/2021 17:32</p>
-                </div>
-                <hr>
-                <div class="review">
-                    <div class="box">
-                        <h3>hamza seaferer</h3>
-                        <div class="stars1">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/emptystar.png" alt="">
-                        </div>
-                    </div>
-                    
-                    <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Vel, a eaque laboriosam ducimus consequuntur voluptas
-                        commodi? Nesciunt cumque tempore </p>
-                        <p class="date">created at : 22/07/2021 17:32</p>
-                </div>
-                <hr>
-                <div class="review">
-                    <div class="box">
-                        <h3>said mnifil</h3>
-                        <div class="stars1">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/star.png" alt="">
-                            <img src="images/emptystar.png" alt="">
-                        </div>
-                    </div>
-                    
-                    <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Vel, a eaque laboriosam ducimus consequuntur voluptas
-                        commodi? Nesciunt cumque tempore </p>
-                        <p class="date">created at : 22/07/2021 17:32</p>
-                </div>
+                <div class="smallTextContainer">
+                    <h3 id="lastname"></h3>
+                    <h5 id="speciality"></h5>
+                    <p id="email"></p>
+                    <p id="phone"></p>
+                    <p id="addresse"></p>
+                </div> 
+                
             </div>
+            <div class="moreInfo">
+                <iframe width="100%" id="maps" height="100%" src=""></iframe>
+
+            </div>
+            <div class="mapWrapper">
+              <div id="stars" class="stars">
+            </div>
+            <div class="totalRating">
+              <p id="nReviews"></p>
+            </div>
+           
+
+            <div class="tubeWrapper">
+              5 stars
+              <div class="ratingTube">
+                <div id="fillable5" class="fillable5"></div>
+              </div>
+              <p id="persent_5"></p>
+            </div>
+
+            <div class="tubeWrapper">
+              4 stars
+              <div class="ratingTube">
+                <div id="fillable4" class="fillable4"></div>
+              </div>
+              <p id="persent_4"></p>
+            </div>
+
+            <div class="tubeWrapper">
+              3 stars
+              <div class="ratingTube">
+                <div id="fillable3" class="fillable3"></div>
+              </div>
+              <p id="persent_3"></p>
+            </div>
+
+            <div class="tubeWrapper">
+              2 stars
+              <div class="ratingTube">
+                <div id="fillable2" class="fillable2"></div>
+              </div>
+              <p id="persent_2"></p>
+            </div>
+
+            <div class="tubeWrapper">
+              1 stars
+              <div class="ratingTube">
+                <div id="fillable1" class="fillable1"></div>
+              </div>
+              <p id="persent_1"></p>
+            </div>
+
+
+          
+           </div>
+        </div>
+ <!-- Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday -->
+        <div class="timeTableWrapper">
+          <div class="smallerWrapper">
+            <div class="schadulContainer">
+              <div class="day">
+                <div class="titleDay"><h5>Monday</h5></div>
+
+                <div id="start-1" class="start red">start from</div>
+                <div id="end-1" class="end blue ">until</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Tuesday</h5></div>
+                <div id="start-2" class="start orange">closed</div>
+                <div id="end-2" class="end gray">closed</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Wednesday</h5></div>
+                <div id="start-3" class="start navy">closed</div>
+                <div id="end-3" class="end yellow">closed</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Thursday</h5></div>
+                <div id="start-4" class="start purple">closed</div>
+                <div id="end-4" class="end orange">closed</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Friday</h5></div>
+                <div id="start-5" class="start red">closed</div>
+                <div id="end-5" class="end gray">closed</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Saturday</h5></div>
+                <div id="start-6" class="start navy">closed</div>
+                <div id="end-6" class="end blue">closed</div>
+              </div>
+              <div class="day">
+                <div class="titleDay"><h5>Sunday</h5></div>
+                <div id="start-7" class="start purple">closed</div>
+                <div id="end-7" class="end orange">closed</div>
+              </div>            
+            </div>
+          </div>
+          <div class="AddingRating">
+              <h5>Add your review here</h5>
             
+                <div class="stars">
+                  <img id="star-1" onclick="changeImg(1)" src="images/emptystar.png" alt="">
+                  <img id="star-2" onclick="changeImg(2)" src="images/emptystar.png" alt="">
+                  <img id="star-3" onclick="changeImg(3)" src="images/emptystar.png" alt="">
+                  <img id="star-4" onclick="changeImg(4)" src="images/emptystar.png" alt="">
+                  <img id="star-5" onclick="changeImg(5)" src="images/emptystar.png" alt="">
+          </div>
+          <p id="error" style="color: red;"></p>
+          <textarea class="form-control" name="" id="textarea1" cols="30" rows="3"></textarea>
+          <button onclick="insertReview()" class="button">Submit</button>
+        </div>
+	
         </section>
-           <!-- review section end -->
+            <div id="reviews" class="reviews">
+
+            </div>
+        </section>
+    <!-- review section end -->
 		
-   <!-- footer section start -->
+    <!-- footer section start -->
 		<section class="footer">
 			<div class="container">
 				<div class="row">
@@ -260,7 +255,18 @@
 		</script>
         <script>
 
+          /********************function calls*************************/
+          window.addEventListener('load',getReviews);
+          window.addEventListener('load',retreaveData);
+          window.addEventListener('load',reviewPersentage);
+
+
+
+
             var StarsCount = "";
+
+/************************************************************************************/            
+
             function changeImg(id) {
 
                 for (let j = 1; j < 6; j++) {
@@ -278,8 +284,9 @@
                 StarsCount = id;
                 console.log('stats'+StarsCount);
             }
-            window.addEventListener('load',retreaveData);
-            
+
+/************************************************************************************/            
+    
             function retreaveData() {
 
                 var myHeaders = new Headers();
@@ -301,15 +308,24 @@
                 .then(function(result) {
                     console.log(result);
                     var data = JSON.parse(result);
-                    console.log(data[0].avatar);
-                    console.log(data[0].adresse);
+
+                    var schedule = JSON.parse(data[0].schedule);
+
+                    console.log(schedule);
+                    for (let index = 1; index < schedule.length+1; index++) {
+                      
+                      document.getElementById('start-'+index).innerHTML = schedule[index-1].startTime;
+                      document.getElementById('end-'+index).innerHTML = schedule[index-1].closeTime;
+
+                    }
+                    
                     document.getElementById('avatar').src = '../uploads/'+data[0].avatar;
                     document.getElementById('lastname').innerHTML ='Dr. '+ data[0].LastName ;
                     document.getElementById('speciality').innerHTML = data[0].speciality;
-                    document.getElementById('location').innerHTML = data[0].location_id;
                     document.getElementById('addresse').innerHTML = data[0].adresse;
                     document.getElementById('phone').innerHTML = data[0].phone;
                     document.getElementById('email').innerHTML = data[0].email;
+                    document.getElementById('nReviews').innerHTML = data[0].nReviews+' customer rating';                    
                     document.getElementById('maps').src = `https://maps.google.com/maps?q=${data[0].adresse}&output=embed`;
 
                     console.log('AVGstars : '+data[0].AVGstars);
@@ -323,23 +339,33 @@
 									
 									stars += '<img src="images/emptystar.png" alt="">';
 							}
-                    console.log(stars);
 
-                    document.getElementById('stars').innerHTML = stars;
-
+                     document.getElementById('stars').innerHTML = stars;
+ 
                 })
                 .catch(error => console.log('error', error));
             }
 
+/************************************************************************************/            
+
             function insertReview() {
+
+              var reviewText = document.getElementById('textarea1').value;
+
+              if (reviewText == "") {
+
+                document.getElementById('error').innerHTML ="Enter a valid review";
+
+              }else{
+
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
 
                 var raw = JSON.stringify({
-                "user_id": "50",
+                "user_id": "48",
                 "doctor_id": sessionStorage.getItem('doctorID'),
                 "stars": StarsCount,
-                "review": document.getElementById('reviewBody').value
+                "review": document.getElementById('textarea1').value
                 });
 
                 var requestOptions = {
@@ -353,8 +379,122 @@
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));
+
+                
+                
+                setTimeout(function(){
+                  location.reload();
+                },250);
+              }
             }
-          
+            
+/************************************************************************************/            
+            function getReviews() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "doctor_id": sessionStorage.getItem('doctorID')
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/doctor/getReviews", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    var data = JSON.parse(result);
+                    
+                    data.forEach( da => {
+                  
+                      var stars = "" ;
+
+                      for (let index = 0; index < da.stars; index++) {
+                        stars += '<img src="images/star.png" alt="">';
+                        
+                      }
+                      for (let j = 0; j < 5-da.stars; j++) {  
+                          stars += '<img src="images/emptystar.png" alt="">';
+                      }
+                        document.getElementById('reviews').innerHTML += `
+                        
+                    <div class="userReview">
+                    <div class="userPart">
+                        <div class="imageWrapper">
+                            <img id="reviewImage" src="../uploads/${da.avatar}" alt="">
+                        </div>
+                        <div class="contextReview">
+                            <h4> ${da.FirstName}  ${da.LastName}</h4>
+                            <h5> ${da.role}</h5>
+                            <p>Created at : ${da.dateCreated}</p>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="vl"></div>
+                    <div class="reviewPart">
+                        <div class="stars">
+                            ${stars}
+                    </div>
+                    <div class="reviewBody">${da.review}</div>
+                    </div>
+                </div>
+              `;
+
+					});
+
+                })
+                .catch(error => console.log('error', error));
+            }
+/************************************************************************************/            
+            function reviewPersentage() {
+              var myHeaders = new Headers();
+              myHeaders.append("Content-Type", "application/json");
+
+              var raw = JSON.stringify({
+                "doctor_id": sessionStorage.getItem('doctorID')
+              });
+
+              var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
+
+              fetch("http://localhost/fileRouge/doctor/fiveStarsPersontage", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                var data = JSON.parse(result);
+
+                  var percent_5 = Number(data.fiveStarsCount);
+                  var percent_4 = Number(data.fourStarsCount);
+                  var percent_3 = Number(data.threeStarsCount);
+                  var percent_2 = Number(data.twoStarsCount);
+                  var percent_1 = Number(data.oneStarsCount);
+                  
+                document.getElementById('persent_5').innerHTML = percent_5.toFixed(0)+'%';
+                document.getElementById('fillable5').style.width = percent_5.toFixed(0)+'%';
+
+                document.getElementById('persent_4').innerHTML = percent_4.toFixed(0)+'%';
+                document.getElementById('fillable4').style.width = percent_4.toFixed(0)+'%';
+
+                document.getElementById('persent_3').innerHTML = percent_3.toFixed(0)+'%';
+                document.getElementById('fillable3').style.width =  percent_3.toFixed(0)+'%';
+
+                document.getElementById('persent_2').innerHTML = percent_2.toFixed(0)+'%';
+                document.getElementById('fillable2').style.width = percent_2.toFixed(0)+'%';;
+
+                document.getElementById('persent_1').innerHTML = percent_1.toFixed(0)+'%';
+                document.getElementById('fillable1').style.width = percent_1.toFixed(0)+'%';
+                
+                })
+                .catch(error => console.log('error', error));
+            }
         </script>
 	</body>
 </html>

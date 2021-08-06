@@ -9,7 +9,6 @@ spl_autoload_register(function ($class) {
         require_once "$path";
      }
 });
-
 $params = explode('/', $_GET['p']);
 
 if (isset($params[0]) & !empty($params[0])) {

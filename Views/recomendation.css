@@ -194,6 +194,7 @@ header .fa-times {
     flex-wrap: wrap;
     background-color: var(--black);
     padding: 20px;
+	width: 100%;
     margin-bottom: 2px;
 }
 .filterSection{
@@ -239,14 +240,13 @@ header .fa-times {
 
 .img-container{
   width: 40%;
-  height: 100%;
+  height: 220px;
   float: left;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+ border-radius: 5px;
 }
 
 .img-container img{
@@ -294,7 +294,12 @@ header .fa-times {
 @media (max-width: 768px) {
 
     .cardContainer{
-        height: 230px;
+        height: auto;
+		width: 100%;
+    }
+	.cardContainer{
+        height: auto;
+		width: 90%;
     }
     
 	header .fa-bars {

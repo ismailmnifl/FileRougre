@@ -8,71 +8,22 @@
 		<link rel="stylesheet" href="dashboard.css" />
 		<link rel="stylesheet" href="table-responsive.css">
 		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="sass/table.css">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 		<!-- Box Icons -->
 		<link
 			rel="stylesheet"
 			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 		/>
-		<!-- google charts -->
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-			<!-- pie chart logic -->
-		<script type="text/javascript">
-			google.charts.load('current', {'packages':['corechart']});
-			google.charts.setOnLoadCallback(drawChart);
-	  
-			function drawChart() {
-	  
-			  var data = google.visualization.arrayToDataTable([
-				['Task', 'Hours per Day'],
-				['Work',     11],
-				['Eat',      2],
-				['Commute',  2],
-				['Watch TV', 2],
-				['Sleep',    7]
-			  ]);
-	  
-			  var options = {
-				title: 'My Daily Activities'
-			  };
-	  
-			  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-	  
-			  chart.draw(data, options);
-			}
-		  </script>
-		  <script>
-			  google.charts.load('current', {packages: ['corechart', 'bar']});
-				google.charts.setOnLoadCallback(drawBasic);
-
-				function drawBasic() {
-
-					var data = google.visualization.arrayToDataTable([
-						['City', '2010 Population',],
-						['New York City, NY', 8175000],
-						['Los Angeles, CA', 3792000],
-						['Chicago, IL', 2695000],
-						['Houston, TX', 2099000],
-						['Philadelphia, PA', 1526000]
-					]);
-
-					var options = {
-						title: 'Population of Largest U.S. Cities',
-						chartArea: {width: '50%'},
-						hAxis: {
-						title: 'Total Population',
-						minValue: 0
-						},
-						vAxis: {
-						title: 'City'
-						}
-					};
-
-					var chart = new google.visualization.BarChart(document.getElementById('lineChart'));
-
-					chart.draw(data, options);
-					}
-		  </script> 
-	
+		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	</head>
 	<body>
 		<div class="main">
@@ -153,15 +104,15 @@
 				<div class="ContenCcontainer">
 					<div class="statsContainer">
 
-						<div class="stats">
+						<div  data-aos="fade-right" class="stats">
 							<p class="title">Number of doctors</p>
 							<div class="Holder">
-								<i class="fas fa-user-nurse fa-3x"></i>
+								<i class="fas fa-user-md fa-3x"></i>
 								<div class="numberHolder">125</div>
 							</div>
 						</div>
 							
-						<div class="stats">
+						<div data-aos="fade-up" class="stats">
 							<p class="title">Number of Clients</p>
 							<div class="Holder">
 								<i class="fas fa-users fa-3x"></i>
@@ -169,7 +120,7 @@
 							</div>
 						</div>
 
-						<div class="stats">
+						<div data-aos="fade-down" class="stats">
 							<p class="title">Number of Posts</p>
 							<div class="Holder">
 								<i class="far fa-newspaper fa-3x"></i>
@@ -177,7 +128,7 @@
 							</div>
 						</div>
 
-						<div class="stats">
+						<div data-aos="fade-left" class="stats">
 							<p class="title">Number of Messages</p>
 							<div class="Holder">
 								<i class="fas fa-comments fa-3x"></i>
@@ -185,13 +136,162 @@
 							</div>
 						</div>
 					</div>
-					<div class="chartWrapper">
-						<div class="chartsContainer">
-								<div id="piechart"></div>
-								<div id="lineChart"></div>
-						</div>
 					</div>
-						<div class="userOperationContainer">
+					<div class="newTableWrapper">
+						<div  data-aos="fade-right" class="tableWrapper">
+							<div class="container mt-2">
+
+										<ul style="padding: 0%;" class="responsive-table">
+											<li class="table-header">
+
+											<div class="col col-1">Index</div>
+											<div class="col col-2">Speciality Index</div>
+											<div class="col col-3">matricule</div>
+											<div class="col col-4">validation</div>
+											<div class="col col-5">Actions</div>
+											
+										</li>
+										</ul>
+								
+										<ul id="doctorDataHolder"  class="responsive-table Dscroll">
+										
+										
+										</ul>
+							  </div>
+							  
+						</div>
+						<!-- chart js start -->
+						<div class="chartjsHolder">
+							<div  data-aos="fade-down" class="chartJSline">	
+								<canvas id="ChartJS1" style="width:100%;max-width:600px"></canvas>						
+							</div>
+								<div  data-aos="fade-up" class="chartJSpie">
+ 									<canvas id="ChartJS2" style="width:100%;max-width:600px"></canvas>
+ 								</div>
+							</div>
+						<!-- chart js end -->
+
+						</div>
+						<div class="userDataTableHolder">
+
+							<div  data-aos="fade-right" class="locationSpeciality">
+
+								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px; text-align: center;">Location and speciality settings</h4>
+
+							<label for="">Specialites</label>
+								<div class="input-group mb-3">
+									<select id="specialitySettings" type="text" class="form-control">
+										<option disabled selected>Choose your Speciality</option>
+									</select>
+									<button style="height: 40px;" onclick="deleteSpeciality()" class="button" type="button" id="button-addon2">Delete</button>
+								</div>
+								<div class="input-group mb-3">
+
+									<input id="specialityAddition" type="text" class="form-control" placeholder="Enter New speciality" aria-label="Recipient's username" aria-describedby="button-addon2">	
+									<button style="height: 40px;background-color: #354046;" onclick="addSpeciality()"  class="button" type="button" id="button-addon2">Add</button>
+								</div>
+
+								<label for="">locations</label>
+								<div class="input-group mb-3">
+									<select type="text" class="form-control" id="locationSettings">
+										<option disabled selected>Choose your location</option>
+									</select>
+									<button style="height: 40px;" class="button" type="button" id="button-addon2">Delete</button>
+								  </div>
+								  <div class="input-group mb-3">
+									<input id="locationAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+										
+									<button style="height: 40px;background-color: #354046;" onclick="addLocation()"  class="button" type="button" id="button-addon2">Add</button>
+								  </div>
+							</div>
+
+							<div data-aos="fade-left" class="userDataTable">
+								<div class="container mt-2">
+									
+									<ul style="padding: 0%;" class="responsive-table">
+								
+										<li class="table-header">
+										<div class="col col-1">Avatar</div>
+										<div class="col col-2">Role</div>
+										<div class="col col-3">Username</div>
+										<div class="col col-5">Phone</div>
+										<div class="col col-7">Actions</div>
+
+									  </li>
+									</ul>
+									
+									<ul id="DataHolder" style="padding: 0%;" class=" responsive-table scrollUser">
+									 
+									</ul>
+								  </div>
+							</div>
+							
+						</div>
+						<footer class="footer">
+							<div class="footerSection">
+								<img src="images/DoctorCoWhite.png" alt="">
+							</div>
+							<div class="footerSection">
+								<h5>All Right Reserved 2021</h5>
+							</div>
+							<div class="footerSection">
+								<i class="fab fa-facebook-square fa-2x"></i>
+								<i class="fab fa-linkedin fa-2x"></i>
+								<i class="fab fa-twitter-square fa-2x"></i>
+							</div>
+							
+
+						</footer>
+						<script>						 	
+
+							
+
+							var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+							var yValues = [55, 49, 44, 24, 15];
+							
+							
+							new Chart("ChartJS1", {
+							  type: "bar",
+							  data: {
+								labels: xValues,
+								datasets: [{
+								  backgroundColor: "#0188DF",
+								  data: yValues
+								}]
+							  },
+							  options: {
+								legend: {display: false},
+								title: {
+								  display: true,
+								  text: "World Wine Production 2018"
+								}
+							  }
+							});
+							var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+							var yValues = [7,8,8,9,9,9,10,11,14,14,15];						
+
+							new Chart("ChartJS2", {
+							type: "line",
+							data: {
+								labels: xValues,
+								datasets: [{
+								fill: false,
+								lineTension: 0,
+								backgroundColor: "rgba(0,0,255,1.0)",
+								borderColor: "rgba(0,0,255,0.1)",
+								data: yValues
+								}]
+							},
+							options: {
+								legend: {display: false},
+								scales: {
+								yAxes: [{ticks: {min: 6, max:16}}],
+								}
+							}
+							});
+						</script>
+					</div>
+						<!-- <div class="userOperationContainer">
 							
 							<div id="wrapper">
 								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;"><u>Users section</u></h4>
@@ -213,8 +313,9 @@
 								</table>
 								
 							</div>	
-						</div>
-						<div class="OperationContainerDoctor">
+						</div> -->
+
+						<!-- <div class="OperationContainerDoctor">
 							
 							<div id="wrapper">
 								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px;"><u>Doctors section</u></h4>
@@ -235,13 +336,13 @@
 								</table>
 								
 							</div>	
-						</div>	
+						</div>	 -->
 							<!-- location and speciality settings -->
-						<div class="settings">
+						<!-- <div class="settings">
 							<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px; text-align: center;">Location and speciality settings</h4>
 						<div class="locationSpecialityHolder">
 
-							<!-- location  settings -->
+							 location  settings 
 
 							<div class="locationSelect">
 								<label for="">locations</label>
@@ -257,7 +358,7 @@
 									<button style="height: 40px;background-color: #354046;" onclick="addLocation()"  class="button" type="button" id="button-addon2">Add</button>
 								  </div>
 							</div>
-							<!-- speciality settings -->
+							speciality settings 
 
 							<div class="locationSelect">
 								<label for="">Specialites</label>
@@ -275,7 +376,7 @@
 							</div>
 									 
 						</div>
-					</div>
+					</div> -->
 				<!-- pop uo modal 1 -->
 
 				<div class="zindex modal fade" id="exampleModal1" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -416,21 +517,6 @@
 				
 			</div>
 		</div>
-		<footer>
-			<div class="footerSection footerSectionRight">
-				<img src="images/DoctorCoWhite.png" alt="">
-			</div>
-			<div class="footerSection footerSectionMiddle">
-				<h5>All right reserved 2021</h5>
-			</div>
-			<div class="footerSection footerSectionLeft">
-				<div class="icons">
-					<i class="fab fa-twitter-square fa-3x"></i>
-					<i class="fab fa-facebook-square fa-3x"></i>
-					<i class="fab fa-linkedin fa-3x"></i>
-				</div>
-			</div>
-		</footer>
 	</div>
 
 		<script src="js/dashboard.js"></script>
@@ -510,21 +596,20 @@
 									 
 				var userData = JSON.parse(result);
 				userData.forEach( da => {
+					
           		document.getElementById('DataHolder').innerHTML += `
-				  <tr>	
-				  <td  data-label="avatar"><img style="max-width: 50px; max-height: 70px;" src="../uploads/${da.avatar}" alt=""></td>		
-				  <td data-label="role">${da.role}</td>
-				  <td data-label="role">${da.username}</td>
-				  <td data-label="phone">${da.phone}</td>
-				  <td data-label="age">${da.age}</td>
-				  <td data-label="Actions">
-					<button style="background-color:#0188DF;color:white;" id="delete" onclick="deleteUser(${da.user_id})" class="button" type="button" >delete</button>	
-				  </td>
-					<td data-label="Actions">
-							<button style="background-color:#0188DF;color:white;text-align:center;" type="button" onclick="readSingleUser(${da.user_id})" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-							More
-							</button>		
-							</tr>
+				  					<li class="table-row">
+										<div class="col col-1" data-label="avatar"><img style="max-width: 50px; max-height: 70px;" src="../uploads/${da.avatar}" alt=""></div>
+										<div class="col col-2" data-label="role">${da.role}</div>
+										<div class="col col-3" data-label="username">${da.username}</div>
+										<div class="col col-4" data-label="phone">${da.phone}</div>
+										<div style="text-align:center;" class="col col-6" data-label="More">	
+											<i style="color:red;" onclick="deleteUser(${da.user_id})" class="fas fa-trash-alt fa-2x"></i>
+
+											<i style="color:#0188DF;margin-left:10px" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="readSingleUser(${da.user_id})" class="fas fa-info-circle fa-2x"></i>
+
+											</div>
+									</li>
 				  	`;
 				});  
 			})
@@ -683,20 +768,21 @@
 							varlidation = "<button class='button' style='background-color:green;''>Validated</button>";
 
 						}
+
 				document.getElementById('doctorDataHolder').innerHTML += `
-				<tr>	
-				<td data-label="user id">${da.user_id}</td>	
-				<td data-label="speciality">${da.speciality_id}</td>
-				<td data-label="matricule">${da.matricule}</td>
-				<td data-label="validation">${varlidation}</td>
-				<td data-label="Actions">
-					<button style="background-color:#0188DF;color:white;" id="delete" onclick="deleteDoctor(${da.doctor_id})" class="button" type="button" >delete</button>	
-				</td>
-				<td data-label="Actions">
-							<button style="background-color:#0188DF;color:white;" type="button" onclick="readSingleDoctor(${da.doctor_id})" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-							More
-							</button>		
-							</tr>
+								<li class="table-row">
+									<div class="col col-1" data-label="Job Id">${da.user_id}</div>
+									<div class="col col-2" data-label="Customer Name">${da.speciality_id}</div>
+									<div class="col col-3 matricule" data-label="Amount">${da.matricule}</div>
+									<div class="col col-4" data-label="Validation">${varlidation}</div>
+									<div style="text-align:center;" class="col col-3" data-label="Action">
+										<i style="color:red;margin-right:10px" onclick="deleteDoctor(${da.doctor_id})" class="fas fa-trash-alt fa-2x"></i>
+										<i style="color:#0188DF;" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="readSingleDoctor(${da.doctor_id})" class="fas fa-info-circle fa-2x"></i>
+
+
+									</div>
+								
+								</li>
 						`;
 					});
 				})
@@ -968,6 +1054,14 @@
 
 				reloadPage();
 			}
+		</script>
+		<!-- aninate on croll -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+		<script>
+			AOS.init({
+				duration: 1000,
+				delay: 400,
+			});
 		</script>
 	</body>
 </html>

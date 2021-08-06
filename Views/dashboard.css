@@ -7,6 +7,9 @@
 	text-decoration: none;
 	font-family: "Poppins", sans-serif;
 }
+html{
+	overflow-x: hidden;
+}
 .main {
 	width: 100%;
 	background-color: #fff;
@@ -15,7 +18,7 @@
 	position: fixed;
 	z-index: 100;
 	height: 100vh;
-	background: #0188df;
+	background: #354046;
 	overflow: hidden;
 	transition: 0.5s ease;
 }
@@ -29,7 +32,7 @@
 	width: 100%;
 }
 .MYside-navbar ul li:hover {
-	background: #354046;
+	background: #0188DF;
 }
 .MYside-navbar ul li:first-child {
 	margin-bottom: 1rem;
@@ -60,6 +63,7 @@
 	position: absolute;
 	min-height: 100vh;
 	transition: 0.5s ease;
+	background-color: #0188df;
 }
 .top-navbar {
 	width: 100%;
@@ -112,7 +116,7 @@
 	margin-top: 20px;
 }
 .statsContainer .stats {
-	width: 250px;
+	width: 300px;
 	height: 100px;
 	background-color: #EEEEEE;
 	margin: 10px;
@@ -151,26 +155,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.chartsContainer{
-	width: 85%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
-	margin-bottom: 20px;
-	margin-top: 20px;
-
-}
-.chartsContainer .lineChart{
-	width: 40%;
-}
-.chartsContainer .pieChart{
-	width: 25%;
 }
 .OperationContainer{
 	width: 100%;
@@ -212,15 +196,6 @@
   }
 /* table style section */
 
-  #piechart{
-	  width: 600px;
-	  height: 400px;
-  }
-  #lineChart{
-	width: 600px;
-	height: 400px;
-}
-
 .button {
 	background-color:#0188DF;
 	color: #fff;
@@ -236,34 +211,37 @@
 	box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 /* admin dash footer style */
-footer{
-	z-index: 10000000;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+.footer{
 	width: 100%;
 	height: 100px;
 	background-color: #354046;
-	margin-top: 200px;
-	position:fixed;
-	bottom:0;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	
 }
+.footer .footerSection img{
+width: 100px;
+}
+.footer .footerSection h5{
+	color: white;
 
-.footerSection{
+}
+.footer .footerSection i{
+	margin-left: 10px;
+	color: white;
+}
+		
+.footer .footerSection{
 	width: 33%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: white;
-}
-.footerSection img{
-	width: 100px;
-}
-.footerSection .icons{
-	display: flex;
-}.footerSection .icons i{
-	margin: 10px;
-}
+	}
+/* admin dash footer style */
+
+
 .inputInline{
     display: flex;
     flex-wrap: wrap;
@@ -284,39 +262,110 @@ footer{
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);	
   }
-  .settings{
+
+
+
+/*new table design start */
+.newTableWrapper{
+	margin-top: 30px;
+	width: 100%;
+	margin-bottom: 30px;
 	display: flex;
-	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap-reverse;
+  }
+  .Dscroll{
+	  height: 460px;
+	  overflow-y: scroll;
+  }
+  .scrollUser{
+	height: 362px;
+	overflow-y: scroll;
+  }
+  .newTableWrapper .tableWrapper{
+	  width: 55%;
+	  height: auto;
+	  background-color: white;
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+  }
+  .newTableWrapper .tableWrapper .container{
+	width: 100%;
+}
+.chartjsHolder{
+	width: 40%;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-  .locationSpecialityHolder .locationSelect select{
-	  width: 200px;
-  }
-  .locationSpecialityHolder .locationSelect {
-	margin: 30px;
+	flex-direction: column;
+
+
 }
 
-.locationSpecialityHolder .locationSelect label {
-	font-weight: 500;
-	color: white;
-}
-
-  .locationSpecialityHolder .locationSelect .button{
-	background-color: red;
-}
-.locationSpecialityHolder .locationSelect .button:hover{
-	background-color: #EEEEEE;
-	color: #0188DF;
-}
-.chartWrapper{
+.chartJSline{
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow: hidden;
+	background-color: white;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
 }
+.chartJSpie{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+}
+/*user data table*/
+.userDataTableHolder{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 130px;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+.userDataTableHolder .userDataTable{
+	width: 65%;
+	border-radius: 10px;
+	padding: 0;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	background-color: white;
+}
+.userDataTableHolder .locationSpeciality {
+	width: 30%;
+	height: 480px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+	background-color: white;
+	padding: 10px;
+}
+
+
+  /*new table design end */
 @media (max-width: 768px) {
+
+	.newTableWrapper .tableWrapper{
+		width: 90%;
+
+	}
+	.chartjsHolder{
+		width: 90%;
+		margin-bottom: 20px;
+	
+	}
+	.userDataTableHolder .userDataTable{
+		width: 90%;
+	}
 	.content {
 		width: 100%;
 		left: 0;
@@ -328,33 +377,23 @@ footer{
 	.MYside-navbar.active {
 		left: 0;
 	}
-	footer{
-		height: 40px;
-		flex-direction: column;
-	}
-	.footerSection{
-		width: 100%;	
-	}
+	
 	.formContainer {
 		width: 100%;
 		display: flex;
 	}
-	.locationSpecialityHolder{
-		margin-bottom: 60px;
+
+	.userDataTableHolder .locationSpeciality {
 		width: 90%;
+		margin-bottom: 10px;
 	}
-	.locationSpecialityHolder .locationSelect select{
-		width: 120px;
-	}
-	.footerSectionMiddle{
-		padding-top: 10px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.footer{
+		width: 100%;
+		height: 200px;		
 		
 	}
-	.footerSectionLeft,.footerSectionRight{
-		display: none;
+	.footer .footerSection{
+	width: 100%;
 	}
 }
 

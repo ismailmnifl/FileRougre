@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+
+		<!-- aos css file cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+		/>
+
+		<!-- bootstrap cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+		/>
+
+		<!-- font awesome cdn link  -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		/>
+		<!-- custom css file link  -->
+		<link rel="stylesheet" href="addPost.css" />
+	</head>
+	<body>
+		<!-- header section starts  -->
+
+		<header>
+			<div class="headeCcontainer">
+				<a href="index.html" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
+
+				<nav class="nav">
+					<ul>
+						<li><a href="#home">home</a></li>
+						<li><a href="#about">about</a></li>
+						<li><a href="#review">review</a></li>
+						<li><a href="#contact">contact</a></li>
+						<li><a href="#post">post</a></li>
+						<li>
+							<a href="#"
+								><a href="login.html"
+									><button class="button">Join</button></a
+								></a
+							>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="fas fa-bars"></div>
+			</div>
+		</header>
+		<!-- to keep the header away from the content -->
+		<div class="spacer"></div>
+		<!-- bage heading -->
+		<div class="headerTitle">
+			<h1 class="heading">
+				<span>'</span> Create Post <span>'</span>
+			</h1>
+		</div>
+        
+		<!-- Doctor detail section start -->
+        
+    <!-- review section end -->
+		<section>
+            <div class="addPostContainer">
+				<div class="wrapper">
+					<div class="formHolder">
+							<input type="text" id="title"  placeholder="Post title..." name="adresse" class="form-control mb-2">					  
+							<input type="file" placeholder="Post image..." name="avatar" id="avatar" class="form-control mb-2">
+							<textarea class="form-control mb-2" placeholder="Post body..." name="content" id="content" rows="10"></textarea>
+							<button id="sendDataBtn" class="buttonReverse form-control mt-2" type="button" >Submit</button>
+					</div>
+					<div class="sidebar">
+						<div class="addCategories">
+							<label for="categories">Shoose a Category</label>
+							<div class="input-group">
+							<select id="" name="categories" class="form-control">
+								<option value="">Advice</option>
+								<option value="">traditional medition</option>
+								<option value="">fitness</option>
+								<option value="">diet</option>
+							</select> 
+						</div>
+							<label for="">Add post source</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="">
+								<button  class="buttonSource" type="button" id="">Delete</button>
+							  </div>
+							
+						</div>
+					<div class="controle">
+						<label for="">comments controle</label>
+							<div class="input-group">
+							<select id="" name="" class="form-control">
+								<option value="">Allow</option>
+								<option value="">Disable</option>
+
+							</select> 
+						</div>
+						<label for="">dislikes controle</label>
+							<div class="input-group">
+							<select id="" name="" class="form-control">
+								<option value="">Allow</option>
+								<option class="faical" value="">Disable</option>
+							</select> 
+						</div>
+					</div>
+				</div>
+				</div>
+            </div>
+        </section>
+    <!-- footer section start -->
+		<section class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<a href="#" class="logo"
+							><img width="70px" src="images/DoctorCoFooter.png" alt=""><span>D</span>octor<span>C</span>o.</a
+						>
+						<p>
+							Lorem ipsum, dolor sit amet consectetur adipisicing
+							elit. Tenetur nemo porro quasi minima consequuntur
+							dolorum, quas amet in autem id?
+						</p>
+					</div>
+
+					<div class="col-md-4 text-center">
+						<h3>links</h3>
+						<a href="#">home</a>
+						<a href="#">about</a>
+						<a href="#">review</a>
+						<a href="#">contact</a>
+						<a href="#">post</a>
+					</div>
+
+					<div class="col-md-4 text-center">
+						<h3>share</h3>
+						<a href="#">facebook</a>
+						<a href="#">twitter</a>
+						<a href="#">instagram</a>
+						<a href="#">github</a>
+					</div>
+				</div>
+			</div>
+
+			<h3 class="credit text-center mx-auto">
+				created by <span>mr. ismail MNIFL</span> | all rights reserved.
+			</h3>
+		</section>
+
+		<!-- footer section ends -->
+
+		<!-- jquery cdn link  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- aos js file cdn link  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+		<!-- custom js link  -->
+		<script src="js/main.js"></script>
+
+		<script>
+			AOS.init({
+				duration: 1000,
+				delay: 400,
+			});
+			
+		</script>
+		<script src="ckeditor/ckeditor.js"></script>
+		<script>
+			CKEDITOR.replace('content');
+		</script>
+		<script>
+			document.getElementById('sendDataBtn').addEventListener('click',get);
+			function get() {
+				var title = document.getElementById('title').value;
+				var data = CKEDITOR.instances.content.getData();
+				console.log(data);
+				console.log(title);
+			}
+			function insertPost(){
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"doctor_id": "17",
+				"category_id": "2",
+				"title": "when to sleep",
+				"body": "In general, though, people should aim to fall asleep a few hours after dark and wake up within the first hours of sunlight in the morning, where possible. General guidelines indicate that the average adult needs about 7–9 hours of sleep each night.",
+				"image": "Not Availeble",
+				"resources": "www.who.int",
+				"dislikeControle": "Allow",
+				"commentControle": "Allow"
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/post/insertPost", requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+			}
+			function getCategories() {
+
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/post/getAllCategories", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+					console.log(result);
+					var data = JSON.parse(result);
+				})
+				.catch(error => console.log('error', error));
+			}
+		</script>
+	</body>
+</html>

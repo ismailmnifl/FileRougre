@@ -17,42 +17,31 @@
 	font-weight: 400;
 	transition: all 0.2s linear;
 }
-
-html {
-	font-size: 62.5%;
-	overflow-x: hidden;
-}
-
-body {
-	overflow-x: hidden;
-}
-
 section {
 	overflow: hidden;
 }
 
+
 .button {
-	height: 3.5rem;
-	width: 15rem;
+	height: 40px;
+	width: 150px;
 	background: var(--blue);
 	color: #fff;
-	font-size: 1.7rem;
 	text-transform: capitalize;
 	border-radius: 0.5rem;
 	cursor: pointer;
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
-	margin: 1rem 0;
+	border: none;
 }
 
 .button:hover {
-	box-shadow: 0.1rem 0.5rem var(--black), 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+	box-shadow: 0.1rem 0.3rem var(--black), 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
 .heading {
 	text-align: center;
-	font-size: 4rem;
 	padding: 1rem;
 	padding-top: 8rem;
 	color: var(--black);
@@ -85,6 +74,8 @@ header .container {
 }
 
 header a {
+	font-size: 20px;
+	font-weight: 400;
 	color: var(--black);
 }
 
@@ -93,7 +84,8 @@ header a:hover {
 }
 
 header .container .logo {
-	font-size: 3rem;
+	font-size: 30px;
+
 }
 
 header .container .logo span {
@@ -112,20 +104,13 @@ header .nav ul {
 header .nav ul li {
 	margin: 0 1rem;
 }
-
-header .nav ul li a {
-	font-size: 2rem;
-}
-
 header .fa-bars {
-	font-size: 3.5rem;
 	color: var(--blue);
 	cursor: pointer;
 	display: none;
 }
 
 .home .content h1 {
-	font-size: 5rem;
 	color: var(--black);
 }
 
@@ -134,7 +119,6 @@ header .fa-bars {
 }
 
 .home .content h3 {
-	font-size: 4rem;
 	color: var(--black);
 }
 
@@ -147,7 +131,6 @@ header .fa-bars {
 }
 
 .about .content .box h3 {
-	font-size: 2.5rem;
 	color: var(--black);
 }
 
@@ -157,7 +140,6 @@ header .fa-bars {
 }
 
 .about .content .box p {
-	font-size: 1.7rem;
 	padding-left: 6rem;
 	color: #666;
 }
@@ -206,14 +188,15 @@ header .fa-bars {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	padding-bottom: 5rem;
+	padding-bottom: 30px;
+	width: 100%;
 }
 
 .review .box-container .box {
 	background: #fff;
-	width: 30rem;
-	margin: 5rem 1rem;
+	width: 320px;
 	padding: 1.5rem;
+	margin: 20px;
 	position: relative;
 	border-radius: 10px;
 }
@@ -221,18 +204,18 @@ header .fa-bars {
 .review .box-container .box img {
 	position: absolute;
 	bottom: 1rem;
-	height: 5rem;
-	width: 5rem;
+	height: 60px;
+	width: 60px;
 	border-radius: 50%;
 	object-fit: cover;
 }
 
 .review .box-container .box p {
-	font-size: 1.4rem;
 	color: var(--black);
+	font-size: 15px;
 }
 
-.review .box-container .box h3 {
+.review .box-container .box h5 {
 	text-align: end;
 	color: var(--blue);
 }
@@ -241,7 +224,6 @@ header .fa-bars {
 	text-align: end;
 	color: var(--black);
 	display: block;
-	font-size: 1.5rem;
 }
 
 
@@ -259,12 +241,10 @@ header .fa-bars {
 
 .counter .box-container .box i {
 	color: var(--blue);
-	font-size: 5rem;
 }
 
 .counter .box-container .box span {
 	color: var(--black);
-	font-size: 3rem;
 	display: block;
 	padding: 1rem 0;
 }
@@ -281,42 +261,48 @@ header .fa-bars {
 	color: #fff;
 }
 
-.contact form {
-	text-align: center;
+.loginContainer{
+    height: 500px;
+    width: 400px;
+    background-color: #EEEEEE;
+    box-shadow: 5px 5px 10px grey;
+    width: 70%;
+    margin: 8% auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.contact form .inputBox {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+.formContainer{
+    width: 70%;
+    padding: 10px;
+    position: relative;
+    left: 20px;
 }
-
-.contact form .inputBox input,
-select {
-	height: 4rem;
-	width: 49%;
-	padding: 0 1rem;
-	margin: 1rem 0;
-	font-size: 1.7rem;
-	color: var(--black);
+.contentWrapper{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
+.inputInline{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.contact form textarea {
-	height: 20rem;
-	resize: none;
-	padding: 1rem;
-	font-size: 1.5rem;
-	width: 100%;
-}
-
-.contact form input[type="submit"] {
-	width: 20rem;
-}
-
-.contact form input[type="submit"]:hover {
-	background: var(--black);
-}
-
+  .inputInline input{
+    width: 49%;
+  }
+  .inputInline select{
+    width: 49%;
+    margin-bottom: 5px;
+  }
+      
 .post .box-container {
 	display: flex;
 	justify-content: center;
@@ -324,7 +310,7 @@ select {
 }
 
 .post .box-container .box {
-	width: 30rem;
+	width: 320px;
 	margin: 2rem 1rem;
 	overflow: hidden;
 	border-radius: 0.5rem;
@@ -332,42 +318,46 @@ select {
 }
 
 .post .box-container .box img {
-	height: 20rem;
+	height: 180px;
 	width: 100%;
 	object-fit: cover;
 }
 
 .post .box-container .box .content {
-	padding: 0 1.5rem;
+	padding: 15px;
+}
+.post .box-container .box .content .button{
+	font-size: 20px;
 }
 
 .post .box-container .box .content span {
 	color: #666;
-	font-size: 1.5rem;
 	display: block;
-	padding: 1rem 0;
+	padding: 15px;
 }
 
-.post .box-container .box .content h3 {
-	font-size: 2rem;
+.post .box-container .box .content h4 {
 	color: var(--black);
 }
 
-.post .box-container .box .content:hover h3 {
+.post .box-container .box .content:hover h4 {
 	color: var(--blue);
 }
 
 .post .box-container .box .content p {
-	font-size: 1.3rem;
 	color: var(--black);
+	font-size: 15px;
 }
 
 .footer {
 	background: var(--black);
 }
 
+.footer .logo span,a{
+	font-size: 25px;
+}
+
 .footer p {
-	font-size: 1.5rem;
 	color: #eee;
 	padding: 1rem 0;
 }
@@ -377,7 +367,6 @@ select {
 }
 
 .footer .col-md-4:nth-child(1) a {
-	font-size: 3rem;
 	color: #fff;
 }
 
@@ -386,14 +375,12 @@ select {
 }
 
 .footer a {
-	font-size: 2rem;
 	color: #ccc;
 	display: block;
 }
 
-.footer h3 {
+.footer h4 {
 	color: #fff;
-	font-size: 3rem;
 }
 
 .footer a:hover {
@@ -421,7 +408,6 @@ header .fa-times {
 
 @media (max-width: 768px) {
 	html {
-		font-size: 55%;
 	}
 
 	header .fa-bars {
@@ -454,7 +440,6 @@ header .fa-times {
 	}
 
 	header .nav ul li a {
-		font-size: 3rem;
 		display: block;
 	}
 

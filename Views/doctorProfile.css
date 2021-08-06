@@ -1,3 +1,46 @@
+/*my time table colors*/
+.green {
+	background-color: #2ecc71;
+  }
+  
+  .turquoise {
+	background-color: #1abc9c;
+  }
+  
+  .navy {
+	background-color: #34495e;
+  }
+  
+  .blue {
+	background-color: #3498db;
+  }
+  
+  .purple {
+	background-color: #9b59b6;
+  }
+  
+  .grey {
+	background-color: #bdc3c7;
+	color: #202020;
+  }
+  
+  .gray {
+	background-color: #7f8c8d;
+  }
+  
+  .red {
+	background-color: #e74c3c;
+  }
+  
+  .orange {
+	background-color: #f39c12;
+  }
+  
+  .yellow {
+	background-color: #f1c40f;
+	color: #303030;
+  }
+
 :root {
 	--blue: #0188df;
 	--black: #354046;
@@ -8,7 +51,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	border: none !important;
 	outline: none !important;
 	text-decoration: none !important;
 	text-transform: capitalize;
@@ -26,6 +68,7 @@
 	position: relative;
 	z-index: 0;
 	overflow: hidden;
+	border: none;
 }
 
 .button:hover {
@@ -58,7 +101,7 @@ header nav ul li a {
 	box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
-header .container {
+header .headeCcontainer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -72,12 +115,12 @@ header a:hover {
 	color: var(--blue);
 }
 
-header .container .logo {
+header .headeCcontainer .logo {
 	font-size: 32px;
     font-weight: 400;
 }
 
-header .container .logo span {
+header .headeCcontainer .logo span {
 	color: var(--blue);
 }
 
@@ -93,9 +136,6 @@ header .nav ul {
 header .nav ul li {
 	margin: 0 1rem;
 }
-
-
-
 header .fa-bars {
 	
 	color: var(--blue);
@@ -172,161 +212,6 @@ header .fa-times {
 }
 
 /* doctor profile container */
-.DoctorProfileSection{
-    display: flex;
-    align-items: center;
-    height: 600px;
-    justify-content: center;
-    background-color: var(--black);
-}
-
-.cardContainer{
-    margin-top:20px;
-    margin-bottom: 20px;
-    margin: 5px;
-    width: 90%;
-    height: 420px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin: 15px;
-  }
-
-  .reviewCardContainer{
-    margin-top:20px;
-    margin-bottom: 20px;
-    margin: 5px;
-    width: 90%;
-    height: auto;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin: 15px;
-  }
-  
-  .img-container{
-    width: 30%;
-    height: 100%;
-    float: left;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  
-.img-container img{
-    height: 100%;
-	max-width: auto;  
-}
-
-.cardContent{
-  width: 70%;
-  height: 100%;
-  float: left;
-  padding: 5px;
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.cardHead a:hover p{
-    color: var(--blue);
-  }
-.cardHead .speciality {
-    font-size: 18px;
-}
-  
-.cardHead {
-    margin-bottom: 15px;
-}
-.cardContent .info table tr th {
-    
-}
-.cardContent .info .mb{
-    margin-bottom: 5px;
-}
-.cardContent .info .mb .colmnA{
-    color: var(--blue);
-}
-.stars img {
-    width: 30px;
-}
-.cardContent .info {
-    width: 50%;
-}
-.map{
-    width: 50%;
-    height: 100%;
-}
-.map iframe{
-    width: 100%;
-    height: 100%;
-}
-.cardHead p{
-  font-size: 28px;
-  color: #444444;
-  font-weight: 600;
-}
-.cardContent {
-    overflow: hidden;
-}
-.cardData .description p {
-    font-size: 12px;
-}
-.rating .stars img {
-    width: 30px;
-}
-.reviewSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.reviewSection{
-    background-color: var(--blue);
-}
-.addReview {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background-color: var(--black);
-    border-radius: 5px;
-}
-.addReview button {
-    margin: 10px;
-}
-.addReview .reviewStars img {
-    width: 30px;
-    height: 30px;
-    margin-left: 2px;
-    margin-right: 2px;
-
-}
-.addReview .reviewStars {
-    margin: 10px;
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-.addReview .reviewStars h5 {
-  color: white;
-}
-.addReview .reviewStars .starsGroup {
-    margin-left: 10px;
-    position: relative;
-    bottom: 5px;
-  }
-  
-.addReviewSection textarea{
-    width: 90%;
-    border : 1px solid var(--blue);
-}
 
 /* buuton reverse styles */
 .buttonReverse{
@@ -345,42 +230,316 @@ header .fa-times {
     box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 
 }
-.usersReviews{
+
+  /*new doctor profile section starts*/
+  /* new profile styles start */
+  
+/*************to take********************/
+.mapWrapper{
     background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    width: 90%;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
+    height: 300px;
+    width: 25%;
+    padding-bottom:20px ;
+    padding-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+}
+.mapWrapper .stars img{
+    width: 30px;
+	padding: 3px;
+}
+
+.mapWrapper .totalRating {
+    margin-top: 15px;
+    color: grey;
+}
+.tubeWrapper{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 50px;
+}
+.tubeWrapper p{
+ margin-bottom: 0;
+}
+
+.ratingTube{
+    width: 60%;
+    height: 10px;
+    background-color: #354046;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 8px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.ratingTube .fillable1{
+    background-color: #ffd041;
+    height: 10px;
+    border-radius: 3px;
+}
+.ratingTube .fillable2{
+    background-color: #ffd041;
+    height: 10px;
+    border-radius: 3px;
+
+}
+.ratingTube .fillable3{
+    background-color: #ffd041;
+    height: 10px;
+    border-radius: 3px;
+
+}
+.ratingTube .fillable4{
+    background-color: #ffd041;
+    height: 10px;
+    border-radius: 3px;
+
+}
+.ratingTube .fillable5{
+    background-color: #ffd041;
+    height: 10px;
+    border-radius: 3px;
+}
+/************************************************/
+
+/* new profile styles start */
+/*test*/
+.timeTableWrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow:hidden;
+	margin-bottom: 20px;
+}
+.timeTableWrapper .smallerWrapper{
+    width: 66.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 29px;
+	box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+
+}
+.timeTableWrapper .AddingRating{
+    background-color: white;
+    width: 21%;
+    height: 145px;
+	height: 230px;
+    border-radius: 10px;
+    position: relative;
+    left: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	flex-direction: column;
+	padding: 10px;
+}
+.timeTableWrapper .smallerWrapper .schadulContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 10px;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 210px;
+}
+.timeTableWrapper .smallerWrapper .schadulContainer .day{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 14%;
+    
+}
+.timeTableWrapper .smallerWrapper .schadulContainer .day .end,.start{
+color: white;
+width: 90%;
+height: 40px;
+border-radius: 5px;
+margin: 3px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.DoctorProfileSection .smallInfoContainer{
+    height: 300px;
+    width: 25%;
+    border-radius: 10px;
+    background-color: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.DoctorProfileSection .smallInfoContainer .imageCon{
+        height: 120px;
+        width: 120px;
+        overflow: hidden;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 260px;
+        
+
+        
+}
+.DoctorProfileSection .smallInfoContainer .imageCon img{
+        height: 120px;
+        width: auto;
+}
+.smallTextContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+    top: 20px;
+}
+
+.smallTextContainer p{
+   text-align: center;
+   margin: 0;
+}
+.smallTextContainer h5{
+     color: var(--blue);;
+ }
+.DoctorProfileSection .moreInfo{
+    height: 300px;
+    width: 50%;
+    border-radius: 10px;
+    background-color:white; 
+    margin: 40px;
+    padding: 5px;
+}
+.DoctorProfileSection .moreInfo iframe{
+ border-radius: 10px;
+ border: none;
+}
+.newProfileWrapper{
+    display: flex;
+    width: 90%;
+    margin-top: 50px;
     align-items: center;
     justify-content: center;
 }
-.usersReviews .review .box h3{
-    color: var(--blue);
-}
-.usersReviews .review .date{
-    color: grey;
-    font-style: italic;
-}
-.usersReviews .review .box .stars1 img {
-    width: 30px;
-}
-.usersReviews .review .box .stars1  {
-    margin-bottom: 10px;
-}
-.usersReviews .review .box{
+.DoctorProfileSection{
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(--black);
+} 
+/*test*/
+
+  /*new doctor profile section starts*/
+
+  .AddingRating .stars img{
+	  width: 30px;
+	  padding: 2px;
+  }
+  .AddingRating #textarea1{
+	border-radius: 5px;
+	width: 90%;
+	margin-bottom: 10px;
+	border: 1px solid #354046;
+  }
+	/*people's review*/
+  .reviews{
+	  width: 100%;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+      height: auto;
+      flex-wrap: wrap;
+  }
+  .reviews .userReview{
+	margin: 20px;
+	width: 90%;
+	background-color: white;
+	height: 150px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    box-shadow: 0 0 10px #354046;   
 }
-.usersReviews hr {
-    width: 100%;
-    color: black;
-    border: 2px solid black;
+.reviews .userReview .vl{
+	border-left: 3px solid #354046;
+	height: 100%;
 }
-  
+.reviews .userReview .userPart{
+	height: 100%;
+	width: 30%;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	border-radius: 10px;
+    margin-right: 20px;
+}
+.reviews .userReview .userPart .contextReview{
+	margin-left: 20px;
+}
+.reviews .userReview .userPart .contextReview h4{
+    color: #3498db;
+}
+.reviews .userReview .userPart .contextReview h5{
+    color: #354046;
+}
+.reviews .userReview .userPart .contextReview p{
+    margin-top: 20px;
+    color: gray;
+}
+.reviews .userReview .userPart .imageWrapper{
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background-color: white;
+	margin-left: 20px;
+	overflow:hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.reviews .userReview .userPart .imageWrapper img{
+	object-fit:fill;
+	height: 100%;
+}
+.reviews .userReview .reviewPart{
+	height: 100%;
+	width: 70%;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left: 10px;
+}
+.reviews .userReview .reviewPart .reviewBody{
+	color:#354046;
+	margin-top: 15px;
+
+}
+.reviews .userReview .reviewPart .stars img{
+	width: 30px;
+	margin: 2px;
+}   
 @media (max-width: 768px) {
     
 	header .fa-bars {
@@ -420,28 +579,112 @@ header .fa-times {
 		top: 50%;
 		opacity: 1;
 	}
-    .DoctorProfileSection{
-        height: 1000px;
+
+	.DoctorProfileSection .moreInfo{
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
-    .cardContainer{
+    .DoctorProfileSection .smallInfoContainer{
+        width: 100%;  
+    }
+	.timeTableWrapper .smallerWrapper .schadulContainer .day{
+        width: 50%;
+    }
+	.timeTableWrapper .smallerWrapper .schadulContainer{
+		height: auto;
+	}
+	.newProfileWrapper{
+        display: flex;
         width: 90%;
-        height: 800px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+ }
+    .mapWrapper{
+        width: 100%;
+    }
+ 
+    .DoctorProfileSection .moreInfo{
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .DoctorProfileSection .smallInfoContainer{
+        width: 100%;
+        
+    }
+
+    .timeTableWrapper .smallerWrapper{
+        width: 90%;
+        margin: 0;
+        margin-top: 20px;
+    }
+    .timeTableWrapper .AddingRating{
+        width: 90%;
+        margin-left: 0;
+        margin-top: 20px;
+        left: 0;
+    }
+    .reviews{
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: auto;
+        flex-wrap: wrap;
     }
-    .img-container{
-        width: 0%;
+    .reviews .userReview{
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 5px;
+    }
+    .reviews .userReview .vl{
         display: none;
     }
-    .cardContent .info {
-        width: 100%;
+    .reviews .userReview .userPart{
+        height: 45%;
+        width: 95%;
+        margin: 0%;
+        justify-content: space-between;
     }
-    .cardContent {
-        width: 100%;
+    .reviews .userReview .userPart .imageWrapper{
+        width: 90px;
+        height: 90px;
+        margin-left: 0;
+        position: relative;
+        bottom: 15px;
+        left: 15px;
+
     }
-    .map{
-        width: 100%;
-        height: 300px;
+
+    .reviews .userReview .userPart .contextReview{
+        margin-left: 10px;
+        text-align: center;
+        margin-top: 20px;
     }
+    .reviews .userReview .reviewPart{
+        height: 45%;
+        width: 90%;
+        border-radius: 10px;
+        margin: 0;
+        text-align: center;
+        position: relative;
+        bottom: 20px;
+    }
+    .reviews .userReview .reviewPart .reviewBody{
+        color:#354046;
+        margin-top: 15px;
+    
+    }
+    .reviews .userReview .reviewPart .stars img{
+        width: 30px;
+        margin: 2px;
+    }
+   
 }
