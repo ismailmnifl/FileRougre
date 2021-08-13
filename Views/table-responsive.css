@@ -4,7 +4,6 @@ table {
     border-collapse: collapse; 
     margin: 0 auto;
 }
-
 th { 
     background: #354046; 
     color: #fff; 
@@ -24,9 +23,7 @@ td, th {
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
 	thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
+		display: none;
 	}
 	tr {
         border: 1px solid #0188df; 

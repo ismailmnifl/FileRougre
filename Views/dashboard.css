@@ -241,7 +241,6 @@ width: 100px;
 	}
 /* admin dash footer style */
 
-
 .inputInline{
     display: flex;
     flex-wrap: wrap;
@@ -299,8 +298,6 @@ width: 100px;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
-
 }
 
 .chartJSline{
@@ -353,6 +350,21 @@ width: 100px;
 
   /*new table design end */
 @media (max-width: 768px) {
+	.doctorinfoformContainer{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.doctorinfoformContainer .doctorinfo{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.doctorinfoformContainer .doctorinfo .inputInline select{
+		width: 100%;
+	}
 
 	.newTableWrapper .tableWrapper{
 		width: 90%;
@@ -395,6 +407,7 @@ width: 100px;
 	.footer .footerSection{
 	width: 100%;
 	}
+	
 }
 
 

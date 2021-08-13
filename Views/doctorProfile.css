@@ -21,7 +21,6 @@
   
   .grey {
 	background-color: #bdc3c7;
-	color: #202020;
   }
   
   .gray {
@@ -374,6 +373,7 @@ margin: 3px;
 display: flex;
 align-items: center;
 justify-content: center;
+background-color: #bdc3c7;
 
 }
 

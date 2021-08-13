@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<!-- bootstrap cdn link  -->
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+<link rel="stylesheet" href="addOns/navbar.css">
+<link rel="stylesheet" href="addOns/footer.css">
+<link rel="stylesheet" href="userProfile.css">
+    <title>DoctorCO | user profile</title>
+</head>
+<body>
+    <header id="header"> </header>
+
+    <div class="spacer"></div>
+		<!-- bage heading -->
+		<div class="headerTitle">
+			<h1 class="heading">
+				<span>'</span> User porfile <span>'</span>
+			</h1>
+		</div>
+
+        <section class="userprofile">
+            <div class="userSection">
+                <div class="imageHolder">
+                    <img id="avatar" src="images/QTR11061.JPG" alt="">
+                </div>
+                <div class="infoHolder">
+                <div class="wrapper">
+                    <div class="herderinfo">
+                        <h3>Your infos</h3>
+                    </div>
+                    <div class="name">
+                        Name : <span id="name" class="data">Ismail Mnifil</span>
+                    </div>
+                    <div class="phone">
+                        Phone : <span id="phone" class="data">+212 37 27 36 55</span>
+                    </div>
+                    <div class="adress">
+                      Adress :  <span id="adress" class="data">09 Sakya Hamra QU Course Safi</span>
+                    </div>
+                    <div class="username"> 
+                        Username : <span id="username" class="data">ISmail.mnifil</span>
+                    </div>
+                    <div class="email">
+                        Email :   <span id="email" class="data">ismailmnifilpro@gamail.com</span>
+                    </div>
+                    <div class="password">
+                        Password :  <span id="password" class="data">ismailthegreat</span>
+                    </div>
+                    <div class="age">
+                        Age : <span id="age" class="data">23</span>
+                    </div>
+                </div>
+                    <div class="spacerline"></div>
+                    
+                    <div class="wrapper">
+                        <div class="herderinfo">
+                            <h3>Actions</h3>
+                        </div>
+                    <div class="actions">
+                        <button class="probutton">update</button>
+                        <button style="background-color: rgb(182, 50, 50);" class="probutton">Desctivate</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="youAddintionSection">
+                <div class="comments"></div>
+                <div class="reviews"></div>
+            </div>
+        </section>
+
+    <footer id="footer"></footer>
+    <!-- boostrap pooper and js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- addons -->
+    <script src="js/addOns.js"></script>
+    <script>
+        window.addEventListener('load',retreaveData)
+        function retreaveData() {
+            var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"user_id": "57"
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/readSingleUser", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					console.log(result);
+					userData  = JSON.parse(result);
+					console.log(userData);
+					document.getElementById('name').innerHTML =userData.FirstName+' '+userData.LastName;
+					document.getElementById('phone').innerHTML = userData.phone;
+					document.getElementById('email').innerHTML = userData.email;
+					document.getElementById('age').innerHTML = userData.age;
+					document.getElementById('adress').innerHTML = userData.adresse;
+					document.getElementById('username').innerHTML = userData.username;
+					document.getElementById('password').innerHTML = userData.password;
+                    document.getElementById('avatar').src = `../uploads/${userData.avatar}`;
+                    
+
+				})
+				.catch(error => console.log('error', error));
+        }
+    </script>
+</body>
+</html>

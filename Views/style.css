@@ -31,9 +31,9 @@ section {
 	border-radius: 0.5rem;
 	cursor: pointer;
 	position: relative;
-	z-index: 0;
-	overflow: hidden;
+	font-size: 18px;
 	border: none;
+	margin-left: 20px;
 }
 
 .button:hover {
@@ -43,14 +43,42 @@ section {
 .heading {
 	text-align: center;
 	padding: 1rem;
-	padding-top: 8rem;
 	color: var(--black);
 }
 
 .heading span {
 	color: var(--blue);
 }
-
+#mynavi{
+	background-color: white;
+	box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+#mynavi .container .mynaviItem{
+	color: var(--black);
+}
+#mynavi .container a {
+	color: var(--black);
+	text-decoration: none;
+	font-size: 20px;
+}
+#mynavi .container a:hover {
+	color: var(--blue);
+}
+#mynavi .container .logo span{
+	color: var(--blue);
+	font-size: 25px;
+}
+#mynavi .container .logo {
+	font-size: 25px;
+}
+.navbar .dropdown-menu {
+	background-color: var(--blue);
+	color:#354046;
+}
+.navbar .dropdown-menu li:hover {
+	background-color: #354046;
+}
+/* 
 header {
 	width: 100%;
 	position: fixed;
@@ -109,7 +137,7 @@ header .fa-bars {
 	cursor: pointer;
 	display: none;
 }
-
+ */
 .home .content h1 {
 	color: var(--black);
 }
@@ -293,6 +321,7 @@ header .fa-bars {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+	margin-bottom: 10px;
   }
 
   .inputInline input{
@@ -407,8 +436,6 @@ header .fa-times {
 /* media queries  */
 
 @media (max-width: 768px) {
-	html {
-	}
 
 	header .fa-bars {
 		display: block;

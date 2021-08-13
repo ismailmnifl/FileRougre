@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title></title>
+		<title>DoctorCO | Create Post</title>
 
 		<!-- aos css file cdn link  -->
 		<link
@@ -77,34 +77,30 @@
 						<div class="addCategories">
 							<label for="categories">Shoose a Category</label>
 							<div class="input-group">
-							<select id="" name="categories" class="form-control">
-								<option value="">Advice</option>
-								<option value="">traditional medition</option>
-								<option value="">fitness</option>
-								<option value="">diet</option>
+							<select id="categories" name="categories" class="form-control">
 							</select> 
 						</div>
 							<label for="">Add post source</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="">
-								<button  class="buttonSource" type="button" id="">Delete</button>
+								<button  class="buttonSource" type="button" id="">Add</button>
 							  </div>
 							
 						</div>
 					<div class="controle">
 						<label for="">comments controle</label>
 							<div class="input-group">
-							<select id="" name="" class="form-control">
-								<option value="">Allow</option>
-								<option value="">Disable</option>
+							<select id="comControle" name="" class="form-control">
+								<option value="Anable">Anable</option>
+								<option value="Disable">Disable</option>
 
 							</select> 
 						</div>
 						<label for="">dislikes controle</label>
 							<div class="input-group">
-							<select id="" name="" class="form-control">
-								<option value="">Allow</option>
-								<option class="faical" value="">Disable</option>
+							<select id="likeControle" name="" class="form-control">
+								<option value="Anable">Anable</option>
+								<option class="Disable" value="">Disable</option>
 							</select> 
 						</div>
 					</div>
@@ -161,6 +157,9 @@
 
 		<!-- custom js link  -->
 		<script src="js/main.js"></script>
+		
+		<!-- JavaScript Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
 		<script>
 			AOS.init({
@@ -174,33 +173,55 @@
 			CKEDITOR.replace('content');
 		</script>
 		<script>
-			document.getElementById('sendDataBtn').addEventListener('click',get);
+			document.getElementById('sendDataBtn').addEventListener('click',insertPost);
 			function get() {
 				var title = document.getElementById('title').value;
 				var data = CKEDITOR.instances.content.getData();
 				console.log(data);
 				console.log(title);
 			}
+			function uploadImage() {
+
+				var formData = new FormData();
+				var imgFile = document.getElementById('avatar').files[0];
+				if(imgFile === undefined) 
+				return null;
+
+				var ext = imgFile.name.split('.').pop();
+				var uniqName = Math.floor(Math.random()*Math.pow(10,10)).toString() + '.' + ext;
+				formData.append('uniqName', uniqName);
+				formData.append('avatar', imgFile);
+				// console.log(...formData);
+
+				fetch("http://localhost/fileRouge/Includes/upload.php", {
+				method: "post",
+				body: formData
+
+				}).catch(console.error);
+
+				return uniqName;
+			}
 			function insertPost(){
+				var postImage = uploadImage();
+
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
 				var raw = JSON.stringify({
 				"doctor_id": "17",
-				"category_id": "2",
-				"title": "when to sleep",
-				"body": "In general, though, people should aim to fall asleep a few hours after dark and wake up within the first hours of sunlight in the morning, where possible. General guidelines indicate that the average adult needs about 7–9 hours of sleep each night.",
-				"image": "Not Availeble",
+				"category_id": document.getElementById('categories').value,
+				"title": document.getElementById('title').value,
+				"body": CKEDITOR.instances.content.getData(),
+				"image": postImage,
 				"resources": "www.who.int",
-				"dislikeControle": "Allow",
-				"commentControle": "Allow"
+				"dislikeControle": document.getElementById('likeControle').value,
+				"commentControle": document.getElementById('comControle').value,
 				});
 
 				var requestOptions = {
 				method: 'POST',
 				headers: myHeaders,
 				body: raw,
-				redirect: 'follow'
 				};
 
 				fetch("http://localhost/fileRouge/post/insertPost", requestOptions)
@@ -208,6 +229,8 @@
 				.then(result => console.log(result))
 				.catch(error => console.log('error', error));
 			}
+			window.addEventListener('load',getCategories);
+
 			function getCategories() {
 
 				var myHeaders = new Headers();
@@ -224,6 +247,12 @@
 				.then(function(result) {
 					console.log(result);
 					var data = JSON.parse(result);
+					console.log(data);
+
+					data.forEach(da => {
+						document.getElementById('categories').innerHTML += `<option value="${da.category_id }">${da.category}</option>`;
+					});
+					
 				})
 				.catch(error => console.log('error', error));
 			}

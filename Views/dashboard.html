@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Responsive Sidebar Menu</title>
+		<title>DoctorCO | Admin dashboard</title>
 		<link rel="stylesheet" href="dashboard.css" />
 		<link rel="stylesheet" href="table-responsive.css">
 		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
@@ -104,7 +104,7 @@
 				<div class="ContenCcontainer">
 					<div class="statsContainer">
 
-						<div  data-aos="fade-right" class="stats">
+						<div  class="stats">
 							<p class="title">Number of doctors</p>
 							<div class="Holder">
 								<i class="fas fa-user-md fa-3x"></i>
@@ -112,7 +112,7 @@
 							</div>
 						</div>
 							
-						<div data-aos="fade-up" class="stats">
+						<div class="stats">
 							<p class="title">Number of Clients</p>
 							<div class="Holder">
 								<i class="fas fa-users fa-3x"></i>
@@ -120,7 +120,7 @@
 							</div>
 						</div>
 
-						<div data-aos="fade-down" class="stats">
+						<div class="stats">
 							<p class="title">Number of Posts</p>
 							<div class="Holder">
 								<i class="far fa-newspaper fa-3x"></i>
@@ -128,7 +128,7 @@
 							</div>
 						</div>
 
-						<div data-aos="fade-left" class="stats">
+						<div class="stats">
 							<p class="title">Number of Messages</p>
 							<div class="Holder">
 								<i class="fas fa-comments fa-3x"></i>
@@ -138,7 +138,7 @@
 					</div>
 					</div>
 					<div class="newTableWrapper">
-						<div  data-aos="fade-right" class="tableWrapper">
+						<div class="tableWrapper">
 							<div class="container mt-2">
 
 										<ul style="padding: 0%;" class="responsive-table">
@@ -162,10 +162,10 @@
 						</div>
 						<!-- chart js start -->
 						<div class="chartjsHolder">
-							<div  data-aos="fade-down" class="chartJSline">	
+							<div class="chartJSline">	
 								<canvas id="ChartJS1" style="width:100%;max-width:600px"></canvas>						
 							</div>
-								<div  data-aos="fade-up" class="chartJSpie">
+								<div  class="chartJSpie">
  									<canvas id="ChartJS2" style="width:100%;max-width:600px"></canvas>
  								</div>
 							</div>
@@ -174,7 +174,7 @@
 						</div>
 						<div class="userDataTableHolder">
 
-							<div  data-aos="fade-right" class="locationSpeciality">
+							<div class="locationSpeciality">
 
 								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px; text-align: center;">Location and speciality settings</h4>
 
@@ -205,7 +205,7 @@
 								  </div>
 							</div>
 
-							<div data-aos="fade-left" class="userDataTable">
+							<div class="userDataTable">
 								<div class="container mt-2">
 									
 									<ul style="padding: 0%;" class="responsive-table">
@@ -291,92 +291,7 @@
 							});
 						</script>
 					</div>
-						<!-- <div class="userOperationContainer">
-							
-							<div id="wrapper">
-								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;"><u>Users section</u></h4>
-								<table class="table-primary">
-								  <thead>
-									<tr>
-									  <th>avatar</th>
-									  <th>Role</th>
-									  <th>Username</th>
-									  <th>Phone</th>
-									  <th>Age</th>
-									  <th colspan="2">Action</th>
-									 
-									</tr>
-								  </thead>
-								  <tbody id="DataHolder">
-								  
-								  </tbody>
-								</table>
-								
-							</div>	
-						</div> -->
-
-						<!-- <div class="OperationContainerDoctor">
-							
-							<div id="wrapper">
-								<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px;"><u>Doctors section</u></h4>
-								<table class="table-primary">
-								  <thead>
-									<tr>
-									  <th>user id</th>
-									  <th>speciality id</th>
-									  <th>matricule</th>
-									  <th>validated</th>
-									  <th colspan="2">Action</th>
-									 
-									</tr>
-								  </thead>
-								  <tbody id="doctorDataHolder">
-								  
-								  </tbody>
-								</table>
-								
-							</div>	
-						</div>	 -->
-							<!-- location and speciality settings -->
-						<!-- <div class="settings">
-							<h4 style="display: flex;align-items: center;justify-content: center;color: #0188df;margin-bottom: 20px;text-transform: uppercase;margin-top: 20px; text-align: center;">Location and speciality settings</h4>
-						<div class="locationSpecialityHolder">
-
-							 location  settings 
-
-							<div class="locationSelect">
-								<label for="">locations</label>
-								<div class="input-group mb-3">
-									<select type="text" class="form-control" id="locationSettings">
-										<option disabled selected>Choose your location</option>
-									</select>
-									<button style="height: 40px;" class="button" type="button" id="button-addon2">Delete</button>
-								  </div>
-								  <div class="input-group mb-3">
-									<input id="locationAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-										
-									<button style="height: 40px;background-color: #354046;" onclick="addLocation()"  class="button" type="button" id="button-addon2">Add</button>
-								  </div>
-							</div>
-							speciality settings 
-
-							<div class="locationSelect">
-								<label for="">Specialites</label>
-								<div class="input-group mb-3">
-									<select id="specialitySettings" type="text" class="form-control">
-										<option disabled selected>Choose your Speciality</option>
-									</select>
-									<button style="height: 40px;" onclick="deleteSpeciality()" class="button" type="button" id="button-addon2">Delete</button>
-								  </div>
-								  <div class="input-group mb-3">
-									<input id="specialityAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-										
-									<button style="height: 40px;background-color: #354046;" onclick="addSpeciality()"  class="button" type="button" id="button-addon2">Add</button>
-								  </div>
-							</div>
-									 
-						</div>
-					</div> -->
+					
 				<!-- pop uo modal 1 -->
 
 				<div class="zindex modal fade" id="exampleModal1" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -390,8 +305,8 @@
 
 						<!-- form will be used to update user data -->
 
-							<div class="formContainer">
-								<form name="registerForm">
+							<div class="doctorformContainer">
+								<form name="doctorregisterForm">
 									<div style="display: none;" id="updateduser" class="alert alert-success" role="alert">
 										The data was updated succefuly
 									  </div>
@@ -459,9 +374,9 @@
 
 						<!-- form will be used to update user data -->
 
-						<div  class="formContainer">
+						<div  class="doctorinfoformContainer">
 
-							<form name="registerForm">
+							<form name="doctorinfo">
 								<div style="display: none;" id="updatedoctor" class="alert alert-success" role="alert">
 									The data was updated succefuly
 								  </div>
@@ -476,7 +391,7 @@
 							<div class="mb-1 input-group">
 							  <input type="text" id="description" placeholder="Description..." name="description" class="form-control">
 							  </div>
-					
+							  
 							  <div class="schedule">
 								<div class="mb-1 input-group">
 								  <select name="days" id="days" class="form-select">
@@ -500,7 +415,7 @@
 
 								<textarea disabled class="form-control" id="displaySchedule" rows="3"></textarea>
 					
-							  </div>			
+							  </div>
 						</form>
 						
 						 </div>
@@ -518,7 +433,6 @@
 			</div>
 		</div>
 	</div>
-
 		<script src="js/dashboard.js"></script>
 		<script src="Bootstrap/bootstrap.bundle.min.js"></script>
 		
@@ -777,7 +691,7 @@
 									<div class="col col-4" data-label="Validation">${varlidation}</div>
 									<div style="text-align:center;" class="col col-3" data-label="Action">
 										<i style="color:red;margin-right:10px" onclick="deleteDoctor(${da.doctor_id})" class="fas fa-trash-alt fa-2x"></i>
-										<i style="color:#0188DF;" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="readSingleDoctor(${da.doctor_id})" class="fas fa-info-circle fa-2x"></i>
+										<i style="color:#0188DF;" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="readSingleDoctor(${da.doctor_id})" class="fas fa-info-circle fa-2x"></i>
 
 
 									</div>

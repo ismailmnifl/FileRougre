@@ -557,8 +557,9 @@
   function retreveSingleDoctorProfileData() {
 
     // Create query
-        $query = 'SELECT *,COUNT(review.review_id) as "nReviews", doctor.doctor_id as "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
-        FROM doctor 
+        $query = 'SELECT *,COUNT(review.review_id) as "nReviews", doctor.doctor_id as 
+        "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
+          FROM doctor 
           inner JOIN user on doctor.user_id = user.user_id
           
           inner JOIN speciality ON speciality.speciality_id = doctor.speciality_id 
@@ -693,8 +694,7 @@
               WHERE review.stars = 1 and review.doctor_id = :doctor_id)*100)
               / COUNT(review.review_id) as "oneStarsCount" 
               FROM review WHERE review.doctor_id = :doctor_id';
-
-
+              
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 

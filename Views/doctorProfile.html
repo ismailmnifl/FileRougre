@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Complete Responsive Hospital Website Design Tutorial</title>
+		<title>DoctorCO | Doctor profile</title>
 
 		<!-- aos css file cdn link  -->
 		<link
@@ -24,33 +24,14 @@
 		/>
 		<!-- custom css file link  -->
 		<link rel="stylesheet" href="doctorProfile.css" />
+    <link rel="stylesheet" href="addOns/navbar.css">
+
 	</head>
 	<body>
 		<!-- header section starts  -->
 
-		<header>
-			<div class="headeCcontainer">
-				<a href="index.html" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
-
-				<nav class="nav">
-					<ul>
-						<li><a href="#home">home</a></li>
-						<li><a href="#about">about</a></li>
-						<li><a href="#review">review</a></li>
-						<li><a href="#contact">contact</a></li>
-						<li><a href="#post">post</a></li>
-						<li>
-							<a href="#"
-								><a href="login.html"
-									><button class="button">Join</button></a
-								></a
-							>
-						</li>
-					</ul>
-				</nav>
-
-				<div class="fas fa-bars"></div>
-			</div>
+		<header id="header">
+			
 		</header>
 		<!-- to keep the header away from the content -->
 		<div class="spacer"></div>
@@ -140,38 +121,38 @@
               <div class="day">
                 <div class="titleDay"><h5>Monday</h5></div>
 
-                <div id="start-1" class="start red">start from</div>
-                <div id="end-1" class="end blue ">until</div>
+                <div id="start-1" class="start ">start from</div>
+                <div id="end-1" class="end  ">until</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Tuesday</h5></div>
-                <div id="start-2" class="start orange">closed</div>
-                <div id="end-2" class="end gray">closed</div>
+                <div id="start-2" class="start ">closed</div>
+                <div id="end-2" class="end ">closed</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Wednesday</h5></div>
-                <div id="start-3" class="start navy">closed</div>
-                <div id="end-3" class="end yellow">closed</div>
+                <div id="start-3" class="start ">closed</div>
+                <div id="end-3" class="end ">closed</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Thursday</h5></div>
-                <div id="start-4" class="start purple">closed</div>
-                <div id="end-4" class="end orange">closed</div>
+                <div id="start-4" class="start ">closed</div>
+                <div id="end-4" class="end ">closed</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Friday</h5></div>
-                <div id="start-5" class="start red">closed</div>
-                <div id="end-5" class="end gray">closed</div>
+                <div id="start-5" class="start ">closed</div>
+                <div id="end-5" class="end ">closed</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Saturday</h5></div>
-                <div id="start-6" class="start navy">closed</div>
-                <div id="end-6" class="end blue">closed</div>
+                <div id="start-6" class="start ">closed</div>
+                <div id="end-6" class="end ">closed</div>
               </div>
               <div class="day">
                 <div class="titleDay"><h5>Sunday</h5></div>
-                <div id="start-7" class="start purple">closed</div>
-                <div id="end-7" class="end orange">closed</div>
+                <div id="start-7" class="start ">closed</div>
+                <div id="end-7" class="end ">closed</div>
               </div>            
             </div>
           </div>
@@ -240,7 +221,8 @@
 
 		<!-- jquery cdn link  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <!-- add navbar  -->
+    <script src="js/addOns.js"></script>
 		<!-- aos js file cdn link  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
@@ -313,7 +295,10 @@
 
                     console.log(schedule);
                     for (let index = 1; index < schedule.length+1; index++) {
-                      
+
+                      document.getElementById('start-'+index).style.backgroundColor="#34495e";
+                      document.getElementById('end-'+index).style.backgroundColor="#34495e";
+
                       document.getElementById('start-'+index).innerHTML = schedule[index-1].startTime;
                       document.getElementById('end-'+index).innerHTML = schedule[index-1].closeTime;
 

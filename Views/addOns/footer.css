@@ -1,0 +1,55 @@
+:root {
+	--blue: #0188df;
+	--black: #354046;
+}
+.footer {
+	background: #354046;
+}
+
+.footer .logo span,a{
+	font-size: 25px;
+}
+
+.footer p {
+	color: #eee;
+	padding: 1rem 0;
+}
+
+.footer .col-md-4 {
+	padding: 1.3rem;
+}
+
+.footer .col-md-4:nth-child(1) a {
+	color: #fff;
+}
+
+.footer .col-md-4:nth-child(1) a span {
+	color: #0188df;
+}
+
+.footer a {
+	color: #ccc;
+	display: block;
+    direction: none;
+}
+
+.footer h4 {
+	color: #fff;
+}
+
+.footer a:hover {
+	color: #0188df;
+}
+
+.footer .credit {
+	color: #fff;
+	width: 80%;
+	margin: 0;
+	padding: 2rem 0;
+	padding-bottom: 4rem;
+	border-top: 0.1rem solid #ccc;
+}
+
+.footer .credit span {
+	color: #0188df;
+}

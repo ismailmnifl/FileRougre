@@ -46,6 +46,82 @@ class postController {
             );
         }
     }
+/***************************************************************************************/
+    function addComment() {
+            
+      $this->post->user_id = $this->data->user_id;
+      $this->post->comment = $this->data->comment;
+      $this->post->post_id = $this->data->post_id;
+      
+      // Create Post
+      if($this->post->addComment()) {
+          echo json_encode(
+          array('message' => 'comment Created')
+          );
+      } else {
+          echo json_encode(
+          array('message' => 'comment Not Created')
+          );
+      }
+  }
+  /***************************************************************************************/
+  function addReaction() {
+            
+    $this->post->user_id = $this->data->user_id;
+    $this->post->post_id = $this->data->post_id;
+    $this->post->postLike = $this->data->postLike;
+    $this->post->postDislike = $this->data->postDislike;
+    
+    
+    // Create Post
+    if($this->post->addReaction()) {
+        echo json_encode(
+        array('message' => 'reaction added')
+        );
+    } else {
+        echo json_encode(
+        array('message' => 'reaction Not added')
+        );
+    }
+}
+/***************************************************************************************/
+    function checkReaction() {
+
+      $this->post->user_id = $this->data->user_id;
+
+      $result = $this->post->checkReaction();
+        // Get row count
+        $num = $result->rowCount();
+    
+        if($num > 0) {
+          $reaction_arr = array();
+        
+          while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+      
+            $reaction_item = array(
+              'user_id' => $user_id,
+              'post_id' => $post_id,
+              'postLike' => $postLike,
+              'postDislike' => $postDislike,
+            );
+      
+            // Push to "data"
+            array_push($reaction_arr, $reaction_item);
+          }
+
+          // Turn to JSON & output
+          echo json_encode(array('message' => 'true','data' => $reaction_arr));
+          } else {
+            // No user found
+            echo json_encode(
+              array('message' => 'false')
+            );
+          }
+
+    }
+/***************************************************************************************/
+
     function getAllCategories() {
         
         $result = $this->post->getCategory();
@@ -61,7 +137,7 @@ class postController {
               extract($row);
         
               $category_item = array(
-                'category_id ' => $category_id,
+                'category_id' => $category_id,
                 'category' => $category,
                 'description' => $description,
               );
@@ -80,4 +156,199 @@ class postController {
             );
           }
         }
+   /***************************************************************************************/
+
+   function getAllPosts() {
+
+    $result = $this->post->getAllPosts();
+        // Get row count
+        $num = $result->rowCount();
+    
+    
+        if($num > 0) {
+            // users array
+            $posts_arr = array();
+        
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+              extract($row);
+        
+              $post_item = array(
+                'post_id' => $post_id,
+                'doctor_id' => $doctor_id,
+                'category_id' => $category_id,
+                'title' => $title,
+                'body' => $body,
+                'image' => $image,
+                'resources' => $resources,
+                'dislikeControle' => $dislikeControle,
+                'commentControle' => $commentControle,
+                'dateCreated' => $dateCreated,
+              );
+        
+              // Push to "data"
+              array_push($posts_arr, $post_item);
+            }
+        
+            // Turn to JSON & output
+            echo json_encode($posts_arr);
+        
+          } else {
+            // No user
+            echo json_encode(
+              array('message' => 'No post Found')
+            );
+          }
+}
+
+/***************************************************************************************/
+function search() {
+
+  $this->post->title = $this->data->title;
+
+  $result = $this->post->search($this->data->title);
+      // Get row count
+      $num = $result->rowCount();
+
+      if($num > 0) {
+          // users array
+          $posts_arr = array();
+      
+          while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+      
+            $post_item = array(
+              'post_id' => $post_id,
+              'doctor_id' => $doctor_id,
+              'category_id' => $category_id,
+              'title' => $title,
+              'body' => $body,
+              'image' => $image,
+              'resources' => $resources,
+              'dislikeControle' => $dislikeControle,
+              'commentControle' => $commentControle,
+              'dateCreated' => $dateCreated,
+            );
+      
+            // Push to "data"
+            array_push($posts_arr, $post_item);
+          }
+      
+          // Turn to JSON & output
+          echo json_encode($posts_arr);
+      
+        } else {
+          // No user
+          echo json_encode(
+            array('message' => 'No post Found')
+          );
+        }
+      }
+
+/***************************************************************************************/
+
+    function getSinglePost() {
+
+      $this->post->post_id = $this->data->post_id;
+
+       // Get user
+       $result = $this->post->getSinglePost();
+
+       $num = $result->rowCount();
+
+     if($num > 0) {
+               $posts_arr = array();
+
+         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+             extract($row);
+     
+       // Create array
+       $post_item = array(
+               'user_id' => $user_id,
+               'location_id' => $location_id,
+               'role' => $role,
+               'FirstName' => $FirstName,
+               'LastName' => $LastName,
+               'phone' => $phone,
+               'email' => $email,
+               'password' => $password,
+               'age' => $age,
+               'username' => $username,
+               'adresse' => $adresse,
+               'avatar' => $avatar,
+               'latitude' => $latitude,
+               'longitude' => $longitude,
+               'doctor_id' => $doctor_id,
+               'speciality_id' => $speciality_id,
+               'matricule' => $matricule,
+               'description' => $description,
+               'schedule' => $schedule,
+               'validated' => $validated,
+               'speciality' => $speciality,
+               'post_id' =>$post_id,
+               'category_id' => $category_id,
+               'title' => $title,
+               'body' => $body,
+               'image' => $image,
+               'resources' => $resources,
+               'dateCreated' => $dateCreated,
+               'dislikeControle' => $dislikeControle,
+               'commentControle' => $commentControle,
+               'schedule' => $schedule,
+               'validated' => $validated,
+               'speciality' => $speciality,
+             );
+       // Make JSON
+       array_push($posts_arr, $post_item);
+     }
+            echo json_encode($posts_arr);
+        }else {
+          echo json_encode(array('message' => 'No post Found'));
+        }
+    }
+/***************************************************************************************/
+    function getAllcommentsForPost() {
+      $this->post->post_id = $this->data->post_id;
+
+      // Get user
+      $result = $this->post->getAllcommentsForPost();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $commnets_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $comment_item = array(
+              'user_id' => $user_id,
+              'location_id' => $location_id,
+              'role' => $role,
+              'FirstName' => $FirstName,
+              'LastName' => $LastName,
+              'phone' => $phone,
+              'email' => $email,
+              'password' => $password,
+              'age' => $age,
+              'username' => $username,
+              'adresse' => $adresse,
+              'avatar' => $avatar,
+              'latitude' => $latitude,
+              'longitude' => $longitude,
+              'comment_id' => $comment_id,
+              'user_id' => $user_id,
+              'post_id' => $post_id,
+              'comment' => $comment,
+              'dateCreated' => $dateCreated,
+            );
+      // Make JSON
+      array_push($commnets_arr, $comment_item);
+    }
+           echo json_encode($commnets_arr);
+       }else {
+         echo json_encode(array('message' => 'No comment Found'));
+       }
+    }
+
 }

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Complete Responsive Hospital Website Design Tutorial</title>
+		<title>DoctorCO | Home</title>
 
 		<!-- aos css file cdn link  -->
 		<link
@@ -12,49 +12,23 @@
 		/>
 
 		<!-- bootstrap cdn link  -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
-		/>
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- font awesome cdn link  -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 		/>
-
+		<link rel="icon" href="images/tabIcon.svg">
 		<!-- custom css file link  -->
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="card.css">
 	</head>
 	<body>
 		<!-- header section starts  -->
 
-		<header>
-			<div class="container">
-				<a href="#" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
-
-				<nav class="nav">
-					<ul>
-						<li><a href="#home">home</a></li>
-						<li><a href="#about">about</a></li>
-						<li><a href="#review">review</a></li>
-						<li><a href="#contact">contact</a></li>
-						<li><a href="#post">post</a></li>
-						<li>
-							<a href="#"
-								><a href="login.html"
-									><button class="button">Join</button></a
-								></a
-							>
-						</li>
-					</ul>
-				</nav>
-
-				<div class="fas fa-bars"></div>
-			</div>
-		</header>
-
-		<!-- header section ends  -->
+		<header id="header"></header>
 
 		<!-- home section starts  -->
 
@@ -90,51 +64,60 @@
 		<!-- about section start  -->
 
 		<section class="about" id="about">
-			<div class="container">
-				<div class="row min-vh-100 align-items-center">
-					<div class="col-md-6 content" data-aos="fade-right">
-						<div class="box">
-							<h3>
-								<i class="fas fa-ambulance"></i> ambulance
-								services
-							</h3>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Ipsa, suscipit.
-							</p>
-						</div>
+			<div class="row min-vh-100 align-items-center text-center text-md-left">
+				<h1 class="heading"><span>'</span> out servies <span>'</span></h1>
 
-						<div class="box">
-							<h3>
-								<i class="fas fa-procedures"></i> emergency
-								rooms
-							</h3>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Ipsa, suscipit.
-							</p>
-						</div>
-
-						<div class="box">
-							<h5>
-								<i class="fas fa-stethoscope"></i> free
-								check-ups
-							</h5>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Ipsa, suscipit.
-							</p>
-						</div>
+			<!-- cards -->
+			<div class="container_cards">
+				<div data-aos="fade-right" class="card crad1">
+					<div class="imgBx">
+						<img src="images/wysiwyg-uploads_1580196666465-doctor.jpg" />
 					</div>
-
-					<div
-						class="col-md-6 d-none d-md-block"
-						data-aos="fade-left"
-					>
-<!-- 						<img src="images/about-img.png" width="100%" alt="" /> -->
- 					</div>
+					<div class="conent_card">
+						<h3 style="color: #0188df">Fast Delivery</h3>
+						<br />
+						<p>
+							Book a car rental in Morocco and discover this exotic
+							gateway to Africa one attraction at a time. From the romance
+							of Casablanca to the traditions of Marrakesh, every corner
+							of Morocco has something to discover. Take your five senses
+							
+						</p>
+					</div>
+				</div>
+				<div data-aos="fade-up" class="card card2">
+					<div class="imgBx">
+						<img src="images/information-suchen-t.jpg" />
+					</div>
+					<div class="conent_card">
+						<h3 style="color: #0188df">Quality Maintenance</h3>
+						<br />
+						<p>
+							Book a car rental in Morocco and discover this exotic
+							gateway to Africa one attraction at a time. From the romance
+							of Casablanca to the traditions of Marrakesh, every corner
+							of Morocco has something to discover. Take your five senses
+						</p>
+					</div>
+				</div>
+				<div data-aos="fade-left" class="card card3">
+					<div class="imgBx">
+						<img src="images/Medical-Journals.png" />
+					</div>
+					<div class="conent_card">
+						<h3 style="color: #0188df">Exellent Service</h3>
+						<br />
+						<p>
+							Book a car rental in Morocco and discover this exotic
+							gateway to Africa one attraction at a time. From the romance
+							of Casablanca to the traditions of Marrakesh, every corner
+							of Morocco has something to discover. Take your five senses
+						</p>
+					</div>
 				</div>
 			</div>
+			</div>
+			<!-- cards end -->
 		</section>
 
 		<!-- about section ends -->
@@ -188,42 +171,7 @@
 
 		<!-- review section ends  -->
 
-		<!-- contact section starts  -->
-
-	<section class="contact" id="contact">
-		<div class="container">
-			<h1 class="heading">
-				<span>'</span> Contact US <span>'</span>
-			</h1>
-			<div class="contentWrapper">
-				<div  class="formContainer">
-		  
-				  <form name="registerForm">
-				   <div class="mar form-group  inputInline">
-					 <input type="text" placeholder="First Name..." name="FirstName" class="form-control">
-					 <input type="text" placeholder="Last Name..." name="LastName" class="form-control">
-				   </div>
-			 
-				   <div class="form-group  inputInline">
-					 <input type="text" placeholder="Phone..." name="phone" class="form-control">
-					 <input type="text" placeholder="Email..." name="email" class="form-control">
-				   </div>
-			 
-				   <div class="form-group">
-					<textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
-				   </div>
-			 
-				   <div class="input-group">
-					 <button id="sendDataBtn" class="button form-control" type="button" >Submit</button>
-		  
-					</div>
-				  </form>
-			   </div>
-			</div>
-		</div>
-	</section>
-
-		<!-- contact section ends -->
+	
 
 		<!-- post section starts  -->
 
@@ -329,12 +277,15 @@
 
 		<!-- jquery cdn link  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+		<!-- add navbar -->
+		<script src="js/addOns.js"></script>
 		<!-- aos js file cdn link  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 		<!-- custom js link  -->
 		<script src="js/main.js"></script>
+		<!-- JavaScript Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" ></script>
 
 		<script>
 			AOS.init({

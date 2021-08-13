@@ -203,6 +203,7 @@ header .fa-times {
 	justify-content: center;
 	width: 80%;
 	box-shadow: 0 0 10px #354046;
+	flex-direction: row;
 }
 .buttonSource{
     height: 40px;
@@ -332,5 +333,16 @@ padding: 15px;
 		top: 50%;
 		opacity: 1;
 	}
-   
+
+	.addPostContainer .wrapper{
+		width: 100%;
+		flex-direction: column;
+	}
+	.addPostContainer .formHolder{
+		width: 90%;
+	}
+	.addPostContainer .sidebar{
+		width: 90%;
+		margin-bottom: 20px;
+	  }
 }

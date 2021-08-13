@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+
+        <!-- addons -->
+        <link rel="stylesheet" href="addOns/navbar.css">
+        <link rel="stylesheet" href="addOns/footer.css">
+
+        <!-- custom styles -->
+        <link rel="stylesheet" href="post.css">
+    
+    <title>DoctorCO | Post</title>
+</head>
+<body>
+    <header id="header"></header>
+
+    <!-- to keep the header away from the content -->
+    <div class="spacer"></div>
+		<!-- bage heading -->
+		<div class="headerTitle">
+			<h1 class="heading">
+				<span>'</span>Doctor Post<span>'</span>
+			</h1>
+		</div>
+
+        <section class="post">
+            <div class="doctorPost">
+                <div class="imageHolder">
+                    <img id="postImage" src="" alt="">
+                </div>
+                <div class="title"><h2 id="title"></h2></div>
+                <div id="body" class="body">
+                    <p></p>
+                </div>
+                <div id="dateCreated" class="dateCreated">12/06/2020 11:08</div>
+
+            </div>
+            <div class="wrapper">
+            <div class="sidebar">
+                <div class="doctorPart">
+                    <div class="avatar">
+                        <img id="avatar" src="" alt="">
+                    </div>
+                    <div class="doctorName">
+                        <a id="name" href=""></a>
+                    </div>
+                    <div class="speciality">
+                        <p id="speciality"></p>
+                    </div>
+                </div>
+                <div class="underline"></div>
+
+                <div class="postReactions">
+                    <div class="reactionsHeader">
+                        <h4>React to this post</h4> 
+                    </div>
+
+                    <div class="rections">
+
+                            <div class="like">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p>56</p>
+                            </div>
+                                <div class="likebar">
+                                    <div class="filler"></div>
+                                </div>
+                            <div class="dislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p>2</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="commentPart">
+                <h3>Add comment</h3>
+                <p id="error" style="color: red;"></p>
+                <textarea class="form-control" placeholder="Comment..." name="" id="comment" cols="30" rows="4"></textarea>
+                <button id="submitComment" class="button">Submit</button>
+            </div>
+        </div>
+        </section>
+        <h2 class="headering">
+            <span>'</span>Comments<span>'</span>
+        </h2>
+        <section class="comments">
+            <div id="commentsWrapper" class="box-container">
+                </div>
+        </section>
+
+    <footer id="footer"></footer>
+
+        <!-- boostrap pooper and js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- jquery cdn link  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+        <!-- addons -->
+        <script src="js/addOns.js"></script>
+        <script>
+
+            document.getElementById('submitComment').addEventListener('click',insertComment);
+            window.addEventListener('load',getSinglePost);
+            window.addEventListener('load',getComments);
+/* ************************************************************************************* */
+            function insertComment() {
+                var validation = document.getElementById('comment').value;
+                if (validation == "") {
+                    document.getElementById('error').innerHTML = "you need to add a comment";
+                }else {
+                    document.getElementById('error').style.color = "green";
+                    document.getElementById('error').innerHTML="comment added succesfully";
+                    
+                    var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "user_id": "47",
+                "comment":  document.getElementById('comment').value,
+                "post_id":  sessionStorage.getItem('postID'),
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/addComment", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+                }
+
+                setTimeout(function(){
+                  location.reload();
+                },250);
+            }
+
+/* ************************************************************************************* */
+
+            function getSinglePost() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "post_id": sessionStorage.getItem('postID'),
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/getSinglePost", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    var data = JSON.parse(result);
+                    console.log(data);
+                    /* autor infomations */
+                    document.getElementById('avatar').src = `../uploads/${data[0].avatar}`;
+                    document.getElementById('name').innerHTML = `${data[0].FirstName} ${data[0].LastName}`;
+                    document.getElementById('speciality').innerHTML = `${data[0].speciality}`;
+                    /* post infomations */
+                    document.getElementById('postImage').src = `../uploads/${data[0].image}`;
+                    document.getElementById('title').innerHTML = `${data[0].title}`;
+                    document.getElementById('body').innerHTML = `${data[0].body}`;
+                    document.getElementById('dateCreated').innerHTML = `${data[0].dateCreated}`;
+                })
+                .catch(error => console.log('error', error));
+            }
+/***************************************************************************************/
+            function getComments() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "post_id": sessionStorage.getItem('postID'),
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/getAllcommentsForPost", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+
+                    var comments = JSON.parse(result);
+                    console.log(comments);
+
+                    comments.forEach(comment => {
+                        document.getElementById('commentsWrapper').innerHTML += `
+                        <div class="box">
+                            <p>
+                                ${comment.comment}
+                            </p>
+                                <h5>${comment.FirstName} ${comment.LastName}</h5>
+                                <span>${comment.dateCreated}</span>
+                                <img src="../uploads/${comment.avatar}" alt="" />
+                        </div>
+                        
+                        `;
+                        
+                    });
+                })
+                .catch(error => console.log('error', error));
+            }
+        </script>
+</body>
+</html>
