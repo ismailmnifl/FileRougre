@@ -203,7 +203,6 @@
 .post .sidebar .postReactions .rections .likebar .filler{
     height: 8px;
     background-color: var(--blue);
-    width: 75%;
     border-radius: 5px;
 
  }

@@ -5,6 +5,9 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
+session_start();
+// if(!isset($_SESSION['auth']))
+//   die(json_encode(array( 'message' => 'Unauthorized access!')));
 
 class doctorController {
 

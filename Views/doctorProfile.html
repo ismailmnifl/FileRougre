@@ -347,7 +347,7 @@
                 myHeaders.append("Content-Type", "application/json");
 
                 var raw = JSON.stringify({
-                "user_id": "48",
+                "user_id": sessionStorage.getItem("user_id"),
                 "doctor_id": sessionStorage.getItem('doctorID'),
                 "stars": StarsCount,
                 "review": document.getElementById('textarea1').value

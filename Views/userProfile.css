@@ -37,6 +37,7 @@
     flex-wrap: wrap;
     height: auto;
     background-color: var(--black);
+    margin-bottom: 20px;
 }
 .userprofile .userSection{
     width: 25%;
@@ -48,10 +49,14 @@
 }
 .userprofile .youAddintionSection{
     width: 60%;
-    height: 500px;
+    height: auto;
     background-color: white;    
     margin: 10px;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .userprofile .userSection .imageHolder {
     width: 100%;
@@ -106,7 +111,29 @@
     flex-direction: column;
     background-color: lightgrey;
 }
-
+.userprofile .youAddintionSection .comments {
+    background-color: lightgrey;
+    border-radius: 5px;
+    width: 90%;
+    margin: 10px;
+    overflow: hidden;
+    padding: 0px;
+}
+.userprofile .youAddintionSection .comments .container {
+    overflow-y: scroll;
+    height: 300px;
+}
+.userprofile .youAddintionSection .reviews {
+    background-color: lightgrey;
+    border-radius: 5px;
+    width: 90%;
+    margin: 10px;
+    overflow: hidden;
+}
+.userprofile .youAddintionSection .reviews .container {
+    overflow-y: scroll;
+    height: 300px;
+}
 .probutton {
 	height: 40px;
 	width: 150px;
@@ -140,6 +167,35 @@
 .buttonReverse:hover{
     box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
+#trash{
+    color: red;
+    font-size: 25px;
+    margin: 3px;
+    position: relative;
+    left: 20px;
+}
+#more{
+    color: var(--blue);
+    font-size: 28px;
+    position: relative;
+    top: 2px;
+    left: 20px;
+    margin: 3px;
+
+}
+.inputInline{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .inputInline input{
+    width: 49%;
+  }
+  .inputInline select{
+    width: 49%;
+  }
 @media screen and (max-width : 768px) {
     .userprofile .userSection{
         width: 90%;

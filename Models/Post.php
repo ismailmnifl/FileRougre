@@ -194,14 +194,44 @@ class Post {
         }
     }
     function checkReaction() {
-        $query = 'SELECT * FROM `reaction` WHERE user_id = :user_id';
+        $query = 'SELECT * FROM `reaction` WHERE post_id = :post_id and user_id = :user_id';
   
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
         // Bind ID
         $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':post_id', $this->post_id);
+        
 
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+    function countLikes() {
+        $query = 'SELECT COUNT(reaction.reation_id) as "likes" from reaction WHERE reaction.postLike = "true" AND reaction.post_id = :post_id';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindParam(':post_id', $this->post_id);
+        
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+    function countdislikes() {
+        $query = 'SELECT COUNT(reaction.reation_id) as "dislikes" from reaction WHERE reaction.`postDislike` = "true" AND reaction.post_id = :post_id';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindParam(':post_id', $this->post_id);
+        
         // Execute query
         $stmt->execute();
 

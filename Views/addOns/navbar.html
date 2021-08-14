@@ -1,32 +1,163 @@
 <nav id="mynavi" class="navbar navbar-expand-lg fixed-top navbar-light">
-    <div class="container">
-        <a href="index.html" class="logo navbar-brand"><span>D</span>octor<span>C</span>o.</a>
+	<div class="container">
+		<a href="index.html" class="logo navbar-brand"
+			><span>D</span>octor<span>C</span>o.</a
+		>
 
-        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-md-end" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active mynaviItem" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mynaviItem" href="#" tabindex="-1" aria-disabled="true">profile</a>
-                  </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle mynaviItem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Features
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a style="color: white;" class="dropdown-item" href="#">Doctors list</a></li>
-                    <li><a style="color: white;" class="dropdown-item" href="#">Doctors Posts</a></li>
-                  </ul>
-                </li>
-                <button class="button">Join us</button>
-              </ul>
-        </div>
-    </div>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div
+			class="collapse navbar-collapse justify-content-md-end"
+			id="navbarSupportedContent"
+		>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a
+						class="nav-link active mynaviItem"
+						aria-current="page"
+						href="#"
+						>Home</a
+					>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="contactUS.html">Contact us</a>
+				</li>
+				<li class="nav-item">
+					<a
+						id="userPage"
+						class="nav-link mynaviItem"
+						href="#"
+						tabindex="-1"
+						aria-disabled="true"
+						>profile</a
+					>
+				</li>
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle mynaviItem"
+						href="#"
+						id="navbarDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						Features
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li>
+							<a
+								style="color: white"
+								class="dropdown-item"
+								href="recomendation.html"
+								>Doctors list</a
+							>
+						</li>
+						<li>
+							<a
+								style="color: white"
+								class="dropdown-item"
+								href="blogHome.html"
+								>Doctors Posts</a
+							>
+						</li>
+					</ul>
+				</li>
+				<button id="navbtn" class="button" onclick="javascript:window.location.href='login.html';">Join us</button>
+			</ul>
+		</div>
+	</div>
 </nav>
+
+<script>
+	function logedIn() {
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+		var requestOptions = {
+			method: "POST",
+			headers: myHeaders,
+		};
+
+		fetch("http://localhost/fileRouge/auth/logedIn", requestOptions)
+			.then((response) => response.text())
+			.then(function (result) {
+				console.log(result);
+				var userLoginData = JSON.parse(result);
+
+				if (userLoginData.message == true) {
+					console.log(userLoginData);
+				} else {
+					pathname = window.location.pathname;
+					filename = pathname.substring(
+						pathname.lastIndexOf("/") + 1
+					);
+					// console.log(filename)
+					if (filename != "index.html")
+						window.location.href = "index.html";
+				}
+				/*
+				 */
+			})
+			.catch((error) => console.log("error", error));
+	}
+
+	logedIn();
+
+	console.log(sessionStorage.getItem("user_id"));
+	console.log(sessionStorage.getItem("role"));
+
+	if (sessionStorage.getItem("role") == "admin") {
+		document.getElementById("userPage").href = "dashboard.html";
+		document.getElementById("userPage").innerHTML = "Dashboard";
+		document.getElementById("navbtn").innerHTML = "Logout";
+		document.getElementById("navbtn").onclick = logout;
+		
+		
+	} else if (sessionStorage.getItem("role") == "Client") {
+		document.getElementById("userPage").href = "userProfile.html";
+		document.getElementById("userPage").innerHTML = "Profile";
+		document.getElementById("navbtn").innerHTML = "Logout";
+		document.getElementById("navbtn").onclick = logout;
+
+
+	} else if(sessionStorage.getItem("role") == "Doctor"){
+		document.getElementById("userPage").href = "#";
+		document.getElementById("userPage").innerHTML = "Doctor Space";
+		document.getElementById("navbtn").innerHTML = "Logout";
+		document.getElementById("navbtn").onclick = logout;
+		
+
+	}else {
+		document.getElementById("userPage").href = "#";
+		document.getElementById("userPage").innerHTML = "";
+	}
+	function logout() {
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+		myHeaders.append("Cookie", "PHPSESSID=468nagin5idv1dna5ckv82o5cl");
+
+		var requestOptions = {
+		method: 'POST',
+		headers: myHeaders,
+		redirect: 'follow'
+		};
+
+		fetch("http://localhost/fileRouge/auth/logout", requestOptions)
+		.then(response => response.text())
+		.then(function(result) {
+			console.log(result);
+			window.location.href = "index.html"	
+		})
+		.catch(error => console.log('error', error));
+		sessionStorage.removeItem('user_id');
+		sessionStorage.removeItem('role');
+	}
+</script>

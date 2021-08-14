@@ -18,7 +18,9 @@
    
     <div class="contentWrapper">
       <div  class="formContainer">
-
+        <div id="succesMessage" style="display: none;" class="alert alert-success" role="alert">
+          Registration was successfull
+        </div>
         <form name="registerForm">
          <div class="mar form-group mb-1 inputInline">
            <input type="text" placeholder="First Name..." name="FirstName" class="form-control">
@@ -183,7 +185,7 @@
         
       })
       .catch(error => console.log('error', error));
-      
+      document.getElementById('succesMessage').style.display ="block";
   }
 
   function bigOperation() {

@@ -1,9 +1,14 @@
 <?php
 
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+
+session_start();
+// if(!isset($_SESSION['auth']))
+// die(json_encode(array( 'message' => 'Unauthorized access!')));
 
 
 class userController {
@@ -208,50 +213,7 @@ class userController {
         // Make JSON
         print_r(json_encode($users_arr));
     }
-   /***************************************************************************************/
 
-    function authontication() {
-
-        $this->user->username = $this->data->username;
-        $this->user->password = $this->data->password;
-
-        $result = $this->user->auth();
-
-       $num = $result->rowCount();
-
-       if($num > 0) {
-        $users_arr = array();
-    
-        $row = $result->fetch(PDO::FETCH_ASSOC);
-          extract($row);
-    
-          $userData = array(
-            'user_id' => $user_id,
-            'location_id' => $location_id,
-            'role' => $role,
-            'FirstName' => $FirstName,
-            'LastName' => $LastName,
-            'phone' => $phone,
-            'email' => $email,
-            'password' => $password,
-            'age' => $age,
-            'username' => $username,
-            'adresse' => $adresse,
-            'avatar' => $avatar,
-            'latitude' => $latitude,
-            'longitude' => $longitude
-          );
-       }
-
-        if (empty($userData)) {
-        // No user
-        echo json_encode(array('message' => 'wrong data'));
-
-        } else {
-        echo json_encode(array('message' => 'welcome' , 'data' => $userData));
-        } 
-    }
-    
  /***************************************************************************************/
 
     function updateUser() {
@@ -347,7 +309,177 @@ class userController {
     }
 
 //*********************************************************** */
+function getuserReview() {
 
+  $this->user->user_id = $this->data->user_id;
+    // Get user
+    $result = $this->user->getuserReview();
+
+    $num = $result->rowCount();
+
+  if($num > 0) {
+            $reviews_arr = array();
+
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          extract($row);
+  
+    // Create array
+    $review_item = array(
+            'review_id' => $review_id,
+            'user_id' => $user_id,
+            'doctor_id' => $doctor_id,
+            'stars' => $stars,
+            'review' => $review,
+            'dateCreated' => $dateCreated,
+            
+          );
+    // Make JSON
+    array_push($reviews_arr, $review_item);
+  }
+  echo json_encode($reviews_arr);
+  }else {
+    echo json_encode(array('message' => 'No review Found'));
+  }
+
+}
+
+//*********************************************************** */
+function getuserComments() {
+
+  $this->user->user_id = $this->data->user_id;
+    // Get user
+    $result = $this->user->getuserComments();
+
+    $num = $result->rowCount();
+
+  if($num > 0) {
+            $comments_arr = array();
+
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          extract($row);
+  
+    // Create array
+    $comment_item = array(
+            'comment_id' => $comment_id,
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'comment' => $comment,
+            'dateCreated' => $dateCreated,
+            
+          );
+    // Make JSON
+    array_push($comments_arr, $comment_item);
+  }
+  echo json_encode($comments_arr);
+  }else {
+    echo json_encode(array('message' => 'No review Found'));
+  }
+
+}
+//*********************************************************** */
+function getSingleuserReview() {
+
+  $this->user->user_id = $this->data->user_id;
+  $this->user->review_id = $this->data->review_id;
+  
+    // Get user
+    $result = $this->user->getSingleuserReview();
+
+    $num = $result->rowCount();
+
+  if($num > 0) {
+            $reviews_arr = array();
+
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          extract($row);
+  
+    // Create array
+    $review_item = array(
+            'review_id' => $review_id,
+            'user_id' => $user_id,
+            'doctor_id' => $doctor_id,
+            'stars' => $stars,
+            'review' => $review,
+            'dateCreated' => $dateCreated,
+            
+          );
+    // Make JSON
+    array_push($reviews_arr, $review_item);
+  }
+  echo json_encode($reviews_arr);
+  }else {
+    echo json_encode(array('message' => 'No review Found'));
+  }
+
+}
+
+//*********************************************************** */
+function getSingleuserComments() {
+
+  $this->user->user_id = $this->data->user_id;
+  $this->user->comment_id = $this->data->comment_id;
+
+  // Get user
+    $result = $this->user->getSingleuserComments();
+
+    $num = $result->rowCount();
+
+  if($num > 0) {
+            $comments_arr = array();
+
+      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          extract($row);
+  
+    // Create array
+    $comment_item = array(
+            'comment_id' => $comment_id,
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'comment' => $comment,
+            'dateCreated' => $dateCreated,
+            
+          );
+    // Make JSON
+    array_push($comments_arr, $comment_item);
+  }
+  echo json_encode($comments_arr);
+  }else {
+    echo json_encode(array('message' => 'No review Found'));
+  }
+
+}
+//*********************************************************** */
+
+function DeleteSingleuserReview() {
+  $this->user->review_id = $this->data->review_id;
+
+  // Delete user
+  if($this->user->DeleteSingleuserReview()) {
+    echo json_encode(
+      array('message' => 'review Deleted')
+    );
+  } else {
+    echo json_encode(
+      array('message' => 'review Not Deleted')
+    );
+  }
+}
+//*********************************************************** */
+
+function DeleteSingleuserComments() {
+  $this->user->comment_id = $this->data->comment_id;
+
+  // Delete user
+  if($this->user->DeleteSingleuserComments()) {
+    echo json_encode(
+      array('message' => 'comment Deleted')
+    );
+  } else {
+    echo json_encode(
+      array('message' => 'comment Not Deleted')
+    );
+  }
+}
 }
 
 ?>

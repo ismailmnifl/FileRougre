@@ -65,18 +65,21 @@
                     <div class="rections">
 
                             <div class="like">
-                                <i class="fas fa-thumbs-up"></i>
-                                <p>56</p>
+                                <i onclick="addReaction('true','false')" id="like" class="fas fa-thumbs-up"></i>
+                                <p id="likes"></p>
                             </div>
                                 <div class="likebar">
-                                    <div class="filler"></div>
+                                    <div id="filler" class="filler"></div>
                                 </div>
                             <div class="dislike">
-                                <i class="fas fa-thumbs-down"></i>
-                                <p>2</p>
+                                <i onclick="addReaction('false','true')" id="dislike" class="fas fa-thumbs-down"></i>
+                                <p id="dislikes"></p>
                             </div>
+                            
                     </div>
+                    
                 </div>
+ 
             </div>
             <div class="commentPart">
                 <h3>Add comment</h3>
@@ -109,6 +112,7 @@
             document.getElementById('submitComment').addEventListener('click',insertComment);
             window.addEventListener('load',getSinglePost);
             window.addEventListener('load',getComments);
+            
 /* ************************************************************************************* */
             function insertComment() {
                 var validation = document.getElementById('comment').value;
@@ -122,7 +126,7 @@
                 myHeaders.append("Content-Type", "application/json");
 
                 var raw = JSON.stringify({
-                "user_id": "47",
+                "user_id": sessionStorage.getItem("user_id"),
                 "comment":  document.getElementById('comment').value,
                 "post_id":  sessionStorage.getItem('postID'),
                 });
@@ -138,11 +142,13 @@
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));
-                }
-
+                
                 setTimeout(function(){
                   location.reload();
                 },250);
+                }
+
+                
             }
 
 /* ************************************************************************************* */
@@ -218,6 +224,142 @@
                     });
                 })
                 .catch(error => console.log('error', error));
+            }
+            var message,reaction;
+
+            function addReaction(like,dislike) {
+
+                if (message === "true") {
+                    console.log('reaction existe');
+                    return;
+                }
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "user_id": sessionStorage.getItem("user_id"),
+                "post_id": sessionStorage.getItem('postID'),
+                "postLike": like,
+                "postDislike": dislike
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/addReaction", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    console.log(result);
+                    checkReaction();
+                    likesCount();
+                    dislikesCount();
+                    
+                    
+                })
+                .catch(error => console.log('error', error));
+            }
+            window.addEventListener('load',checkReaction);
+
+            function checkReaction() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "user_id": sessionStorage.getItem("user_id"),
+                "post_id": sessionStorage.getItem('postID')
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/checkReaction", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    console.log(result);
+                    var res = JSON.parse(result);
+
+                        message = res.message;
+                    if (message == "true") {
+                        reaction = res.data[0].postLike;                 
+                    }
+                    
+                })
+                .catch(error => console.log('error', error));
+            }
+            window.addEventListener('load',likesCount);
+            function likesCount() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "post_id": sessionStorage.getItem('postID')
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/countLikes", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    var likes = JSON.parse(result);
+                    document.getElementById('likes').innerHTML = likes[0].likes;
+
+                })
+                .catch(error => console.log('error', error));
+            }
+            window.addEventListener('load',dislikesCount);
+
+            function dislikesCount() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                "post_id": sessionStorage.getItem('postID')
+                });
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("http://localhost/fileRouge/post/countdislikes", requestOptions)
+                .then(response => response.text())
+                .then(function(result) {
+                    var dislikes = JSON.parse(result);
+                    document.getElementById('dislikes').innerHTML = dislikes[0].dislikes;
+
+                })
+                .catch(error => console.log('error', error));
+            }
+            setTimeout(function(){
+            persentageSlider();
+            },800);
+            function persentageSlider() {
+                
+               var a = parseFloat(document.getElementById('likes').innerHTML);
+            
+               var b = parseFloat(document.getElementById('dislikes').innerHTML);
+               console.log(a,typeof a);
+              console.log(b,typeof b);
+              var persentage = a/(a + b )*100;
+              
+
+              console.log('persentage : ' + persentage);
+              document.getElementById('filler').style.width = persentage+'%';
             }
         </script>
 </body>

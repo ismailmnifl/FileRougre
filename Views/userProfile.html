@@ -7,10 +7,12 @@
     	<!-- bootstrap cdn link  -->
 	<!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-<link rel="stylesheet" href="addOns/navbar.css">
-<link rel="stylesheet" href="addOns/footer.css">
-<link rel="stylesheet" href="userProfile.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="addOns/navbar.css">
+    <link rel="stylesheet" href="addOns/footer.css">
+    <link rel="stylesheet" href="userProfile.css">
+    <link rel="stylesheet" href="sass/table.css">
     <title>DoctorCO | user profile</title>
 </head>
 <body>
@@ -35,25 +37,25 @@
                         <h3>Your infos</h3>
                     </div>
                     <div class="name">
-                        Name : <span id="name" class="data">Ismail Mnifil</span>
+                        Name : <span id="name" class="data"></span>
                     </div>
                     <div class="phone">
-                        Phone : <span id="phone" class="data">+212 37 27 36 55</span>
+                        Phone : <span id="phone" class="data"></span>
                     </div>
                     <div class="adress">
-                      Adress :  <span id="adress" class="data">09 Sakya Hamra QU Course Safi</span>
+                      Adress :  <span id="adress" class="data"></span>
                     </div>
                     <div class="username"> 
-                        Username : <span id="username" class="data">ISmail.mnifil</span>
+                        Username : <span id="username" class="data"></span>
                     </div>
                     <div class="email">
-                        Email :   <span id="email" class="data">ismailmnifilpro@gamail.com</span>
+                        Email :   <span id="email" class="data"></span>
                     </div>
                     <div class="password">
-                        Password :  <span id="password" class="data">ismailthegreat</span>
+                        Password :  <span id="password" class="data"></span>
                     </div>
                     <div class="age">
-                        Age : <span id="age" class="data">23</span>
+                        Age : <span id="age" class="data"></span>
                     </div>
                 </div>
                     <div class="spacerline"></div>
@@ -63,18 +65,163 @@
                             <h3>Actions</h3>
                         </div>
                     <div class="actions">
-                        <button class="probutton">update</button>
+                        <button onclick="readSingleUser()" class="probutton" data-bs-toggle="modal" data-bs-target="#personalinfos">update</button>
                         <button style="background-color: rgb(182, 50, 50);" class="probutton">Desctivate</button>
                     </div>
                 </div>
                 </div>
             </div>
             <div class="youAddintionSection">
-                <div class="comments"></div>
-                <div class="reviews"></div>
+                <div class="comments">
+                    <ul class=" responsive-table">
+                        <li class="table-header">
+                          <div class="col col-1">index</div>
+                          <div class="col col-3">post index</div>
+                          <div class="col col-4">date created</div>
+                          <div class="col col-4">Actions</div>
+                          
+                        </li>
+                        </ul>
+                    <div  class="container">
+        <ul id="commentsHolder" class=" responsive-table">
+          
+        </ul>
+      </div>
+
+                </div>
+                <div class="reviews">
+                    <ul class="responsive-table">
+                        <li class="table-header">
+                          <div class="col col-1">index</div>
+                          <div class="col col-3">doctor index</div>
+                          <div class="col col-4">stars</div>
+                          <div class="col col-4">date created</div>
+                          <div class="col col-4">Actions</div>
+                          
+                        </li>
+                        </ul>
+                    <div  class="container">
+        <ul id="reviewHolder" class="responsive-table">
+
+        </ul>
+      </div>
+
+                </div>
             </div>
         </section>
+        <!-- modal 1 -->
+        <div class="modal fade" id="ReviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-1">
+                        <input id="stars" type="number" placeholder="number of stars" name="stars" max="5" min="1" class="form-control">
+                      </div>
+                      <div class="input-group mb-1">
+                        <textarea id="review" class="form-control" placeholder="Review..." name="" id="comment" cols="30" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- modal 1 -->
 
+        <!-- modal 2 -->
+        <div class="modal fade" id="CommentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-1">
+                        <textarea id="comment" class="form-control" placeholder="comment..." name="" id="comment" cols="30" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- modal 2 -->
+
+        <!-- modal 3 -->
+        <div class="modal fade" id="personalinfos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">update your informations</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <form name="doctorregisterForm">
+                            <div style="display: none;" id="updateduser" class="alert alert-success" role="alert">
+                                The data was updated succefuly
+                              </div>
+                            <input type="hidden" name="user_id" id="Muser_id">
+                            
+                            <div class="form-group mb-2 inputInline">
+                              <input type="text" placeholder="First Name..." id="MFirstName" name="FirstName" class="form-control">
+                              <input type="text" placeholder="Last Name..." id="MLastName" name="LastName" class="form-control">
+                            </div>
+                      
+                            <div class="form-group mb-2 inputInline">
+                              <input type="text" placeholder="Phone..." id="Mphone" name="phone" class="form-control">
+                              <input type="text" placeholder="Email..." id="Memail" name="email" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="number" placeholder="Age..." id="Mage" name="age" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="text"  placeholder="Adresse..." id="Madresse" name="adresse" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="file" placeholder="Avatar..." name="avatar" id="Mavatar" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 form-group inputInline">
+                              <select name="location_id" id="locations" class="form-select">
+                                <option disabled selected>Choose your location</option>
+                              </select>
+                   
+                              <select id="Mrole" name="role" class="mar form-select" >
+                                <option disabled selected>Shoose your position</option>
+                                <option value="Client">Client</option>
+                                <option value="Doctor">Doctor</option>
+                              </select>      
+                            </div>
+                      
+                            <div class="mb-2 form-group inputInline">
+                              <input type="text" placeholder="Username..." id="Musername" name="username" class="form-control">
+                              <input type="text" placeholder="Password..." id="Mpassword" name="password" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                       
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- modal 3 -->
+                
+                
     <footer id="footer"></footer>
     <!-- boostrap pooper and js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -85,13 +232,16 @@
     <!-- addons -->
     <script src="js/addOns.js"></script>
     <script>
-        window.addEventListener('load',retreaveData)
+        window.addEventListener('load',retreaveData);
+        window.addEventListener('load',getuserReview);
+        window.addEventListener('load',getuserComments);
+/***********************************************************************************/
         function retreaveData() {
             var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
 				var raw = JSON.stringify({
-				"user_id": "57"
+				"user_id": sessionStorage.getItem("user_id")
 				});
 
 				var requestOptions = {
@@ -105,9 +255,7 @@
 				.then(response => response.text())
 				.then(function(result) {
 
-					console.log(result);
 					userData  = JSON.parse(result);
-					console.log(userData);
 					document.getElementById('name').innerHTML =userData.FirstName+' '+userData.LastName;
 					document.getElementById('phone').innerHTML = userData.phone;
 					document.getElementById('email').innerHTML = userData.email;
@@ -120,7 +268,234 @@
 
 				})
 				.catch(error => console.log('error', error));
+
         }
+/************************************************************************************/
+        function getuserReview() {
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "user_id": sessionStorage.getItem("user_id")
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/getuserReview", requestOptions)
+            .then(response => response.text())
+            .then(function(result) {
+                var reviews = JSON.parse(result);
+                reviews.forEach(review => {
+                    document.getElementById('reviewHolder').innerHTML += `
+                    <li class="table-row">
+                            <div class="col col-1" data-label="index">${review.review_id}</div>
+                            <div class=" col col-2" data-label="doctor index">${review.doctor_id}</div>
+                            <div class="col col-3" data-label="stars">${review.stars}</div>
+                            <div class="col col-4" data-label="date created">${review.dateCreated}</div>
+                            <div class="col col-4" data-label="date created">
+                                <i onclick="deleteReview(${review.review_id})" id="trash" class="fas fa-trash-alt"></i>
+                                <i id="more" onclick="getSingleReview(${review.review_id})" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#ReviewModal"></i>
+                            </div>
+
+                            
+                    </li>
+                    `;
+                });
+            })
+            .catch(error => console.log('error', error));
+        }
+/****************************************************************************/
+        function getuserComments() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "user_id": sessionStorage.getItem("user_id")
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/getuserComments", requestOptions)
+            .then(response => response.text())
+            .then(function(result) {
+                var comments  =JSON.parse(result);
+                comments.forEach(comment => {
+
+                    document.getElementById('commentsHolder').innerHTML += `
+                    <li class="table-row">
+                            <div class="col col-1" data-label="index">${comment.comment_id}</div>
+                            <div class=" col col-2" data-label="post index">${comment.post_id}</div>
+                            <div class="col col-4" data-label="date created">${comment.dateCreated}</div>
+                            <div class="col col-4" data-label="date created">
+                                <i onclick="deleteComment(${comment.comment_id})" id="trash" class="fas fa-trash-alt"></i>
+                                <i id="more" onclick="getSingleuserComments(${comment.comment_id})" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#CommentModal"></i>    
+                            </div>
+                            
+                    </li>
+                    `;
+
+                });
+            })
+            .catch(error => console.log('error', error));
+            
+        }
+/*********************************************************************************/
+        function getSingleuserComments(id) {
+            console.log(id);
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "user_id": sessionStorage.getItem("user_id"),
+            "comment_id": id,
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/getSingleuserComments", requestOptions)
+            .then(response => response.text())
+            .then(function(result) {
+                var commentData = JSON.parse(result);
+                document.getElementById('comment').value = commentData[0].comment;
+            })
+            .catch(error => console.log('error', error));
+            
+        }
+/*****************************************************************************************************/
+        function getSingleReview(id) {
+            console.log(id);
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "user_id": sessionStorage.getItem("user_id"),
+            "review_id": id,
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/getSingleuserReview", requestOptions)
+            .then(response => response.text())
+            .then(function(result) {
+                console.log(result);
+               var reviewData = JSON.parse(result);
+               document.getElementById('stars').value = reviewData[0].stars;
+               document.getElementById('review').value = reviewData[0].review;
+               
+            })
+            .catch(error => console.log('error', error));
+        }
+        function deleteReview(id) {
+                    console.log(id);
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "review_id": id,
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/DeleteSingleuserReview", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+            setTimeout(function(){
+                  location.reload();
+                },250);
+        }
+        function deleteComment(id) {
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "comment_id": id
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost/fileRouge/user/DeleteSingleuserComments", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+            setTimeout(function(){
+                  location.reload();
+                },250);
+        }
+        
+/********************************************************************/
+			function readSingleUser() {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+				"user_id": sessionStorage.getItem("user_id"),
+				});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("http://localhost/fileRouge/user/readSingleUser", requestOptions)
+				.then(response => response.text())
+				.then(function(result) {
+
+					userProfileData  = JSON.parse(result);
+                   console.log("phone : "+userProfileData.phone);
+                   console.log("email : "+userProfileData.email);
+                   console.log("age : "+userProfileData.age);
+                   console.log("username : "+userProfileData.username);
+                   console.log("password : "+userProfileData.password);
+					document.getElementById('Muser_id').value = userProfileData.user_id;
+					document.getElementById('MFirstName').value = userProfileData.FirstName;
+					document.getElementById('MLastName').value = userProfileData.FirstName;
+					document.getElementById('Mphone').value = userProfileData.phone;
+					document.getElementById('Memail').value = userProfileData.email;
+					document.getElementById('Mage').value = userProfileData.age;
+					document.getElementById('Madresse').value = userProfileData.adresse;
+					document.getElementById('Musername').value = userProfileData.username;
+					document.getElementById('Mpassword').value = userProfileData.password;
+
+				})
+				.catch(error => console.log('error', error));
+			}
     </script>
 </body>
 </html>

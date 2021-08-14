@@ -704,4 +704,92 @@
 
     return $stmt;
   }
+    function getuserReview() {
+
+        $query = 'select * from review WHERE user_id = :user_id';
+            
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+      
+            $stmt->bindParam(':user_id', $this->user_id);
+            // Execute query
+            $stmt->execute();
+      
+            return $stmt;
+    }
+    function getuserComments() {
+
+      $query = 'select * from comment WHERE user_id = :user_id';
+          
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+    
+          $stmt->bindParam(':user_id', $this->user_id);
+          // Execute query
+          $stmt->execute();
+    
+          return $stmt;
+  }
+
+  function getSingleuserReview() {
+
+    $query = 'select * from review WHERE user_id = :user_id and review_id = :review_id';
+        
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+  
+        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':review_id', $this->review_id);
+        // Execute query
+        $stmt->execute();
+  
+        return $stmt;
 }
+function getSingleuserComments() {
+
+  $query = 'select * from comment WHERE user_id = :user_id and comment_id = :comment_id';
+      
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      $stmt->bindParam(':user_id', $this->user_id);
+      $stmt->bindParam(':comment_id', $this->comment_id);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+}
+function DeleteSingleuserReview() {
+
+        // Create query
+        $query = 'DELETE FROM review WHERE review_id = :review_id';
+    
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+    
+        // Bind data
+        $stmt->bindParam(':review_id', $this->review_id);
+    
+        // Execute query
+        if($stmt->execute()) {
+        return true;
+        }
+    }
+    function DeleteSingleuserComments() {
+
+      // Create query
+      $query = 'DELETE FROM comment WHERE comment_id = :comment_id';
+  
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+  
+      // Bind data
+      $stmt->bindParam(':comment_id', $this->comment_id);
+  
+      // Execute query
+      if($stmt->execute()) {
+      return true;
+      }
+  }
+  }

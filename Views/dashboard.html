@@ -10,18 +10,12 @@
 		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="sass/table.css">
 
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
-		<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-		<!-- Box Icons -->
-		<link
-			rel="stylesheet"
-			href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-		/>
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	</head>
@@ -519,7 +513,6 @@
 										<div class="col col-4" data-label="phone">${da.phone}</div>
 										<div style="text-align:center;" class="col col-6" data-label="More">	
 											<i style="color:red;" onclick="deleteUser(${da.user_id})" class="fas fa-trash-alt fa-2x"></i>
-
 											<i style="color:#0188DF;margin-left:10px" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="readSingleUser(${da.user_id})" class="fas fa-info-circle fa-2x"></i>
 
 											</div>
@@ -559,8 +552,6 @@
 				},500);
 			}
 /********************************************************************/
-
-
 			function readSingleUser(id) {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");

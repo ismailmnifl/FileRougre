@@ -1,81 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="login.css">
-  <title>login</title>
-</head>
-<body>
-  <h3>Login</h3>
- <div data-aos="flip-up" data-aos-duration="3000" class="loginContainer">
-    <div class="formContainer">
-        <form>
-          <input class="form-control" type="text" name="username" id="username" placeholder="Enter your Email">
-          <input class="form-control" type="password" name="password" id="password" placeholder="Enter your Password">
-          <input class="form-control button" onclick="auth()" type="button" value="Submit">
-          <p>Don't have an account ? <a href="register.html">Register Now</a></p>
-      </form>
-    </div>
-  <div class="avatarContainer"><img src="images/login.svg" alt=""></div>
- </div>
-  <script src="Bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
-  
-  <script>
-    function auth() {
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css" />
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="login.css" />
+		<title>login</title>
+	</head>
+	<body>
+		<h3>Login</h3>
+		<div data-aos="flip-up" data-aos-duration="3000" class="loginContainer">
+			<div class="formContainer">
+				<form>
+					<div
+						id="loginError"
+						style="display: none"
+						class="alert alert-danger"
+						role="alert"
+					></div>
+					<input
+						class="form-control"
+						type="text"
+						name="username"
+						id="username"
+						placeholder="Enter your Email"
+					/>
+					<input
+						class="form-control"
+						type="password"
+						name="password"
+						id="password"
+						placeholder="Enter your Password"
+					/>
+					<input
+						class="form-control button"
+						onclick="auth()"
+						type="button"
+						value="Submit"
+					/>
+					<p>
+						Don't have an account ?
+						<a href="register.html">Register Now</a>
+					</p>
+				</form>
+			</div>
+			<div class="avatarContainer">
+				<img src="images/login.svg" alt="" />
+			</div>
+		</div>
+		<script src="Bootstrap/bootstrap.bundle.min.js"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			AOS.init();
+		</script>
 
-      var password = document.getElementById('password').value;
-      var username = document.getElementById('username').value;
-      
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+		<script>
+			function auth() {
+				var password = document.getElementById("password").value;
+				var username = document.getElementById("username").value;
 
-      var raw = JSON.stringify({
-        "password": password,
-        "username": username
-      });
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
 
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
+				var raw = JSON.stringify({
+					password: password,
+					username: username,
+				});
 
-      fetch("http://localhost/fileRouge/user/authontication", requestOptions)
-        .then(response => response.text())
-        .then( function(result){
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow",
+				};
 
-          //console.log(result)
-          var data = JSON.parse(result);
-          //console.log(data);
-          //sessionStorage.setItem("user_id", data.user_id);
-          console.log(data.message);
-          console.log(data.data.user_id);
-          if (data.message == "welcome") {
-            sessionStorage.setItem("user_id", data.data.user_id);
-            sessionStorage.setItem("role", data.data.role);
+				fetch(
+					"http://localhost/fileRouge/auth/authontication",
+					requestOptions
+				)
+					.then((response) => response.text())
+					.then(function (result) {
+						var data = JSON.parse(result);
 
-            if (data.data.role == "") {
-              
-            }
-            
-          }
-          
+						if (data.message == "welcome") {
+							/* set sessiontroage */
+							
+							sessionStorage.setItem("user_id",data.data.user_id);
+							sessionStorage.setItem("role",data.data.role);
+							/* display sessiontroage */
+							console.log(sessionStorage.getItem("user_id"));
+							console.log(sessionStorage.getItem("role"));
 
-
-
-        })
-        .catch(error => console.log('error', error));
-
-    }
-      </script>
-</body>
+							window.location.href = "index.html";
+						} else {
+							sessionStorage.removeItem('user_id');
+							sessionStorage.removeItem('role');
+							document.getElementById("loginError").style.display = "block";
+							document.getElementById("loginError").innerHTML ="wrong Username Password combination";
+						}
+					})
+					.catch((error) => console.log("error", error));
+			}
+		</script>
+	</body>
 </html>

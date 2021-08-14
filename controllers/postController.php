@@ -5,6 +5,10 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
+session_start();
+// if(!isset($_SESSION['auth']))
+// die(json_encode(array( 'message' => 'Unauthorized access!')));
+
 
 class postController {
 
@@ -88,6 +92,8 @@ class postController {
     function checkReaction() {
 
       $this->post->user_id = $this->data->user_id;
+      $this->post->post_id = $this->data->post_id;
+      
 
       $result = $this->post->checkReaction();
         // Get row count
@@ -350,5 +356,59 @@ function search() {
          echo json_encode(array('message' => 'No comment Found'));
        }
     }
+    function countLikes() {
+      $this->post->post_id = $this->data->post_id;
 
+      // Get user
+      $result = $this->post->countLikes();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $likes_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $likes_item = array(
+              'likes' => $likes,
+              
+            );
+      // Make JSON
+      array_push($likes_arr, $likes_item);
+    }
+           echo json_encode($likes_arr);
+       }else {
+         echo json_encode(array('message' => 'no likes'));
+       }
+    }
+
+    function countdislikes() {
+      $this->post->post_id = $this->data->post_id;
+
+      // Get user
+      $result = $this->post->countdislikes();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $likes_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $likes_item = array(
+              'dislikes' => $dislikes,
+              
+            );
+      // Make JSON
+      array_push($likes_arr, $likes_item);
+    }
+           echo json_encode($likes_arr);
+       }else {
+         echo json_encode(array('message' => 'no dislikes'));
+       }
+    }
 }
