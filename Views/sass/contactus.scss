@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+
+$mainblue : #0188df;
+$maindark : #354046;
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none !important;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+
+.spacer {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle {
+  width: 100%;
+  height: 150px;
+
+  h1 {
+    text-align: center;
+    color: $maindark;
+
+    span {
+      color: $mainblue;
+    }
+  }
+}
+
+.cntactFormWraper {
+  width: 100%;
+  height: auto;
+  background-color: $maindark;
+  @include displayFlex();
+
+  margin-bottom: 20px;
+
+
+  .contactform {
+    width: 80%;
+    height: auto;
+    @include displayFlex();
+
+    flex-direction: row;
+  }
+
+  .infoHolder {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    height: 500px;
+    padding: 5px;
+
+    .contactInfo h4 {
+      color: white;
+    }
+  }
+}
+
+p {
+  color: white;
+}
+
+.cntactFormWraper .infoHolder {
+  .contactInfo {
+    margin: 0%;
+    padding: 0%;
+    @include displayFlex();
+
+    flex-direction: column;
+
+    .icons a i {
+      color: white;
+      font-size: 40px;
+      margin: 3px;
+
+      &:hover {
+        color: $maindark;
+      }
+    }
+
+    h4:hover, p:hover {
+      color: $maindark;
+    }
+  }
+
+  .mapHolder {
+    overflow: hidden;
+    align-self: flex-start;
+    justify-self: flex-start;
+    width: 100%;
+    height: 50%;
+    margin-bottom: 5px;
+
+    iframe {
+      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .contactInfo {
+    border-radius: 5px;
+    width: 100%;
+    height: 50%;
+    padding: 5px;
+    background-color: $mainblue;
+    border-radius: 5px;
+  }
+}
+
+.inputsHolder {
+  width: 80%;
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  height: auto;
+}
+
+.inputInline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mar {
+  margin-bottom: 10px;
+}
+
+.inputInline {
+  input {
+    width: 49%;
+  }
+
+  select {
+    width: 49%;
+    margin-bottom: 5px;
+  }
+}
+
+.buttonReverse {
+  height: 40px;
+  width: 150px;
+  background: $maindark;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 5px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0.1rem 0.3rem $mainblue, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cntactFormWraper {
+    .contactform {
+      width: 95%;
+      flex-direction: column;
+    }
+
+    .infoHolder {
+      width: 95%;
+      margin-bottom: 20px;
+    }
+  }
+
+  .inputsHolder {
+    width: 95%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}

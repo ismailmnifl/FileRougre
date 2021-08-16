@@ -1,0 +1,449 @@
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none !important;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.spacer {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle {
+  width: 100%;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerTitle h2 {
+  text-align: center;
+  color: #0188df;
+}
+
+.headerTitle span {
+  color: #0188df;
+}
+
+.button {
+  height: 40px;
+  width: 150px;
+  background: #0188df;
+  color: #fff;
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  font-size: 18px;
+  border: none;
+  margin-left: 20px;
+}
+
+.button:hover {
+  -webkit-box-shadow: 0.1rem 0.3rem #354046, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.3rem #354046, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.buttonReverse {
+  height: 40px;
+  width: 150px;
+  background: #354046;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.buttonReverse:hover {
+  -webkit-box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.post {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #354046;
+  height: auto;
+}
+
+.post .doctorPost {
+  width: 60%;
+  background-color: white;
+  border-radius: 10px;
+  height: auto;
+  margin: 20px;
+}
+
+.post .doctorPost .title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.post .doctorPost .body {
+  padding: 10px;
+  text-align: left;
+}
+
+.post .doctorPost .dateCreated {
+  color: gray;
+  padding: 10px;
+}
+
+.post .doctorPost .title:hover {
+  color: #0188df;
+}
+
+.post .doctorPost .imageHolder img {
+  height: 400px;
+  width: 100%;
+  border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post .wrapper {
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.post .wrapper .commentPart {
+  width: 90%;
+  height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.post .wrapper .commentPart h3 {
+  margin: 10px;
+  text-align: center;
+}
+
+.post .wrapper .commentPart textarea {
+  width: 95%;
+}
+
+.post .wrapper .commentPart button {
+  margin: 10px;
+}
+
+.post .sidebar {
+  width: 90%;
+  background-color: white;
+  border-radius: 10px;
+  height: 400px;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.post .sidebar .underline {
+  width: 90%;
+  height: 2px;
+  background-color: #0188df;
+}
+
+.post .sidebar .doctorPart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.post .sidebar .doctorPart .avatar {
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  background-color: #0188df;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post .sidebar .doctorPart .avatar img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post .sidebar .doctorPart .doctorName a {
+  color: #0188df;
+}
+
+.post .sidebar .doctorPart .doctorName:hover a {
+  color: #354046;
+}
+
+.post .sidebar .doctorPart .speciality p {
+  font-size: 20px;
+}
+
+.post .sidebar .postReactions {
+  margin-top: 10px;
+  background-color: #ddd;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.post .sidebar h4 {
+  margin: 10px;
+}
+
+.post .sidebar .postReactions .reactionsHeader h4 {
+  text-align: center;
+}
+
+.post .sidebar .postReactions .rections {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post .sidebar .postReactions .rections .likebar {
+  width: 180px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #354046;
+  position: relative;
+  bottom: 20px;
+}
+
+.post .sidebar .postReactions .rections .likebar .filler {
+  height: 8px;
+  background-color: #0188df;
+  width: 0%;
+  border-radius: 5px;
+}
+
+.post .sidebar .postReactions .rections .like {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5px;
+}
+
+.dislike {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5px;
+}
+
+.post .sidebar .postReactions .rections .like i {
+  font-size: 30px;
+  color: #0188df;
+  margin: 5px;
+  text-align: center;
+}
+
+.post .sidebar .postReactions .rections .dislike i {
+  font-size: 30px;
+  color: #354046;
+  margin: 5px;
+}
+
+/* commnet part */
+.comments {
+  width: 100%;
+  background-color: white;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.comments .box-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.comments .box-container .box {
+  background: #fff;
+  width: 320px;
+  padding: 1.5rem;
+  margin: 20px;
+  position: relative;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px #354046;
+          box-shadow: 0 0 10px #354046;
+}
+
+.comments .box-container .box img {
+  position: absolute;
+  bottom: 1rem;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.comments .box-container .box p {
+  color: #354046;
+  font-size: 15px;
+}
+
+.comments .box-container .box h5 {
+  text-align: end;
+  color: #0188df;
+}
+
+.comments .box-container .box span {
+  text-align: end;
+  color: #354046;
+  display: block;
+}
+
+.headering {
+  text-align: center;
+  margin-top: 20px;
+  color: #354046;
+}
+
+.headering span {
+  color: #0188df;
+}
+
+/* commnet part */
+@media (max-width: 768px) {
+  .post {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .post .doctorPost {
+    width: 90%;
+  }
+  .post .wrapper {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .post .sidebar {
+    width: 90%;
+  }
+  .post .doctorPost .body {
+    text-align: center;
+  }
+  .post .doctorPost .imageHolder img {
+    height: 200px;
+  }
+}
+/*# sourceMappingURL=post.css.map */

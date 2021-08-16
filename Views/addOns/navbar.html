@@ -91,16 +91,20 @@
 			.then(function (result) {
 				console.log(result);
 				var userLoginData = JSON.parse(result);
+				var pathname = window.location.pathname;
+				var filename = pathname.substring(
+					pathname.lastIndexOf("/") + 1
+				);
+
+				if (filename == "contactUS.html")
+					return;
 
 				if (userLoginData.message == true) {
 					console.log(userLoginData);
 				} else {
-					pathname = window.location.pathname;
-					filename = pathname.substring(
-						pathname.lastIndexOf("/") + 1
-					);
+					
 					// console.log(filename)
-					if (filename != "index.html")
+					if (filename != "index.html" )
 						window.location.href = "index.html";
 				}
 				/*
@@ -129,7 +133,7 @@
 
 
 	} else if(sessionStorage.getItem("role") == "Doctor"){
-		document.getElementById("userPage").href = "#";
+		document.getElementById("userPage").href = "doctorDashboard.html";
 		document.getElementById("userPage").innerHTML = "Doctor Space";
 		document.getElementById("navbtn").innerHTML = "Logout";
 		document.getElementById("navbtn").onclick = logout;
@@ -137,12 +141,11 @@
 
 	}else {
 		document.getElementById("userPage").href = "#";
-		document.getElementById("userPage").innerHTML = "";
+		document.getElementById("userPage").style.display="none";
 	}
 	function logout() {
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
-		myHeaders.append("Cookie", "PHPSESSID=468nagin5idv1dna5ckv82o5cl");
 
 		var requestOptions = {
 		method: 'POST',

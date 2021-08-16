@@ -1,0 +1,654 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+
+$mainblue : #0188df;
+$maindark : #354046;
+
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none !important;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    transition: all 0.2s linear;
+  }
+  
+  .button {
+    height: 40px;
+    width: 150px;
+    background: $mainblue ;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border: none;
+  
+    &:hover {
+      box-shadow: 0.1rem 0.3rem $maindark, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  .heading {
+    text-align: center;
+    padding: 1rem;
+    color: $maindark;
+  
+    span {
+      color: $mainblue ;
+    }
+  }
+  
+  header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+    z-index: 1000;
+    background-color: #fff;
+  
+    nav ul li a {
+      font-size: 20px;
+    }
+  }
+  
+  .header-active {
+    background: #fff;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  }
+  
+  header {
+    .headeCcontainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    a {
+      color: $maindark;
+  
+      &:hover {
+        color: $mainblue ;
+      }
+    }
+  
+    .headeCcontainer .logo {
+      font-size: 32px;
+      font-weight: 400;
+  
+      span {
+        color: $mainblue ;
+      }
+    }
+  
+    .nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+  
+      li {
+        margin: 0 1rem;
+      }
+    }
+  
+    .fa-bars {
+      color: $mainblue ;
+      cursor: pointer;
+      display: none;
+    }
+  }
+  
+  .footer {
+    background: $maindark;
+  
+    p {
+      color: #eee;
+      padding: 1rem 0;
+    }
+  
+    .col-md-4 {
+      padding: 1.3rem;
+  
+      &:nth-child(1) a {
+        color: #fff;
+  
+        span {
+          color: $mainblue ;
+        }
+      }
+    }
+  
+    a {
+      color: #ccc;
+      display: block;
+    }
+  
+    h3 {
+      color: #fff;
+    }
+  
+    a:hover {
+      color: $mainblue ;
+    }
+  
+    .credit {
+      color: #fff;
+      width: 80%;
+      margin: 0;
+      padding: 2rem 0;
+      padding-bottom: 4rem;
+      border-top: 0.1rem solid #ccc !important;
+  
+      span {
+        color: $mainblue ;
+      }
+    }
+  }
+  
+  header .fa-times {
+    transform: rotate(180deg);
+  }
+  
+  /* my content styles */
+  
+  .spacer {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .headerTitle {
+    width: 100%;
+    height: 150px;
+  
+    h2 {
+      text-align: center;
+      color: $mainblue ;
+    }
+  }
+  
+  /* doctor profile container */
+  
+  /* buuton reverse styles */
+  
+  .buttonReverse {
+    height: 40px;
+    width: 150px;
+    background: $mainblue ;
+    color: #fff;
+    text-transform: capitalize;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 5px;
+    overflow: hidden;
+  
+    &:hover {
+      box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  /*new doctor profile section starts*/
+  /* new profile styles start */
+  
+  /*************to take********************/
+  
+  .mapWrapper {
+    background-color: white;
+    height: 300px;
+    width: 25%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    @include displayFlex();
+
+    flex-direction: column;
+  
+    .stars img {
+      width: 30px;
+      padding: 3px;
+    }
+  
+    .totalRating {
+      margin-top: 15px;
+      color: grey;
+    }
+  }
+  
+  .tubeWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 50px;
+  
+    p {
+      margin-bottom: 0;
+    }
+  }
+  
+  .ratingTube {
+    width: 60%;
+    height: 10px;
+    background-color: #354046;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 8px;
+    margin-left: 3px;
+    margin-right: 3px;
+  
+    .fillable1, .fillable2, .fillable3, .fillable4, .fillable5 {
+      background-color: #ffd041;
+      height: 10px;
+      border-radius: 3px;
+    }
+  }
+  
+  /************************************************/
+  
+  /* new profile styles start */
+  /*test*/
+  
+  .timeTableWrapper {
+    width: 100%;
+    @include displayFlex();
+
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-bottom: 20px;
+  
+    .smallerWrapper {
+      width: 66.5%;
+      @include displayFlex();
+
+      background-color: white;
+      height: auto;
+      border-radius: 10px;
+      margin-right: 29px;
+      box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+  
+    .AddingRating {
+      background-color: white;
+      width: 21%;
+      height: 145px;
+      height: 230px;
+      border-radius: 10px;
+      position: relative;
+      left: 5px;
+      @include displayFlex();
+
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .smallerWrapper .schadulContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 210px;
+  
+      .day {
+        @include displayFlex();
+
+        flex-direction: column;
+        width: 14%;
+  
+        .end {
+          color: white;
+          width: 90%;
+          height: 40px;
+          border-radius: 5px;
+          margin: 3px;
+          @include displayFlex();
+
+          background-color: #bdc3c7;
+        }
+      }
+    }
+  }
+  
+  .start {
+    color: white;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    margin: 3px;
+    @include displayFlex();
+
+    background-color: #bdc3c7;
+  }
+  
+  .DoctorProfileSection .smallInfoContainer {
+    height: 300px;
+    width: 25%;
+    border-radius: 10px;
+    background-color: white;
+    @include displayFlex();
+
+    flex-direction: column;
+  
+    .imageCon {
+      height: 120px;
+      width: 120px;
+      overflow: hidden;
+      border-radius: 50%;
+      @include displayFlex();
+
+      position: absolute;
+      bottom: 260px;
+  
+      img {
+        height: 120px;
+        width: auto;
+      }
+    }
+  }
+  
+  .smallTextContainer {
+    @include displayFlex();
+
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+    top: 20px;
+  
+    p {
+      text-align: center;
+      margin: 0;
+    }
+  
+    h5 {
+      color: $mainblue ;
+    }
+  }
+  
+  .DoctorProfileSection .moreInfo {
+    height: 300px;
+    width: 50%;
+    border-radius: 10px;
+    background-color: white;
+    margin: 40px;
+    padding: 5px;
+  
+    iframe {
+      border-radius: 10px;
+      border: none;
+    }
+  }
+  
+  .newProfileWrapper {
+    display: flex;
+    width: 90%;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .DoctorProfileSection {
+    @include displayFlex();
+
+    flex-wrap: wrap;
+    background-color: $maindark;
+  }
+  
+  /*test*/
+  
+  /*new doctor profile section starts*/
+  
+  .AddingRating {
+    .stars img {
+      width: 30px;
+      padding: 2px;
+    }
+  
+    #textarea1 {
+      border-radius: 5px;
+      width: 90%;
+      margin-bottom: 10px;
+      border: 1px solid #354046;
+    }
+  }
+  
+  /*people's review*/
+  
+  .reviews {
+    width: 100%;
+    @include displayFlex();
+
+    height: auto;
+    flex-wrap: wrap;
+  
+    .userReview {
+      margin: 20px;
+      width: 90%;
+      background-color: white;
+      height: 150px;
+      border-radius: 10px;
+      @include displayFlex();
+
+      box-shadow: 0 0 10px #354046;
+  
+      .vl {
+        border-left: 3px solid #354046;
+        height: 100%;
+      }
+  
+      .userPart {
+        height: 100%;
+        width: 30%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 10px;
+        margin-right: 20px;
+  
+        .contextReview {
+          margin-left: 20px;
+  
+          h4 {
+            color: #3498db;
+          }
+  
+          h5 {
+            color: #354046;
+          }
+  
+          p {
+            margin-top: 20px;
+            color: gray;
+          }
+        }
+  
+        .imageWrapper {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background-color: white;
+          margin-left: 20px;
+          overflow: hidden;
+          @include displayFlex();
+
+  
+          img {
+            object-fit: fill;
+            height: 100%;
+          }
+        }
+      }
+  
+      .reviewPart {
+        height: 100%;
+        width: 70%;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 10px;
+  
+        .reviewBody {
+          color: #354046;
+          margin-top: 15px;
+        }
+  
+        .stars img {
+          width: 30px;
+          margin: 2px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    
+  
+    .DoctorProfileSection {
+      .moreInfo {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+  
+      .smallInfoContainer {
+        width: 100%;
+      }
+    }
+  
+    .timeTableWrapper .smallerWrapper .schadulContainer {
+      .day {
+        width: 50%;
+      }
+  
+      height: auto;
+    }
+  
+    .newProfileWrapper {
+      width: 90%;
+      @include displayFlex();
+
+      flex-wrap: wrap;
+    }
+  
+    .mapWrapper {
+      width: 100%;
+    }
+  
+    .DoctorProfileSection {
+      .moreInfo {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+  
+      .smallInfoContainer {
+        width: 100%;
+      }
+    }
+  
+    .timeTableWrapper {
+      .smallerWrapper {
+        width: 90%;
+        margin: 0;
+        margin-top: 20px;
+      }
+  
+      .AddingRating {
+        width: 90%;
+        margin-left: 0;
+        margin-top: 20px;
+        left: 0;
+      }
+    }
+  
+    .reviews {
+      width: 100%;
+      @include displayFlex();
+
+      height: auto;
+      flex-wrap: wrap;
+  
+      .userReview {
+        width: 90%;
+        height: auto;
+        border-radius: 10px;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 5px;
+  
+        .vl {
+          display: none;
+        }
+  
+        .userPart {
+          height: 45%;
+          width: 95%;
+          margin: 0%;
+          justify-content: space-between;
+  
+          .imageWrapper {
+            width: 90px;
+            height: 90px;
+            margin-left: 0;
+            position: relative;
+            bottom: 15px;
+            left: 15px;
+          }
+  
+          .contextReview {
+            margin-left: 10px;
+            text-align: center;
+            margin-top: 20px;
+          }
+        }
+  
+        .reviewPart {
+          height: 45%;
+          width: 90%;
+          border-radius: 10px;
+          margin: 0;
+          text-align: center;
+          position: relative;
+          bottom: 20px;
+  
+          .reviewBody {
+            color: #354046;
+            margin-top: 15px;
+          }
+  
+          .stars img {
+            width: 30px;
+            margin: 2px;
+          }
+        }
+      }
+    }
+  }

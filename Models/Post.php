@@ -237,6 +237,137 @@ class Post {
 
         return $stmt;
     }
+
+    function deletePost() {
+        $query = 'delete FROM post where post.post_id = :post_id';
+            
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':post_id', $this->post_id);
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+      function selectSingpost() {
+        $query = 'SELECT * FROM post WHERE post_id = :post_id';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindParam(':post_id', $this->post_id);
+        $stmt->bindParam(':post_id', $this->post_id);
+        
+
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+      function getSearchedPost(){
+
+        $query = 'SELECT * FROM post WHERE post.title = :title';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindParam(':title', $this->title);        
+
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+      function getAllCategories() {
+        $query = 'SELECT * FROM category';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+      function getSearchedPostByCategories(){
+
+        $query = 'SELECT * FROM post WHERE post.category_id = :category_id';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindParam(':category_id', $this->category_id);        
+
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+      function updateSingePost() {
+             // Create query
+        if (isset($this->image)) {
+            $query = 'UPDATE post SET title = :title, body = :body, image = :image,
+                        resources = :resources, dislikeControle = :dislikeControle, commentControle = :commentControle
+                        WHERE post_id = :post_id';
+  
+          }else {
+            $query = 'UPDATE post SET title = :title, body = :body,
+                        resources = :resources, dislikeControle = :dislikeControle, commentControle = :commentControle
+                        WHERE post_id = :post_id';
+          }
+          
+      
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+    
+          // Clean data
+          $this->title = htmlspecialchars(strip_tags($this->title));
+          $this->body = htmlspecialchars(strip_tags($this->body));
+          $this->resources = htmlspecialchars(strip_tags($this->resources));
+          $this->commentControle = htmlspecialchars(strip_tags($this->commentControle));
+          $this->dislikeControle = htmlspecialchars(strip_tags($this->dislikeControle));
+          $this->post_id = htmlspecialchars(strip_tags($this->post_id));
+         
+          if (isset($this->image))
+            $this->image = htmlspecialchars(strip_tags($this->image));
+
+          // Bind data
+          $stmt->bindParam(':title', $this->title);
+          $stmt->bindParam(':body', $this->body);
+          $stmt->bindParam(':resources', $this->resources);
+          $stmt->bindParam(':commentControle', $this->commentControle);
+          $stmt->bindParam(':dislikeControle', $this->dislikeControle);
+          $stmt->bindParam(':post_id', $this->post_id);
+          if (isset($this->image))
+            $stmt->bindParam(':image', $this->image);
+
+    
+          // Execute query
+          if($stmt->execute()) {
+            return true;
+          }
+    
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $stmt->error);
+    
+          return false;
+      }
+      function getAllpostAdmin() {
+        $query = 'SELECT * FROM post';
+  
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Execute query
+        $stmt->execute();
+
+        return $stmt;
+      }
+
 }
 
 

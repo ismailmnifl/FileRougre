@@ -23,8 +23,8 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 		/>
 		<!-- custom css file link  -->
-		<link rel="stylesheet" href="recomendation.css" />
 		<link rel="stylesheet" href="addOns/navbar.css">
+		<link rel="stylesheet" href="sass/recommendation.css">
 	</head>
 	<body>
 		<!-- header section starts  -->
@@ -49,17 +49,12 @@
 						<option disabled selected>Speciality Filter</option>
 					  </select>				  
 					</div>
-				  <div class="input-group">
-					<select id="locations" class="form-select form-control" aria-label="Default select example">
-						<option disabled selected>Location Filter</option>
-						
-					  </select>				 
-					 </div>
 					<div class="input-group">
-						<input type="text"  placeholder="Search..." class="form-control">
-						<button class="buttonReverse">Search</button>
+						<input id="search" type="text"  placeholder="Search..." class="form-control">
+						<button id="searchBtn" class="buttonReverse">Search</button>
+						<ul id="autocompleteList">
+                        </ul>
 					  </div>
-				
 			</div>
 		</section>
 		<section id="doctorCardSection" class="doctorCardSection">
@@ -116,6 +111,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 		<script src="js/main.js"></script>
+		<script src="js/recommendation.js"></script>
+		
 				<!-- JavaScript Bundle with Popper -->
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" ></script>
 
@@ -129,140 +126,7 @@
 
 			<script>
 
-				// pinding the DOM element with my function
-				/********************************************************************/
-				window.addEventListener('load',getSpecialities);
-				window.addEventListener('load',getLocations);
-				window.addEventListener('load',readAllDoctors);
-				
-
-				//functions are bellow
-				/********************************************************************/
-
-			function getSpecialities() {
-
-					var myHeaders = new Headers();
-					myHeaders.append("Content-Type", "application/json");
-					var requestOptions = {
-					method: 'POST',
-					headers: myHeaders,
-					redirect: 'follow'
-					};
-					fetch("http://localhost/fileRouge/user/getAllSpecialites", requestOptions)
-					.then(response => response.text())
-					.then(function(result) {
-						//console.log(result);
-						var data = JSON.parse(result);
-						console.log(data);
-						data.forEach( da => {
-							document.getElementById('specialities').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
-						});
-					})
-					.catch(error => console.log('error', error));
-			}
-				
 			
-/********************************************************************/
-
-			function getLocations() {
-
-					var myHeaders = new Headers();
-					myHeaders.append("Content-Type", "application/json");
-
-					var requestOptions = {
-					method: 'POST',
-					headers: myHeaders,
-					redirect: 'follow'
-					};
-
-					fetch("http://localhost/fileRouge/user/getAllLocation", requestOptions)
-					.then(response => response.text())
-					.then(function(result) {
-
-						var data = JSON.parse(result);
-
-						data.forEach( da => {
-						document.getElementById('locations').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
-						});
-						
-					})
-					.catch(error => console.log('error', error));
-			}
-
-/********************************************************************/
-
-			function readAllDoctors() {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/retreveDoctorRecomendation", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-
-					console.log(result);
-					data = JSON.parse(result);
-					console.log(data);
-					data.forEach( da => {
-						var stars = "" ;
-
-							for (let index = 0; index < Math.round(da.AVGstars); index++) {
-								stars += '<img src="images/star.png" alt="">';
-								
-							}
-							for (let j = 0; j < 5-Math.round(da.AVGstars); j++) {
-									
-									stars += '<img src="images/emptystar.png" alt="">';
-							}
-							document.getElementById('doctorCardSection').innerHTML +=`
-							
-							<div data-aos="fade-up" class="cardContainer">
-							<div class="img-container">
-						<img src="../uploads/${da.avatar}" alt="">
-					</div>
-					
-					<div class="cardContent">
-					<div class="cardHead">
-						<a onclick="getSelectedDoctor(${da.doctorID})" href="doctorProfile.html"><p>${da.FirstName} ${da.LastName}</p></a>
-						<span class="speciality">${da.speciality}</span>
-					</div>
-					<div class="cardData">
-						<div class="description">
-						<p>${da.description}</p>
-						</div>
-						
-						<div class="rating">
-						<div class="stars">
-							${stars}
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
-							
-							
-							`;						
-					});
-				})
-				.catch(error => console.log('error', error));
-
-			}
-			function getSelectedDoctor(id) {
-				sessionStorage.setItem('doctorID', id);
-					console.log(sessionStorage.getItem('doctorID'));
-				return sessionStorage.getItem('doctorID');
-			}
-  			 function reloadPage() {
-				setTimeout(function(){
-					sessionStorage.clear();
-				},1000);
-            } 
 			</script>
 	</body>
 </html>

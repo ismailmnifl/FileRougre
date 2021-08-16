@@ -1,0 +1,131 @@
+$mainblue : #0188df;
+$maindark : #354046;
+
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+body {
+   
+    flex-direction: column;
+    @include displayFlex();
+
+  }
+  
+  h3 {
+    width: 50%;
+    margin: 0% auto 0;
+    position: relative;
+    top: 140px;
+    text-align: center;
+  }
+  
+  .loginContainer {
+    height: 500px;
+    width: 400px;
+    background-color: #EEEEEE;
+    box-shadow: 5px 5px 10px grey;
+    width: 70%;
+    margin: 8% auto 0;
+    flex-direction: row;
+    @include displayFlex();
+
+  }
+  
+  .formContainer {
+    width: 50%;
+    padding: 10px;
+    position: relative;
+    left: 20px;
+  }
+  
+  .contentWrapper {
+    width: 100%;
+    @include displayFlex();
+    flex-wrap: wrap;
+   
+    padding: 40px;
+  }
+  
+  .imageContainer {
+    width: 50%;
+  
+    img {
+      width: 400px;
+      margin-left: 40px;
+    }
+  }
+  
+  .button {
+    background: $mainblue;
+    color: #fff;
+    cursor: pointer;
+  
+    &:hover {
+      box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+      box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+    }
+  
+    background: $mainblue;
+    color: #fff;
+    cursor: pointer;
+    width: 30%;
+    margin: 3px;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* new register form */
+  
+  .inputInline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  
+    input {
+      width: 49%;
+    }
+  
+    select {
+      width: 49%;
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .loginContainer {
+      width: 90%;
+      height: 600px;
+      margin: 30% auto 0;
+    }
+  
+    .imageContainer img {
+      display: none;
+    }
+  
+    .formContainer {
+      width: 100%;
+      left: 0px;
+  
+      input, select {
+        width: 100%;
+      }
+    }
+  
+    .contentWrapper {
+      padding: 0;
+    }
+  }

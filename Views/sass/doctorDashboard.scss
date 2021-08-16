@@ -1,0 +1,544 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+
+$mainblue : #0188df;
+$maindark : #354046;
+
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.main {
+  width: 100%;
+  background-color: #fff;
+}
+
+.MYside-navbar {
+  position: fixed;
+  z-index: 100;
+  height: 100vh;
+  background: #354046;
+  overflow: hidden;
+  transition: 0.5s ease;
+
+  ul {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+
+    li {
+      width: 100%;
+
+      &:hover {
+        background: $mainblue;
+      }
+
+      &:first-child {
+        margin-bottom: 1rem;
+        background: none;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        display: flex;
+        color: #fff;
+
+        .icon {
+          min-width: 60px;
+          display: block;
+          font-size: 25px;
+          line-height: 60px;
+          height: 60px;
+          text-align: center;
+        }
+
+        .text {
+          display: block;
+          padding: 0 10px;
+          line-height: 60px;
+          height: 60px;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  min-height: 100vh;
+  transition: 0.5s ease;
+  background-color: $mainblue;
+}
+
+.top-navbar {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 20px;
+  box-shadow: 0 2px 4px $maindark;
+  z-index: 10;
+  background-color: $maindark;
+}
+
+.spacer {
+  height: 80px;
+  width: 100%;
+}
+
+.profile img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+#menu-icon {
+  font-size: 34px;
+  cursor: pointer;
+}
+
+.content {
+  &.active {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+
+  width: 100%;
+  left: 0;
+}
+
+.MYside-navbar {
+  width: 60px;
+  left: -60px;
+
+  &.active {
+    left: 0;
+  }
+}
+
+.statsContainer {
+  flex-direction: row;
+  flex-wrap: wrap;
+@include displayFlex();
+  margin-top: 20px;
+
+  .stats {
+    width: 300px;
+    height: 100px;
+    background-color: #EEEEEE;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px $maindark;
+
+    .title {
+      color: #354046;
+      font-weight: 600;
+    }
+
+    .Holder {
+      i {
+        color: #0188DF;
+        margin-left: 15px;
+      }
+
+      .numberHolder {
+        @include displayFlex();
+
+        background-color: $maindark;
+        height: 50px;
+        width: 50px;
+        color: white;
+        float: right;
+        border-radius: 50%;
+        font-weight: 500;
+        margin-right: 15px;
+        font-size: larger;
+      }
+
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.OperationContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+}
+
+.formContainer {
+  padding: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+
+  .registerForm {
+    width: 90%;
+    @include displayFlex();
+
+  }
+}
+
+.mar {
+  margin-bottom: 5px;
+}
+
+.zindex {
+  z-index: 100;
+}
+
+.inputInline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  input, select {
+    width: 49%;
+  }
+}
+
+/* table style section */
+
+.button {
+  background-color: $mainblue;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  text-align: center;
+
+  &:hover {
+    box-shadow: 2px 2px $maindark 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* admin dash footer style */
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: $maindark;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .footerSection {
+    img {
+      width: 100px;
+    }
+
+    h5 {
+      color: white;
+    }
+
+    i {
+      margin-left: 10px;
+      color: white;
+    }
+
+    width: 33%;
+    @include displayFlex();
+
+  }
+}
+
+/* admin dash footer style */
+
+.inputInline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 49%;
+  }
+}
+
+.locationSpecialityHolder {
+  margin-bottom: 120px;
+  width: 90%;
+  @include displayFlex();
+
+  flex-wrap: wrap;
+  background-color: $mainblue;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px $maindark;
+}
+
+/*new table design start */
+
+.newTableWrapper {
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap-reverse;
+  height: auto;
+}
+
+.Dscroll {
+  height: 650px;
+  overflow-y: scroll;
+}
+
+.scrollUser {
+  height: 362px;
+  overflow-y: scroll;
+}
+
+.newTableWrapper .tableWrapper {
+  width: 70%;
+  height: 780px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px $maindark;
+
+  .container {
+    width: 100%;
+  }
+}
+
+.persanalInfoHolder {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px $maindark;
+  height: auto;
+  overflow: hidden;
+
+  .imageHolder {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}
+
+/*user data table*/
+
+.userDataTableHolder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 130px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .userDataTable {
+    width: 47%;
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0 2px 4px $maindark;
+    @include displayFlex();
+
+    background-color: white;
+  }
+
+  .locationSpeciality {
+    width: 47%;
+    height: 480px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px $maindark;
+    background-color: white;
+    padding: 10px;
+  }
+}
+
+.newTableWrapper .persanalInfoHolder .infoHolder {
+  padding: 10px;
+  @include displayFlex();
+
+  flex-direction: column;
+  width: 100%;
+
+  div {
+    span {
+      color: $mainblue;
+    }
+
+    color: $maindark;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .herderinfo {
+    text-align: center;
+    color: $maindark;
+  }
+
+  .spacerline {
+    width: 90%;
+    height: 2px;
+    background-color: $maindark;
+    margin: 10px;
+  }
+
+  .wrapper {
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    @include displayFlex();
+
+    flex-direction: column;
+    background-color: lightgrey;
+  }
+}
+
+#trash {
+  color: red;
+  font-size: 30px;
+  position: relative;
+  left: 20px;
+  margin-left: 10px;
+}
+
+#more {
+  color: #0188df;
+  font-size: 30px;
+  position: relative;
+  left: 20px;
+  margin-left: 10px;
+}
+
+#imageWrapper {
+  width: 50px;
+  height: 50px;
+
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+}
+
+.responsive-table .table-row {
+  margin: 5px;
+}
+
+#doctorsPost {
+  background-color: #ddd;
+}
+
+/*new table design end */
+@media (max-width: 768px) {
+  .doctorinfoformContainer {
+    @include displayFlex();
+    flex-direction: column;
+ 
+
+    .doctorinfo {
+        @include displayFlex();
+        flex-direction: column;
+     
+
+      .inputInline select {
+        width: 100%;
+      }
+    }
+  }
+
+  .newTableWrapper .tableWrapper {
+    width: 90%;
+  }
+
+  .persanalInfoHolder {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .userDataTableHolder .userDataTable {
+    width: 90%;
+  }
+
+  .content {
+    width: 100%;
+    left: 0;
+  }
+
+  .MYside-navbar {
+    width: 60px;
+    left: -60px;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  .formContainer {
+    width: 100%;
+    display: flex;
+  }
+
+  .userDataTableHolder .locationSpeciality {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    width: 100%;
+    height: 200px;
+
+    .footerSection {
+      width: 100%;
+    }
+  }
+}

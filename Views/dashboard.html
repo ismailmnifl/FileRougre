@@ -5,8 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>DoctorCO | Admin dashboard</title>
-		<link rel="stylesheet" href="dashboard.css" />
-		<link rel="stylesheet" href="table-responsive.css">
+		<link rel="stylesheet" href="sass/doshboard.css">
 		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="sass/table.css">
 
@@ -18,16 +17,21 @@
 		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+	<script>
+		if (sessionStorage.getItem("role") != "admin") {
+			window.location.href = "index.html";
+		}
+		</script>
 	</head>
 	<body>
 		<div class="main">
 			<div class="MYside-navbar">
 				<ul>
 					<li>
-						<a href="#">
+						<a href="index.html">
 							<span class="icon"
-								><i class="fas fa-tachometer-alt"></i
-							></span>
+								><abbr style="cursor: pointer;" title="GO back home"><i class="fas fa-tachometer-alt"></i></abbr></span>
 							<span class="text"><h2>DoctorCo</h2></span>
 						</a>
 					</li>
@@ -75,14 +79,14 @@
 					</li>
 					<li>
 						<a href="#">
-							<span class="icon"
-								><i
+							<span id="logoutDashboard" class="icon"
+								><abbr style="cursor: pointer;" title="logout"><i
 									class="
 										fas
 										fa-sign-out-alt fa-flip-horizontal
 									"
 								></i
-							></span>
+							></abbr></span>
 						</a>
 					</li>
 				</ul>
@@ -102,7 +106,7 @@
 							<p class="title">Number of doctors</p>
 							<div class="Holder">
 								<i class="fas fa-user-md fa-3x"></i>
-								<div class="numberHolder">125</div>
+								<div id="doctorCount" class="numberHolder"></div>
 							</div>
 						</div>
 							
@@ -110,7 +114,7 @@
 							<p class="title">Number of Clients</p>
 							<div class="Holder">
 								<i class="fas fa-users fa-3x"></i>
-								<div class="numberHolder">507</div>
+								<div  id="userCount" class="numberHolder"></div>
 							</div>
 						</div>
 
@@ -118,7 +122,7 @@
 							<p class="title">Number of Posts</p>
 							<div class="Holder">
 								<i class="far fa-newspaper fa-3x"></i>
-								<div class="numberHolder">987</div>
+								<div id="postCount" class="numberHolder"></div>
 							</div>
 						</div>
 
@@ -126,7 +130,7 @@
 							<p class="title">Number of Messages</p>
 							<div class="Holder">
 								<i class="fas fa-comments fa-3x"></i>
-								<div class="numberHolder">347</div>
+								<div id="messageCount" class="numberHolder"></div>
 							</div>
 						</div>
 					</div>
@@ -177,7 +181,6 @@
 									<select id="specialitySettings" type="text" class="form-control">
 										<option disabled selected>Choose your Speciality</option>
 									</select>
-									<button style="height: 40px;" onclick="deleteSpeciality()" class="button" type="button" id="button-addon2">Delete</button>
 								</div>
 								<div class="input-group mb-3">
 
@@ -190,10 +193,9 @@
 									<select type="text" class="form-control" id="locationSettings">
 										<option disabled selected>Choose your location</option>
 									</select>
-									<button style="height: 40px;" class="button" type="button" id="button-addon2">Delete</button>
 								  </div>
 								  <div class="input-group mb-3">
-									<input id="locationAddition" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+									<input id="locationAddition" type="text" class="form-control" placeholder="Enter new Location..." aria-label="Recipient's username" aria-describedby="button-addon2">
 										
 									<button style="height: 40px;background-color: #354046;" onclick="addLocation()"  class="button" type="button" id="button-addon2">Add</button>
 								  </div>
@@ -221,6 +223,35 @@
 							</div>
 							
 						</div>
+						<section class="contactMessage">
+							<div id="messageHolder" class="messageHolder">
+								
+							</div>
+						</section>
+						<section class="contactMessage">
+							<div class="messageHolder">
+								<div class="postTable mt-2">
+
+									<ul style="padding: 0%;" class="responsive-table">
+										<li class="table-header">
+
+										<div class="col ">Avatar</div>
+										<div class="col ">Title</div>
+										<div class="col ">Reaction</div>
+										<div class="col ">Comment</div>
+										<div class="col ">Date created</div>
+										<div class="col ">Actions</div>
+										
+										
+									</li>
+									</ul>
+									<ul id="doctorsPost"  class="responsive-table Dscroll">
+									
+									
+									</ul>
+						  </div>
+							</div>
+						</section>
 						<footer class="footer">
 							<div class="footerSection">
 								<img src="images/DoctorCoWhite.png" alt="">
@@ -238,54 +269,64 @@
 						</footer>
 						<script>						 	
 
-							
-
-							var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-							var yValues = [55, 49, 44, 24, 15];
-							
-							
-							new Chart("ChartJS1", {
-							  type: "bar",
-							  data: {
-								labels: xValues,
-								datasets: [{
-								  backgroundColor: "#0188DF",
-								  data: yValues
-								}]
-							  },
-							  options: {
-								legend: {display: false},
-								title: {
-								  display: true,
-								  text: "World Wine Production 2018"
-								}
-							  }
-							});
-							var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-							var yValues = [7,8,8,9,9,9,10,11,14,14,15];						
-
-							new Chart("ChartJS2", {
-							type: "line",
-							data: {
-								labels: xValues,
-								datasets: [{
-								fill: false,
-								lineTension: 0,
-								backgroundColor: "rgba(0,0,255,1.0)",
-								borderColor: "rgba(0,0,255,0.1)",
-								data: yValues
-								}]
-							},
-							options: {
-								legend: {display: false},
-								scales: {
-								yAxes: [{ticks: {min: 6, max:16}}],
-								}
-							}
-							});
 						</script>
 					</div>
 					
+
+					<!-- modal 1 -->
+					<div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+							  <div id="alertSuccessReview" style="display: none;" class="" role="alert">
+								post updated
+							  </div>
+								<input id="postID" type="hidden" name="">
+								<div class="input-group mb-1">
+									<img id="postimage" src="" width="100%" height="200px" alt="">
+								</div>
+								<div class="input-group mb-1">
+									<input id="title" type="text" placeholder="Title..." name="stars" max="5" min="1" class="form-control">
+								  </div>
+								  <div class="input-group mb-2">
+									<textarea class="form-control mb-2" placeholder="Post body..." name="content" id="content" rows="10"></textarea>
+								</div>
+								<div class="input-group mb-1">
+									<input id="source" type="text" placeholder="Source..." name="stars" max="5" min="1" class="form-control">
+								  </div>
+			
+								<div class="input-group mb-2">
+			
+									<label for="">comments controle</label>
+										<div class="input-group">
+											<select id="comControle" name="" class="form-control">
+												<option value="Anable">Anable</option>
+												<option value="Disable">Disable</option>
+											</select> 
+										  </div>
+								 </div>
+								<div class="input-group mb-1">
+			
+									<label for="">dislikes controle</label>
+										<div class="input-group">
+											<select id="likeControle" name="" class="form-control">
+												<option value="Anable">Anable</option>
+												<option value="Disable">Disable</option>
+											</select>                      
+										 </div>
+								</div>
+							<div class="modal-footer">
+							  <button type="button" onclick="reload()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					  </div>
+					<!-- modal 1 -->
 				<!-- pop uo modal 1 -->
 
 				<div class="zindex modal fade" id="exampleModal1" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -328,16 +369,9 @@
 									  <input type="file" placeholder="Avatar..." name="avatar" id="avatar" class="form-control">
 									</div>
 							  
-									<div class="mar form-group inputInline">
+									<div class="mar form-group">
 									  <select name="location_id" id="locations" class="form-select">
-										<option disabled selected>Choose your location</option>
-									  </select>
-						   
-									  <select id="role" name="role" class="mar form-select" >
-										<option disabled selected>Shoose your position</option>
-										<option value="Client">Client</option>
-										<option value="Doctor">Doctor</option>
-									  </select>      
+									  </select>     
 									</div>
 							  
 									<div class="mar form-group inputInline">
@@ -429,539 +463,18 @@
 	</div>
 		<script src="js/dashboard.js"></script>
 		<script src="Bootstrap/bootstrap.bundle.min.js"></script>
-		
+		<script src="js/AdminDashboard.js"></script>
 		
 		<script>
 
-			//pinding DOM element to my functions
-
-			window.addEventListener('load',getUserData);
-			window.addEventListener('load',getLocations);
-			window.addEventListener('load',readAllDoctors);
-			window.addEventListener('load', reset);
-			window.addEventListener('load', getSpecialities);
-			document.getElementById('resetBtn').addEventListener('click',reset);
-			document.getElementById('scheduleBtn').addEventListener('click',test);
-			document.getElementById('exitDoctorModel').addEventListener('click',reloadPage);
-			document.getElementById('exitUserModel').addEventListener('click',reloadPage);
-
-			//reload the page at command
-			function reloadPage() {
-				setTimeout(function(){
-					location.reload();
-				},250);
-			}
-
-
-			
-/********************************************************************/
-
-			function getLocations() {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/getAllLocation", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-
-					var data = JSON.parse(result);
-
-					data.forEach( da => {
-					document.getElementById('locations').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
-					});
-					data.forEach( da => {
-					document.getElementById('locationSettings').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
-					});
-					
-				})
-				.catch(error => console.log('error', error));
-			}
-
-/********************************************************************/
-
-			function getUserData() {
-
-				var myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/json");
-
-			var requestOptions = {
-			method: 'POST',
-			headers: myHeaders,
-			redirect: 'follow'
-			};
-
-			fetch("http://localhost/fileRouge/user/getAllUsers", requestOptions)
-			.then(response => response.text())
-			.then(function(result) {
-				console.log(result);
-									 
-				var userData = JSON.parse(result);
-				userData.forEach( da => {
-					
-          		document.getElementById('DataHolder').innerHTML += `
-				  					<li class="table-row">
-										<div class="col col-1" data-label="avatar"><img style="max-width: 50px; max-height: 70px;" src="../uploads/${da.avatar}" alt=""></div>
-										<div class="col col-2" data-label="role">${da.role}</div>
-										<div class="col col-3" data-label="username">${da.username}</div>
-										<div class="col col-4" data-label="phone">${da.phone}</div>
-										<div style="text-align:center;" class="col col-6" data-label="More">	
-											<i style="color:red;" onclick="deleteUser(${da.user_id})" class="fas fa-trash-alt fa-2x"></i>
-											<i style="color:#0188DF;margin-left:10px" data-bs-toggle="modal" data-bs-target="#exampleModal1" onclick="readSingleUser(${da.user_id})" class="fas fa-info-circle fa-2x"></i>
-
-											</div>
-									</li>
-				  	`;
-				});  
-			})
-			.catch(error => console.log('error', error));
-			}
-
-/********************************************************************/
-
-
-			function deleteUser(id) {
-				
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"user_id": id
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/DeleteUser", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-
-				setTimeout(function(){
-					location.reload();
-				},500);
-			}
-/********************************************************************/
-			function readSingleUser(id) {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"user_id": id
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/readSingleUser", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-
-					console.log(result);
-					userData  = JSON.parse(result);
-					console.log(userData);
-					document.getElementById('user_id').value = userData.user_id;
-					document.getElementById('FirstName').value = userData.FirstName;
-					document.getElementById('LastName').value = userData.FirstName;
-					document.getElementById('phone').value = userData.phone;
-					document.getElementById('email').value = userData.email;
-					document.getElementById('age').value = userData.age;
-					document.getElementById('adresse').value = userData.adresse;
-					document.getElementById('username').value = userData.username;
-					document.getElementById('password').value = userData.password;
-
-				})
-				.catch(error => console.log('error', error));
-			}
-/********************************************************************/
-
-			function uploadImage() {
-
-				var formData = new FormData();
-				var imgFile = document.getElementById('avatar').files[0];
-				if(imgFile === undefined) 
-				return null;
-
-				var ext = imgFile.name.split('.').pop();
-				var uniqName = Math.floor(Math.random()*Math.pow(10,10)).toString() + '.' + ext;
-				formData.append('uniqName', uniqName);
-				formData.append('avatar', imgFile);
-				// console.log(...formData);
-
-				fetch("http://localhost/fileRouge/Includes/upload.php", {
-				method: "post",
-				body: formData
-
-				}).catch(console.error);
-
-				return uniqName;
-			}
-/********************************************************************/
-
-			function updateUser() {
-
-				var uniqName = uploadImage();
-
-				document.getElementById('updateduser').style.display = "block";
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"user_id": document.getElementById('user_id').value,
-				"location_id": document.getElementById('locations').value,
-				"role": document.getElementById('role').value,
-				"FirstName": document.getElementById('FirstName').value,
-				"LastName": document.getElementById('LastName').value,
-				"phone": document.getElementById('phone').value,
-				"email": document.getElementById('email').value,
-				"password": document.getElementById('password').value,
-				"age": document.getElementById('age').value,
-				"username": document.getElementById('username').value,
-				"adresse": document.getElementById('adresse').value,
-				"avatar": uniqName
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/updateUser", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-			}
-
-/********************************************************************/
-
-			function readAllDoctors() {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/ReadAllDoctors", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-					doctorData = JSON.parse(result);
-					
-								   var varlidation;
-					doctorData.forEach( da => {
-						if (da.validated==null) {
-							varlidation = `<button onclick='validateDoctor(${da.doctor_id})' class='button' style='background-color:red;''>Unvalid</button>`;
-						}else {
-							varlidation = "<button class='button' style='background-color:green;''>Validated</button>";
-
-						}
-
-				document.getElementById('doctorDataHolder').innerHTML += `
-								<li class="table-row">
-									<div class="col col-1" data-label="Job Id">${da.user_id}</div>
-									<div class="col col-2" data-label="Customer Name">${da.speciality_id}</div>
-									<div class="col col-3 matricule" data-label="Amount">${da.matricule}</div>
-									<div class="col col-4" data-label="Validation">${varlidation}</div>
-									<div style="text-align:center;" class="col col-3" data-label="Action">
-										<i style="color:red;margin-right:10px" onclick="deleteDoctor(${da.doctor_id})" class="fas fa-trash-alt fa-2x"></i>
-										<i style="color:#0188DF;" data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="readSingleDoctor(${da.doctor_id})" class="fas fa-info-circle fa-2x"></i>
-
-
-									</div>
-								
-								</li>
-						`;
-					});
-				})
-				.catch(error => console.log('error', error));
-			}
-/********************************************************************/
-
-			function deleteDoctor(id) {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"doctor_id": id
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/DeleteDoctor", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-
-				setTimeout(function(){
-					location.reload();
-				},500);
-			}
-
-/********************************************************************/
-
-			//array of object 
-			var arraySchedule = [];
-
-			function reset() {
-                //arraySchedule = [];
-                document.getElementById('displaySchedule').innerHTML = "";
-                //console.log(arraySchedule);
-                 
-                document.getElementById('days').innerHTML = `
-                <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Wednesday">Wednesday</option>
-                  <option value="Thursday">Thursday</option>
-                  <option value="Friday">Friday</option>
-                  <option value="Saturday ">Saturday </option>
-                  <option value="Sunday">Sunday</option>`; 
-			}
-
-/********************************************************************/
-			
-	function test() {
-      var daysList = document.getElementById('days');
-      var startTime = document.getElementById('startTime');
-      var closeTime = document.getElementById('closeTime');
-      var displaySchedule = document.getElementById('displaySchedule');
-        if (daysList.options[daysList.selectedIndex] != undefined) {
-
-            console.log(daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value);
-            displaySchedule.innerHTML+= daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value+' / ';
-
-                  var object = {
-                    day : daysList.options[daysList.selectedIndex].value,
-                    startTime : startTime.value,
-                    closeTime : closeTime.value
-                  };
-
-                  arraySchedule.push(object);
-                  
-            daysList.options[daysList.selectedIndex].remove();
-        }
-    }
-
-/********************************************************************/
-
-			function updateDoctor() {
-
-				document.getElementById('updatedoctor').style.display = "block";
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"doctor_id": document.getElementById('doctor_id').value,
-				"matricule": document.getElementById('matricule').value,
-				"description": document.getElementById('description').value,
-				"schedule": JSON.stringify(arraySchedule)
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/updateDoctor", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-			}
-
-/********************************************************************/
-
-			function getSpecialities() {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-				fetch("http://localhost/fileRouge/user/getAllSpecialites", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-					//console.log(result);
-					var data = JSON.parse(result);
-					data.forEach( da => {
-						document.getElementById('speciality').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
-					});
-					data.forEach( da => {
-						document.getElementById('specialitySettings').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
-					});
-				})
-				.catch(error => console.log('error', error));
-    		}
-
-/********************************************************************/
-
-			function readSingleDoctor(id) {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"doctor_id": id
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/readSingleDoctor", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-
-					console.log(result);
-					doctorData = JSON.parse(result);
-					var toDisplay = "";
-					var schedule = JSON.parse(doctorData.schedule);
-					console.log(schedule);
-					schedule.forEach( sh => {
-						toDisplay += sh.day +' from '+sh.startTime+' to '+ sh.closeTime +' / ';
-					}); 
-					document.getElementById('matricule').value = doctorData.matricule;
-					document.getElementById('description').value = doctorData.description;
-					document.getElementById('displaySchedule').value =JSON.stringify(toDisplay);
-					document.getElementById('doctor_id').value = doctorData.doctor_id;
-					
-					
-					
-
-				})
-				.catch(error => console.log('error', error));
-			}
-/********************************************************************/
-
-			function validateDoctor(id) {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"doctor_id": id
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/doctor/validateDoctor", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-				setTimeout(function(){
-					location.reload();
-				},250);
-			}
-
-			function deleteLocation(id) {
-				
-			}
-
-			function deleteSpeciality() {
-
-				
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"speciality_id": document.getElementById('specialitySettings').value
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/DeleteSpeciality", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-
-				reloadPage();
-			}
-			function addLocation() {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"location": document.getElementById('locationAddition').value
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/addLocation", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-
-				reloadPage();
-			}
-
-			function addSpeciality() {
-				
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"speciality": document.getElementById('specialityAddition').value
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/user/addSpeciality", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-
-				reloadPage();
-			}
 		</script>
 		<!-- aninate on croll -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+		<script src="ckeditor/ckeditor.js"></script>
+		<script>
+			CKEDITOR.replace('content');
+		</script>
 		<script>
 			AOS.init({
 				duration: 1000,

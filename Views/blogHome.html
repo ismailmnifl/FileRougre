@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="addOns/footer.css">
 
     <!-- custom styles -->
-    <link rel="stylesheet" href="blogHome.css">
+    <link rel="stylesheet" href="sass/blogeHome.css">
     <title>DoctorCO | Blog Home</title>
 </head>
 <body>
@@ -31,21 +31,16 @@
         <section class="filterSection">
 			<div class="filter">
 				<!--  -->
-				<div class="input-group">
-					<select id="specialities" class="form-select form-control">
-						<option disabled selected>Speciality Filter</option>
+				
+                <div class="input-group">
+					<select id="categories" class="form-select form-control">
+						<option disabled selected>select Category</option>
 					  </select>				  
 					</div>
-				  <div class="input-group">
-					<select id="locations" class="form-select form-control" aria-label="Default select example">
-						<option disabled selected>Location Filter</option>
-						
-					  </select>				 
-					 </div>
 					<div class="input-group">
 						<input id="search" type="text"  placeholder="Search..." class="form-control">
-						<button class="buttonReverse">Search</button>
-                        <ul id="autocompleteList"> 
+						<button id="searchBtn" class="buttonReverse">Search</button>
+                        <ul id="autocompleteList">
                         </ul>
 					  </div>
 				
@@ -68,101 +63,10 @@
 
     <!-- addons -->
     <script src="js/addOns.js"></script>
+    <script src="js/blogeHome.js"></script>
+    
     <script>
-        /* eventListeners binded with dom */
-        window.addEventListener('load',getAllPosts);
-        document.getElementById('search').addEventListener('keyup',search);
-/* *********************************************************************************** */
-
-        function getAllPosts() {
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-            };
-
-            fetch("http://localhost/fileRouge/post/getAllPosts", requestOptions)
-            .then(response => response.text())
-            .then(function(result) {
-                console.log(result);
-                var data = JSON.parse(result);
-                data.forEach(element => {
-                   var preview = element.body.slice(0, 60)+'...';
-
-                    document.getElementById('postWrapper').innerHTML +=`
-                    <div class="box" data-aos="fade-right">
-                        <img src="../uploads/${element.image}" alt="">
-                        <div class="content">
-							<span>${element.dateCreated}</span>
-							<h4>${element.title}</h4>
-							<p>
-								${preview}
-							</p>
-							<a onclick="getSelectedPost(${element.post_id})" href="Post.html"
-								><button  class="button">learn more</button></a
-							>
-						</div>
-					</div>
-                    `;
-                });
-            })
-            .catch(error => console.log('error', error));
-        }
-/* *********************************************************************************** */
-        function fillSearchInput(id) {
-           var value =  document.getElementById("element-"+id).innerHTML;
-           console.log(value);
-            document.getElementById('search').value = value;
-        }
-/* *********************************************************************************** */
-
-        function search() {
-           var inputSearchValue = document.getElementById('search').value;
-            if (inputSearchValue == "") {
-                document.getElementById('autocompleteList').style.display = "none";
-            }else {
-                document.getElementById('autocompleteList').style.display = "block";
-                
-                var myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-
-                var raw = JSON.stringify({
-                "title": document.getElementById('search').value,
-                });
-
-                var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-                };
-
-                fetch("http://localhost/fileRouge/post/search", requestOptions)
-                .then(response => response.text())
-                .then(function(result) {
-
-                console.log(result);
-                var data = JSON.parse(result);
-                console.log(data);
-                document.getElementById('autocompleteList').innerHTML = "";
-                data.forEach(element => {
-                    document.getElementById('autocompleteList').innerHTML += `
-                        <li onclick="fillSearchInput(${element.post_id})" id="element-${element.post_id}">${element.title}</li>
-                    `; 
-                });
-            })
-            .catch(error => console.log('error', error));
-            }
-            
-        }
-        function getSelectedPost(id) {
-				sessionStorage.setItem('postID', id);
-					console.log(sessionStorage.getItem('postID'));
-				return sessionStorage.getItem('postID');
-			}
+       
     </script>
 
 </body>

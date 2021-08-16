@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none !important;
+  text-transform: capitalize;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.spacer {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle h1 {
+  text-align: center;
+  color: #354046;
+}
+
+.headerTitle h1 span {
+  color: #0188df;
+}
+
+.cntactFormWraper {
+  width: 100%;
+  height: auto;
+  background-color: #354046;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.cntactFormWraper .contactform {
+  width: 80%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.cntactFormWraper .infoHolder {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  height: 500px;
+  padding: 5px;
+}
+
+.cntactFormWraper .infoHolder .contactInfo h4 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.cntactFormWraper .infoHolder .contactInfo {
+  margin: 0%;
+  padding: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.cntactFormWraper .infoHolder .contactInfo .icons a i {
+  color: white;
+  font-size: 40px;
+  margin: 3px;
+}
+
+.cntactFormWraper .infoHolder .contactInfo .icons a i:hover {
+  color: #354046;
+}
+
+.cntactFormWraper .infoHolder .contactInfo h4:hover, .cntactFormWraper .infoHolder .contactInfo p:hover {
+  color: #354046;
+}
+
+.cntactFormWraper .infoHolder .mapHolder {
+  overflow: hidden;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  justify-self: flex-start;
+  width: 100%;
+  height: 50%;
+  margin-bottom: 5px;
+}
+
+.cntactFormWraper .infoHolder .mapHolder iframe {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.cntactFormWraper .infoHolder .contactInfo {
+  border-radius: 5px;
+  width: 100%;
+  height: 50%;
+  padding: 5px;
+  background-color: #0188df;
+  border-radius: 5px;
+}
+
+.inputsHolder {
+  width: 80%;
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  height: auto;
+}
+
+.inputInline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mar {
+  margin-bottom: 10px;
+}
+
+.inputInline input {
+  width: 49%;
+}
+
+.inputInline select {
+  width: 49%;
+  margin-bottom: 5px;
+}
+
+.buttonReverse {
+  height: 40px;
+  width: 150px;
+  background: #354046;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.buttonReverse:hover {
+  -webkit-box-shadow: 0.1rem 0.3rem #0188df, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.3rem #0188df, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .cntactFormWraper .contactform {
+    width: 95%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .cntactFormWraper .infoHolder {
+    width: 95%;
+    margin-bottom: 20px;
+  }
+  .inputsHolder {
+    width: 95%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+/*# sourceMappingURL=contactus.css.map */

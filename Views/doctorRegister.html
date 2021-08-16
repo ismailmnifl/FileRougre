@@ -5,8 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="doctorRegister.css">
-
+  <link rel="stylesheet" href="sass/DoctorRegister.css">
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style></style>
@@ -21,6 +20,9 @@
       <div  class="formContainer">
 
         <form name="registerForm">
+          <div id="messageerror" style="display: none;" class="alert alert-success" role="alert">
+            message sent thank you
+          </div>
          <div class="form-group inputInline">
           <select name="speciality" id="speciality" class="form-select">
             <option disabled selected>Choose your speciality</option>
@@ -32,9 +34,6 @@
           <input type="text" id="description" placeholder="Description..." name="description" class="form-control">
           </div>
 
-          <div class="input-group">
-            <input type="text" id="mapsCode" placeholder="Maps code..." name="mapsCode" class="form-control">
-            </div>
 
           <div class="schedule">
             <div class="input-group">
@@ -42,15 +41,15 @@
                   
               </select>
             </div>
-    
+
             <div style="margin-top: 5px;" class="form-group inputInline">
               <div class="up input-group">
                 <span class="input-group-text" >start Time</span>
-                <input type="time" id="startTime" name="startTime" class="form-control">
+                <input type="time" value="09:10" id="startTime" name="startTime" class="form-control">
               </div>
               <div class="up input-group">
                 <span class="input-group-text" >close Time</span>
-                <input type="time" id="closeTime" name="closeTime" class="form-control">
+                <input type="time" value="09:10" id="closeTime" name="closeTime" class="form-control">
               </div>         
             </div>
             <div class="inputInline">
@@ -83,6 +82,7 @@
 
   <script src="Bootstrap/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/doctorRegister.js"></script>
 
   <script>
     AOS.init();
@@ -91,106 +91,6 @@
 
 <script>
 
-      // function calls 
-    window.addEventListener('load', getSpecialities);
-    window.addEventListener('load', reset);
-
-    document.getElementById('scheduleBtn').addEventListener('click',test);
-    document.getElementById('resetBtn').addEventListener('click',reset);
-    document.getElementById('sendDataBtn').addEventListener('click',insertDoctorData);
-    
-    
-    //array of object 
-    var arraySchedule = [];
-
-              function reset() {
-                arraySchedule = [];
-                document.getElementById('displaySchedule').innerHTML = "";
-                console.log(arraySchedule);
-                
-                document.getElementById('days').innerHTML = `
-                <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Wednesday">Wednesday</option>
-                  <option value="Thursday">Thursday</option>
-                  <option value="Friday">Friday</option>
-                  <option value="Saturday ">Saturday </option>
-                  <option value="Sunday">Sunday</option>`;
-
-              }
-    function test() {
-      var daysList = document.getElementById('days');
-      var startTime = document.getElementById('startTime');
-      var closeTime = document.getElementById('closeTime');
-      var displaySchedule = document.getElementById('displaySchedule');
-        if (daysList.options[daysList.selectedIndex] != undefined) {
-
-            console.log(daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value);
-        
-            displaySchedule.innerHTML+= daysList.options[daysList.selectedIndex].value+' from '+startTime.value+' to '+closeTime.value+' / ';
-
-            console.log('length : '+daysList.length);
-
-                  var object = {
-                    day : daysList.options[daysList.selectedIndex].value,
-                    startTime : startTime.value,
-                    closeTime : closeTime.value
-                  };
-
-                  arraySchedule.push(object);
-                  
-            daysList.options[daysList.selectedIndex].remove();
-            console.log(arraySchedule);
-        }
-    }
-    //load dotor specialities from database 
-    function getSpecialities() {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          redirect: 'follow'
-        };
-        fetch("http://localhost/fileRouge/user/getAllSpecialites", requestOptions)
-          .then(response => response.text())
-          .then(function(result) {
-            //console.log(result);
-            var data = JSON.parse(result);
-            data.forEach( da => {
-                document.getElementById('speciality').innerHTML += `<option value="${da.speciality_id}">${da.speciality}</option>`;
-            });
-          })
-          .catch(error => console.log('error', error));
-    }
-
-    //insert doctor to databse
-      function insertDoctorData() {
-        var myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-          
-          var raw = JSON.stringify({
-
-            "speciality_id": document.getElementById('speciality').value,
-            "matricule": document.getElementById('matricule').value,
-            "description": document.getElementById('description').value,
-            "mapsCode": document.getElementById('mapsCode').value,
-            "schedule": JSON.stringify(arraySchedule)
-          });
-
-          var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
-
-          fetch("http://localhost/fileRouge/doctor/insertDoctor", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-      }
 </script>
 </body>
 </html>

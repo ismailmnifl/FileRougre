@@ -1,1 +1,151 @@
-/* No CSS *//*# sourceMappingURL=register.css.map */
+body {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+h3 {
+  width: 50%;
+  margin: 0% auto 0;
+  position: relative;
+  top: 140px;
+  text-align: center;
+}
+
+.loginContainer {
+  height: 500px;
+  width: 400px;
+  background-color: #EEEEEE;
+  -webkit-box-shadow: 5px 5px 10px grey;
+          box-shadow: 5px 5px 10px grey;
+  width: 70%;
+  margin: 8% auto 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.formContainer {
+  width: 50%;
+  padding: 10px;
+  position: relative;
+  left: 20px;
+}
+
+.contentWrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 40px;
+}
+
+.imageContainer {
+  width: 50%;
+}
+
+.imageContainer img {
+  width: 400px;
+  margin-left: 40px;
+}
+
+.button {
+  background: #0188df;
+  color: #fff;
+  cursor: pointer;
+  background: #0188df;
+  color: #fff;
+  cursor: pointer;
+  width: 30%;
+  margin: 3px;
+}
+
+.button:hover {
+  -webkit-box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px black, 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* new register form */
+.inputInline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.inputInline input {
+  width: 49%;
+}
+
+.inputInline select {
+  width: 49%;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .loginContainer {
+    width: 90%;
+    height: 600px;
+    margin: 30% auto 0;
+  }
+  .imageContainer img {
+    display: none;
+  }
+  .formContainer {
+    width: 100%;
+    left: 0px;
+  }
+  .formContainer input, .formContainer select {
+    width: 100%;
+  }
+  .contentWrapper {
+    padding: 0;
+  }
+}
+/*# sourceMappingURL=register.css.map */

@@ -216,270 +216,458 @@ class userController {
 
  /***************************************************************************************/
 
-    function updateUser() {
+            function updateUser() {
 
-      $this->user->user_id = $this->data->user_id;
-      $this->user->location_id = $this->data->location_id;
-      $this->user->FirstName = $this->data->FirstName;
-      $this->user->role = $this->data->role;
-      $this->user->LastName =  $this->data->LastName;
-      $this->user->phone = $this->data->phone;
-      $this->user->email = $this->data->email;
-      $this->user->password = $this->data->password;
-      $this->user->age = $this->data->age;
-      $this->user->username = $this->data->username;
-      $this->user->adresse =  $this->data->adresse;
-      $this->user->avatar = $this->data->avatar;
-     
+                $this->user->user_id = $this->data->user_id;
+                $this->user->location_id = $this->data->location_id;
+                $this->user->FirstName = $this->data->FirstName;
+                $this->user->LastName =  $this->data->LastName;
+                $this->user->phone = $this->data->phone;
+                $this->user->email = $this->data->email;
+                $this->user->password = $this->data->password;
+                $this->user->age = $this->data->age;
+                $this->user->username = $this->data->username;
+                $this->user->adresse =  $this->data->adresse;
+                $this->user->avatar = $this->data->avatar;
+              
 
-      // Update user
-      if($this->user->update()) {
-        echo json_encode(
-          array('message' => 'user Updated')
-        );
-      } else {
-        echo json_encode(
-          array('message' => 'user Not Updated')
-        );
-      }
-    }
-//*****************************foreign key prevent the deletion of location****************************** */
-    function DeleteLocation() {
-      $this->user->location_id = $this->data->location_id;
+                // Update user
+                if($this->user->update()) {
+                  echo json_encode(
+                    array('message' => 'user Updated')
+                  );
+                } else {
+                  echo json_encode(
+                    array('message' => 'user Not Updated')
+                  );
+                }
+              }
+          //*****************************foreign key prevent the deletion of location****************************** */
+              function DeleteLocation() {
+                $this->user->location_id = $this->data->location_id;
 
-      // Delete user
-      if($this->user->deleteLocation()) {
-        echo json_encode(
-          array('message' => 'Location Deleted')
-        );
-      } else {
-        echo json_encode(
-          array('message' => 'Location Not Deleted')
-        );
-      }
-    }
+                // Delete user
+                if($this->user->deleteLocation()) {
+                  echo json_encode(
+                    array('message' => 'Location Deleted')
+                  );
+                } else {
+                  echo json_encode(
+                    array('message' => 'Location Not Deleted')
+                  );
+                }
+              }
+          //*********************************************************** */
+              function DeleteSpeciality() {
+                $this->user->speciality_id = $this->data->speciality_id;
+
+                // Delete user
+                if($this->user->deleteSpeciality()) {
+                  echo json_encode(
+                    array('message' => 'speciality Deleted')
+                  );
+                } else {
+                  echo json_encode(
+                    array('message' => 'speciality Not Deleted')
+                  );
+                }
+              }
+          //*********************************************************** */
+
+              function addLocation() {
+
+                $this->user->location = $this->data->location;    
+
+                  // Create user
+                  if($this->user->addLocation()) {
+                      echo json_encode(
+                      array('message' => 'location Created')
+                      );
+                  } else {
+                      echo json_encode(
+                      array('message' => 'location Not Created')
+                      );
+                  }
+              }
+          //*********************************************************** */
+
+              function addSpeciality() {
+
+                $this->user->speciality = $this->data->speciality;    
+
+                  // Create user
+                  if($this->user->addSpeciality()) {
+                      echo json_encode(
+                      array('message' => 'speciality Created')
+                      );
+                  } else {
+                      echo json_encode(
+                      array('message' => 'speciality Not Created')
+                      );
+                  }
+              }
+
+          //*********************************************************** */
+          function getuserReview() {
+
+            $this->user->user_id = $this->data->user_id;
+              // Get user
+              $result = $this->user->getuserReview();
+
+              $num = $result->rowCount();
+
+            if($num > 0) {
+                      $reviews_arr = array();
+
+                while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    extract($row);
+            
+              // Create array
+              $review_item = array(
+                      'review_id' => $review_id,
+                      'user_id' => $user_id,
+                      'doctor_id' => $doctor_id,
+                      'stars' => $stars,
+                      'review' => $review,
+                      'dateCreated' => $dateCreated,
+                      
+                    );
+              // Make JSON
+              array_push($reviews_arr, $review_item);
+            }
+            echo json_encode($reviews_arr);
+            }else {
+              echo json_encode(array('message' => 'No review Found'));
+            }
+
+          }
+
+          //*********************************************************** */
+          function getuserComments() {
+
+            $this->user->user_id = $this->data->user_id;
+              // Get user
+              $result = $this->user->getuserComments();
+
+              $num = $result->rowCount();
+
+            if($num > 0) {
+                      $comments_arr = array();
+
+                while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    extract($row);
+            
+              // Create array
+              $comment_item = array(
+                      'comment_id' => $comment_id,
+                      'user_id' => $user_id,
+                      'post_id' => $post_id,
+                      'comment' => $comment,
+                      'dateCreated' => $dateCreated,
+                      
+                    );
+              // Make JSON
+              array_push($comments_arr, $comment_item);
+            }
+            echo json_encode($comments_arr);
+            }else {
+              echo json_encode(array('message' => 'No review Found'));
+            }
+
+          }
+          //*********************************************************** */
+          function getSingleuserReview() {
+
+            $this->user->user_id = $this->data->user_id;
+            $this->user->review_id = $this->data->review_id;
+            
+              // Get user
+              $result = $this->user->getSingleuserReview();
+
+              $num = $result->rowCount();
+
+            if($num > 0) {
+                      $reviews_arr = array();
+
+                while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    extract($row);
+            
+              // Create array
+              $review_item = array(
+                      'review_id' => $review_id,
+                      'user_id' => $user_id,
+                      'doctor_id' => $doctor_id,
+                      'stars' => $stars,
+                      'review' => $review,
+                      'dateCreated' => $dateCreated,
+                      
+                    );
+              // Make JSON
+              array_push($reviews_arr, $review_item);
+            }
+            echo json_encode($reviews_arr);
+            }else {
+              echo json_encode(array('message' => 'No review Found'));
+            }
+
+          }
+
 //*********************************************************** */
-    function DeleteSpeciality() {
-      $this->user->speciality_id = $this->data->speciality_id;
+        function getSingleuserComments() {
 
-      // Delete user
-      if($this->user->deleteSpeciality()) {
-        echo json_encode(
-          array('message' => 'speciality Deleted')
-        );
-      } else {
-        echo json_encode(
-          array('message' => 'speciality Not Deleted')
-        );
-      }
-    }
-//*********************************************************** */
+          $this->user->user_id = $this->data->user_id;
+          $this->user->comment_id = $this->data->comment_id;
 
-    function addLocation() {
+          // Get user
+            $result = $this->user->getSingleuserComments();
 
-      $this->user->location = $this->data->location;    
+            $num = $result->rowCount();
 
-        // Create user
-        if($this->user->addLocation()) {
-            echo json_encode(
-            array('message' => 'location Created')
-            );
-        } else {
-            echo json_encode(
-            array('message' => 'location Not Created')
-            );
+          if($num > 0) {
+                    $comments_arr = array();
+
+              while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                  extract($row);
+          
+            // Create array
+            $comment_item = array(
+                    'comment_id' => $comment_id,
+                    'user_id' => $user_id,
+                    'post_id' => $post_id,
+                    'comment' => $comment,
+                    'dateCreated' => $dateCreated,
+                    
+                  );
+            // Make JSON
+            array_push($comments_arr, $comment_item);
+          }
+          echo json_encode($comments_arr);
+          }else {
+            echo json_encode(array('message' => 'No review Found'));
+          }
+
         }
-    }
-//*********************************************************** */
+        //*********************************************************** */
 
-    function addSpeciality() {
+        function DeleteSingleuserReview() {
+          $this->user->review_id = $this->data->review_id;
 
-      $this->user->speciality = $this->data->speciality;    
-
-        // Create user
-        if($this->user->addSpeciality()) {
+          // Delete user
+          if($this->user->DeleteSingleuserReview()) {
             echo json_encode(
-            array('message' => 'speciality Created')
+              array('message' => 'review Deleted')
             );
-        } else {
+          } else {
             echo json_encode(
-            array('message' => 'speciality Not Created')
+              array('message' => 'review Not Deleted')
             );
+          }
         }
-    }
+        //*********************************************************** */
 
-//*********************************************************** */
-function getuserReview() {
+        function DeleteSingleuserComments() {
+          $this->user->comment_id = $this->data->comment_id;
 
-  $this->user->user_id = $this->data->user_id;
-    // Get user
-    $result = $this->user->getuserReview();
+          // Delete user
+          if($this->user->DeleteSingleuserComments()) {
+            echo json_encode(
+              array('message' => 'comment Deleted')
+            );
+          } else {
+            echo json_encode(
+              array('message' => 'comment Not Deleted')
+            );
+          }
+        }
+        function updateUserComment() {
+          $this->user->comment_id = $this->data->comment_id;
+          $this->user->comment = $this->data->comment;
 
-    $num = $result->rowCount();
+          // Delete user
+          if($this->user->updateUserComment()) {
+            echo json_encode(
+              array('message' => 'comment updated')
+            );
+          } else {
+            echo json_encode(
+              array('message' => 'comment Not updated')
+            );
+          }
+        }
+        function updateUserReview() {
+          $this->user->review_id = $this->data->review_id;
+          $this->user->stars = $this->data->stars;
+          $this->user->review = $this->data->review;
 
-  if($num > 0) {
-            $reviews_arr = array();
-
-      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          extract($row);
+          // Delete user
+          if($this->user->updateUserReview()) {
+            echo json_encode(
+              array('message' => 'review updated')
+            );
+          } else {
+            echo json_encode(
+              array('message' => 'review Not updated')
+            );
+          }
+        }
+        function insertContactMessage() {
+          $this->user->userName = $this->data->userName;
+          $this->user->subject = $this->data->subject;
+          $this->user->email = $this->data->email;
+          $this->user->phone =  $this->data->phone;
+          $this->user->message =  $this->data->message;
+          
   
-    // Create array
-    $review_item = array(
-            'review_id' => $review_id,
-            'user_id' => $user_id,
-            'doctor_id' => $doctor_id,
-            'stars' => $stars,
-            'review' => $review,
-            'dateCreated' => $dateCreated,
-            
-          );
-    // Make JSON
-    array_push($reviews_arr, $review_item);
-  }
-  echo json_encode($reviews_arr);
-  }else {
-    echo json_encode(array('message' => 'No review Found'));
-  }
+          // Create user
+          if($this->user->insertContactMessage()) {
+              echo json_encode(
+              array('message' => 'contact message Created')
+              );
+          } else {
+              echo json_encode(
+              array('message' => 'contact message Not Created')
+              );
+          }
+        }
+        function getContactMessage() {
+         
 
-}
+          // Get user
+            $result = $this->user->getContactMessage();
 
-//*********************************************************** */
-function getuserComments() {
+            $num = $result->rowCount();
 
-  $this->user->user_id = $this->data->user_id;
-    // Get user
-    $result = $this->user->getuserComments();
+          if($num > 0) {
+                    $message_arr = array();
 
-    $num = $result->rowCount();
+              while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                  extract($row);
+          
+            // Create array
+            $message_item = array(
+                    'contact_id' => $contact_id,
+                    'userName' => $userName,
+                    'subject' => $subject,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'message' => $message,
+                    'dateCreated' => $dateCreated,
+                    
+                  );
+            // Make JSON
+            array_push($message_arr, $message_item);
+          }
+          echo json_encode($message_arr);
+          }else {
+            echo json_encode(array('message' => 'No message Found'));
+          }
+        }
+        function isUserDoctor() {
 
-  if($num > 0) {
-            $comments_arr = array();
+          $this->user->user_id = $this->data->user_id;
 
-      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          extract($row);
+
+          $result = $this->user->isUserDoctor();
+
+          $num = $result->rowCount();
+
+        if($num > 0) {
+                  $doctor_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+        
+          // Create array
+          $doctor_item = array(
+
+                  'doctor_id' => $doctor_id,
+                  'speciality_id' => $speciality_id,
+                  'matricule' => $matricule,
+                  'description' => $description,
+                  'schedule' => $schedule,
+                  'validated' => $validated,
+                  'user_id' => $user_id,
+                  
+                );
+          // Make JSON
+          array_push($doctor_arr, $doctor_item);
+        }
+        echo json_encode($doctor_arr);
+        }else {
+          echo json_encode(array('message' => 'No doctor Found'));
+        }
+        }
+        function deleteContactMessage() {
+          $this->user->contact_id = $this->data->contact_id;
+
+          // Delete user
+          if($this->user->deleteContactMessage()) {
+            echo json_encode(
+              array('message' => 'message Deleted')
+            );
+          } else {
+            echo json_encode(
+              array('message' => 'message Not Deleted')
+            );
+          }
+        }
+
+
+        function stats() {
+          $result = $this->user->stats();
+
+          $num = $result->rowCount();
+
+        if($num > 0) {
+                  $stats_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+        
+          // Create array
+          $stats_item = array(
+                  'starcount' => $starcount,
+                  'LastName' => $LastName      
+                );
+          // Make JSON
+          array_push($stats_arr, $stats_item);
+        }
+        echo json_encode($stats_arr);
+        }else {
+          echo json_encode(array('message' => 'no stats found'));
+        }
+        }
+
+
+        function dashstats() {
+
   
-    // Create array
-    $comment_item = array(
-            'comment_id' => $comment_id,
-            'user_id' => $user_id,
-            'post_id' => $post_id,
-            'comment' => $comment,
-            'dateCreated' => $dateCreated,
-            
-          );
-    // Make JSON
-    array_push($comments_arr, $comment_item);
-  }
-  echo json_encode($comments_arr);
-  }else {
-    echo json_encode(array('message' => 'No review Found'));
-  }
-
-}
-//*********************************************************** */
-function getSingleuserReview() {
-
-  $this->user->user_id = $this->data->user_id;
-  $this->user->review_id = $this->data->review_id;
+          $five1 = $this->user->statsCountusers();
+          $fiveRow1 = $five1->fetch(PDO::FETCH_ASSOC);
+            extract($fiveRow1);
   
-    // Get user
-    $result = $this->user->getSingleuserReview();
-
-    $num = $result->rowCount();
-
-  if($num > 0) {
-            $reviews_arr = array();
-
-      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          extract($row);
+          $four1 = $this->user->statsCountDoctors();
+          $fourRow1 = $four1->fetch(PDO::FETCH_ASSOC);
+            extract($fourRow1);
   
-    // Create array
-    $review_item = array(
-            'review_id' => $review_id,
-            'user_id' => $user_id,
-            'doctor_id' => $doctor_id,
-            'stars' => $stars,
-            'review' => $review,
-            'dateCreated' => $dateCreated,
-            
-          );
-    // Make JSON
-    array_push($reviews_arr, $review_item);
-  }
-  echo json_encode($reviews_arr);
-  }else {
-    echo json_encode(array('message' => 'No review Found'));
-  }
-
-}
-
-//*********************************************************** */
-function getSingleuserComments() {
-
-  $this->user->user_id = $this->data->user_id;
-  $this->user->comment_id = $this->data->comment_id;
-
-  // Get user
-    $result = $this->user->getSingleuserComments();
-
-    $num = $result->rowCount();
-
-  if($num > 0) {
-            $comments_arr = array();
-
-      while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          extract($row);
+            $three1 = $this->user->statsCountPosts();
+          $threeRow1 = $three1->fetch(PDO::FETCH_ASSOC);
+            extract($threeRow1);
   
-    // Create array
-    $comment_item = array(
-            'comment_id' => $comment_id,
-            'user_id' => $user_id,
-            'post_id' => $post_id,
-            'comment' => $comment,
-            'dateCreated' => $dateCreated,
-            
-          );
-    // Make JSON
-    array_push($comments_arr, $comment_item);
-  }
-  echo json_encode($comments_arr);
-  }else {
-    echo json_encode(array('message' => 'No review Found'));
-  }
-
-}
-//*********************************************************** */
-
-function DeleteSingleuserReview() {
-  $this->user->review_id = $this->data->review_id;
-
-  // Delete user
-  if($this->user->DeleteSingleuserReview()) {
-    echo json_encode(
-      array('message' => 'review Deleted')
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'review Not Deleted')
-    );
-  }
-}
-//*********************************************************** */
-
-function DeleteSingleuserComments() {
-  $this->user->comment_id = $this->data->comment_id;
-
-  // Delete user
-  if($this->user->DeleteSingleuserComments()) {
-    echo json_encode(
-      array('message' => 'comment Deleted')
-    );
-  } else {
-    echo json_encode(
-      array('message' => 'comment Not Deleted')
-    );
-  }
-}
+          $two1 = $this->user->statsCountMessage();
+          $twoRow1 = $two1->fetch(PDO::FETCH_ASSOC);
+            extract($twoRow1);
+  
+            $review_item = array(
+              'userCount' => $userCount,
+              'doctorCount' => $doctorCount,
+              'postCount' => $postCount,
+              'messageCount' => $messageCount,
+              
+            );
+          // Make JSON
+          print_r(json_encode($review_item));
+        }
 }
 
 ?>

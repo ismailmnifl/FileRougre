@@ -32,9 +32,19 @@
     public $AVGstars;
     public $doctorID;
     public $nReviews;
-    
 
+    //comment properties
+    public $comment_id;
+    public $comment;
 
+    //stats varibale properties
+    public $userCount;
+    public $doctorCount;
+    public $postCount;
+    public $messageCount;
+
+    //chart js stats
+    public $starcount;
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
@@ -163,11 +173,21 @@
 
     public function update() {
         // Create query
-        $query = 'UPDATE user SET role = :role, location_id = :location_id, FirstName = :FirstName, LastName = :LastName,
+        if (isset($this->avatar)) {
+          $query = 'UPDATE user SET location_id = :location_id, FirstName = :FirstName, LastName = :LastName,
                                   phone = :phone, email = :email, password = :password, age = :age,
                                   username = :username, adresse = :adresse, avatar = :avatar,
                                   latitude = :latitude, longitude = :longitude
                                   WHERE user_id = :user_id';
+
+        }else {
+          $query = 'UPDATE user SET location_id = :location_id, FirstName = :FirstName, LastName = :LastName,
+                                  phone = :phone, email = :email, password = :password, age = :age,
+                                  username = :username, adresse = :adresse,
+                                  latitude = :latitude, longitude = :longitude
+                                  WHERE user_id = :user_id';
+        }
+        
     
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -175,7 +195,6 @@
         // Clean data
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->location_id = htmlspecialchars(strip_tags($this->location_id));
-        $this->role = htmlspecialchars(strip_tags($this->role));
         $this->FirstName = htmlspecialchars(strip_tags($this->FirstName));
         $this->LastName = htmlspecialchars(strip_tags($this->LastName));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
@@ -183,8 +202,9 @@
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->age = htmlspecialchars(strip_tags($this->age));
         $this->username = htmlspecialchars(strip_tags($this->username));
-        $this->adresse = htmlspecialchars(strip_tags($this->adresse));
-        $this->avatar = htmlspecialchars(strip_tags($this->avatar));
+        $this->adresse = $this->adresse;
+        if (isset($this->avatar))
+          $this->avatar = htmlspecialchars(strip_tags($this->avatar));
         $this->latitude = htmlspecialchars(strip_tags($this->latitude));
         $this->longitude = htmlspecialchars(strip_tags($this->longitude));
 
@@ -193,7 +213,6 @@
         // Bind data
         $stmt->bindParam(':user_id', $this->user_id);
         $stmt->bindParam(':location_id', $this->location_id);
-        $stmt->bindParam(':role', $this->role);
         $stmt->bindParam(':FirstName', $this->FirstName);
         $stmt->bindParam(':LastName', $this->LastName);
         $stmt->bindParam(':phone', $this->phone);
@@ -202,7 +221,8 @@
         $stmt->bindParam(':age', $this->age);
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':adresse', $this->adresse);
-        $stmt->bindParam(':avatar', $this->avatar);
+        if (isset($this->avatar))
+          $stmt->bindParam(':avatar', $this->avatar);
         $stmt->bindParam(':latitude', $this->latitude);
         $stmt->bindParam(':longitude', $this->longitude);
   
@@ -551,7 +571,83 @@
 
      return $stmt;
   }
+/**************************************************************************/
+function retreveDoctorRecomendationSearch($q) {
 
+    // Create query
+    $query = "SELECT *,doctor.doctor_id as 'doctorID', SUM(review.stars) / COUNT(review.review_id) AS 'AVGstars'
+    FROM doctor
+      inner JOIN user on doctor.user_id = user.user_id
+      
+      inner JOIN speciality ON speciality.speciality_id = doctor.speciality_id 
+      
+      LEFT JOIN review ON review.doctor_id = doctor.doctor_id
+      
+      where doctor.validated = 'Valited' and user.LastName LIKE '%$q%'
+      
+      GROUP BY doctor.doctor_id";
+
+   // Prepare statement
+   $stmt = $this->conn->prepare($query);
+
+   // Execute query
+   $stmt->execute();
+
+   return $stmt;
+}
+
+function retreveDoctorRecomendationSearchFromInput() {
+
+  // Create query
+  $query = 'SELECT *,doctor.doctor_id as "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
+  FROM doctor
+    inner JOIN user on doctor.user_id = user.user_id
+    
+    inner JOIN speciality ON speciality.speciality_id = doctor.speciality_id 
+    
+    LEFT JOIN review ON review.doctor_id = doctor.doctor_id
+    
+    where doctor.validated = "Valited" and user.LastName = :LastName
+    
+    GROUP BY doctor.doctor_id';
+
+ // Prepare statement
+ $stmt = $this->conn->prepare($query);
+
+ $stmt->bindParam(':LastName', $this->LastName);
+
+ // Execute query
+ $stmt->execute();
+
+ return $stmt;
+}
+
+
+function retreveDoctorRecomendationFromFilterInput() {
+
+  // Create query
+  $query = 'SELECT *,doctor.doctor_id as "doctorID", SUM(review.stars) / COUNT(review.review_id) AS "AVGstars"
+  FROM doctor
+    inner JOIN user on doctor.user_id = user.user_id
+    
+    inner JOIN speciality ON speciality.speciality_id = doctor.speciality_id 
+    
+    LEFT JOIN review ON review.doctor_id = doctor.doctor_id
+    
+    where doctor.validated = "Valited" and doctor.speciality_id = :speciality_id
+    
+    GROUP BY doctor.doctor_id';
+
+ // Prepare statement
+ $stmt = $this->conn->prepare($query);
+
+ $stmt->bindParam(':speciality_id', $this->speciality_id);
+
+ // Execute query
+ $stmt->execute();
+
+ return $stmt;
+}
 //*********************************************************** */
 
   function retreveSingleDoctorProfileData() {
@@ -717,79 +813,278 @@
       
             return $stmt;
     }
-    function getuserComments() {
+              function getuserComments() {
 
-      $query = 'select * from comment WHERE user_id = :user_id';
+                $query = 'select * from comment WHERE user_id = :user_id';
+                    
+                    // Prepare statement
+                    $stmt = $this->conn->prepare($query);
+              
+                    $stmt->bindParam(':user_id', $this->user_id);
+                    // Execute query
+                    $stmt->execute();
+              
+                    return $stmt;
+            }
+
+            function getSingleuserReview() {
+
+              $query = 'select * from review WHERE user_id = :user_id and review_id = :review_id';
+                  
+                  // Prepare statement
+                  $stmt = $this->conn->prepare($query);
+            
+                  $stmt->bindParam(':user_id', $this->user_id);
+                  $stmt->bindParam(':review_id', $this->review_id);
+                  // Execute query
+                  $stmt->execute();
+            
+                  return $stmt;
+          }
+          function getSingleuserComments() {
+
+            $query = 'select * from comment WHERE user_id = :user_id and comment_id = :comment_id';
+                
+                // Prepare statement
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->bindParam(':user_id', $this->user_id);
+                $stmt->bindParam(':comment_id', $this->comment_id);
+
+                // Execute query
+                $stmt->execute();
+
+                return $stmt;
+          }
+          function DeleteSingleuserReview() {
+
+                  // Create query
+                  $query = 'DELETE FROM review WHERE review_id = :review_id';
+              
+                  // Prepare statement
+                  $stmt = $this->conn->prepare($query);
+              
+                  // Bind data
+                  $stmt->bindParam(':review_id', $this->review_id);
+              
+                  // Execute query
+                  if($stmt->execute()) {
+                  return true;
+                  }
+              }
+              function DeleteSingleuserComments() {
+
+                // Create query
+                $query = 'DELETE FROM comment WHERE comment_id = :comment_id';
+            
+                // Prepare statement
+                $stmt = $this->conn->prepare($query);
+            
+                // Bind data
+                $stmt->bindParam(':comment_id', $this->comment_id);
+            
+                // Execute query
+                if($stmt->execute()) {
+                return true;
+                }
+            }
+            function updateUserComment() {
+                  // Create query
+                  $query = 'update comment SET comment.comment = :comment WHERE comment_id = :comment_id';
+            
+                // Prepare statement
+                $stmt = $this->conn->prepare($query);
+            
+                // Clean data
+                $this->comment_id = htmlspecialchars(strip_tags($this->comment_id));
+                $this->comment = htmlspecialchars(strip_tags($this->comment));
+
+                
+
+                // Bind data
+                $stmt->bindParam(':comment_id', $this->comment_id);
+                $stmt->bindParam(':comment', $this->comment);
           
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-    
-          $stmt->bindParam(':user_id', $this->user_id);
-          // Execute query
-          $stmt->execute();
-    
-          return $stmt;
-  }
+                // Execute query
+                if($stmt->execute()) {
+                  return true;
+                }
+          
+                // Print error if something goes wrong
+                printf("Error: %s.\n", $stmt->error);
+          
+                return false;
+            }
+            function updateUserReview() {
+              // Create query
+              $query = 'UPDATE review set review.stars = :stars, review.review = :review WHERE review_id = :review_id';
 
-  function getSingleuserReview() {
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
 
-    $query = 'select * from review WHERE user_id = :user_id and review_id = :review_id';
+            // Clean data
+            $this->comment_id = htmlspecialchars(strip_tags($this->review_id));
+            $this->stars = htmlspecialchars(strip_tags($this->stars));
+            $this->review = htmlspecialchars(strip_tags($this->review));
+
+            // Bind data
+            
+            $stmt->bindParam(':review_id', $this->review_id);
+            $stmt->bindParam(':stars', $this->stars);
+            $stmt->bindParam(':review', $this->review);
+
+            // Execute query
+            if($stmt->execute()) {
+              return true;
+            }
+
+            // Print error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+
+            return false;
+          }
+          function insertContactMessage() {
+            $query = 'INSERT INTO contact SET userName = :userName, subject = :subject, email = :email,
+                                       phone = :phone, message = :message';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
         
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
-  
-        $stmt->bindParam(':user_id', $this->user_id);
-        $stmt->bindParam(':review_id', $this->review_id);
-        // Execute query
-        $stmt->execute();
-  
-        return $stmt;
-}
-function getSingleuserComments() {
-
-  $query = 'select * from comment WHERE user_id = :user_id and comment_id = :comment_id';
-      
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-
-      $stmt->bindParam(':user_id', $this->user_id);
-      $stmt->bindParam(':comment_id', $this->comment_id);
-
-      // Execute query
-      $stmt->execute();
-
-      return $stmt;
-}
-function DeleteSingleuserReview() {
-
-        // Create query
-        $query = 'DELETE FROM review WHERE review_id = :review_id';
-    
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
-    
+        $this->userName = htmlspecialchars(strip_tags($this->userName));
+        $this->subject = htmlspecialchars(strip_tags($this->subject));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->message = htmlspecialchars(strip_tags($this->message));
+        $this->phone = htmlspecialchars(strip_tags($this->phone));
+        
         // Bind data
-        $stmt->bindParam(':review_id', $this->review_id);
-    
+        
+        $stmt->bindParam(':userName', $this->userName);
+        $stmt->bindParam(':subject', $this->subject);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':message', $this->message);
+        $stmt->bindParam(':phone', $this->phone);
+
         // Execute query
         if($stmt->execute()) {
-        return true;
+          return true;
         }
-    }
-    function DeleteSingleuserComments() {
+          }
+          function getContactMessage() {
+            $query = 'select * from contact';
+                
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
 
-      // Create query
-      $query = 'DELETE FROM comment WHERE comment_id = :comment_id';
-  
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-  
-      // Bind data
-      $stmt->bindParam(':comment_id', $this->comment_id);
-  
-      // Execute query
-      if($stmt->execute()) {
-      return true;
-      }
-  }
-  }
+            // Execute query
+            $stmt->execute();
+
+            return $stmt;
+          }
+          function getDoctorPosts() {
+            $query = 'SELECT * FROM post WHERE post.doctor_id = :doctor_id';
+                
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':doctor_id', $this->doctor_id);
+            // Execute query
+            $stmt->execute();
+
+            return $stmt;
+          }
+          function isUserDoctor() {
+            $query = 'SELECT * FROM doctor WHERE user_id = :user_id';
+                
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':user_id', $this->user_id);
+            // Execute query
+            $stmt->execute();
+
+            return $stmt;
+          }
+          function deleteContactMessage() {
+            $query = 'delete FROM contact where contact_id  = :contact_id';
+            
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindParam(':contact_id', $this->contact_id);
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+          function stats() {
+            $query = 'SELECT user.LastName,sum(review.stars) AS "starcount" FROM doctor INNER JOIN review
+                      ON doctor.doctor_id = review.doctor_id
+                      INNER JOIN user 
+                      ON user.user_id = doctor.user_id
+                      GROUP BY doctor.doctor_id 
+                      ORDER by starcount DESC
+                      LIMIT 3 
+            ;';
+            
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+
+
+          function statsCountusers() {
+            $query = 'SELECT count(user_id) as "userCount" FROM user';
+      
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+
+          function statsCountDoctors() {
+            $query = 'SELECT count(doctor_id) as "doctorCount" FROM doctor';
+      
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+
+          function statsCountPosts() {
+            $query = 'SELECT count(post_id) as "postCount" FROM post';
+      
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+
+          function statsCountMessage() {
+            $query = 'SELECT count(contact_id) as "messageCount" FROM contact';
+      
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+    
+            // Execute query
+            $stmt->execute();
+    
+            return $stmt;
+          }
+
+          
+}

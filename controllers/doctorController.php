@@ -215,6 +215,171 @@ class doctorController {
         }
       }
 
+      function retreveDoctorRecomendationSearch() {
+
+        $this->user->LastName = $this->data->LastName;
+
+        // Get user
+        $result =  $this->user->retreveDoctorRecomendationSearch($this->data->LastName);
+        $num = $result->rowCount();
+
+        if($num > 0) {
+                  $doctors_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+          
+                $user_item = array(
+                  'user_id' => $user_id,
+                  'location_id' => $location_id,
+                  'role' => $role,
+                  'FirstName' => $FirstName,
+                  'LastName' => $LastName,
+                  'phone' => $phone,
+                  'email' => $email,
+                  'password' => $password,
+                  'age' => $age,
+                  'username' => $username,
+                  'adresse' => $adresse,
+                  'avatar' => $avatar,
+                  'latitude' => $latitude,
+                  'longitude' => $longitude,
+                  'doctor_id' => $doctor_id,
+                  'speciality_id' => $speciality_id,
+                  'matricule' => $matricule,
+                  'description' => $description,
+                  'schedule' => $schedule,
+                  'validated' => $validated,
+                  'speciality' => $speciality,
+                  'review_id' => $review_id,
+                  'stars' => $stars,
+                  'review' => $review,
+                  'dateCreated' => $dateCreated,
+                  'AVGstars' => $AVGstars,
+                  'doctorID' => $doctorID,
+                );
+
+          
+                // Push to "data"
+                array_push($doctors_arr, $user_item);
+            }
+            echo json_encode($doctors_arr);
+
+        } else {
+          echo json_encode(array('message' => 'No doctor Found'));
+        }
+      }
+
+
+      function retreveDoctorRecomendationSearchFromInput() {
+
+        $this->user->LastName = $this->data->LastName;
+
+        // Get user
+        $result =  $this->user->retreveDoctorRecomendationSearchFromInput();
+        $num = $result->rowCount();
+
+        if($num > 0) {
+                  $doctors_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+          
+                $user_item = array(
+                  'user_id' => $user_id,
+                  'location_id' => $location_id,
+                  'role' => $role,
+                  'FirstName' => $FirstName,
+                  'LastName' => $LastName,
+                  'phone' => $phone,
+                  'email' => $email,
+                  'password' => $password,
+                  'age' => $age,
+                  'username' => $username,
+                  'adresse' => $adresse,
+                  'avatar' => $avatar,
+                  'latitude' => $latitude,
+                  'longitude' => $longitude,
+                  'doctor_id' => $doctor_id,
+                  'speciality_id' => $speciality_id,
+                  'matricule' => $matricule,
+                  'description' => $description,
+                  'schedule' => $schedule,
+                  'validated' => $validated,
+                  'speciality' => $speciality,
+                  'review_id' => $review_id,
+                  'stars' => $stars,
+                  'review' => $review,
+                  'dateCreated' => $dateCreated,
+                  'AVGstars' => $AVGstars,
+                  'doctorID' => $doctorID,
+                );
+
+          
+                // Push to "data"
+                array_push($doctors_arr, $user_item);
+            }
+            echo json_encode($doctors_arr);
+
+        } else {
+          echo json_encode(array('message' => 'No doctor Found'));
+        }
+      }
+
+      function retreveDoctorRecomendationFromFilterInput() {
+
+        $this->user->speciality_id = $this->data->speciality_id;
+
+        // Get user
+        $result =  $this->user->retreveDoctorRecomendationFromFilterInput();
+        $num = $result->rowCount();
+
+        if($num > 0) {
+                  $doctors_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+          
+                $user_item = array(
+                  'user_id' => $user_id,
+                  'location_id' => $location_id,
+                  'role' => $role,
+                  'FirstName' => $FirstName,
+                  'LastName' => $LastName,
+                  'phone' => $phone,
+                  'email' => $email,
+                  'password' => $password,
+                  'age' => $age,
+                  'username' => $username,
+                  'adresse' => $adresse,
+                  'avatar' => $avatar,
+                  'latitude' => $latitude,
+                  'longitude' => $longitude,
+                  'doctor_id' => $doctor_id,
+                  'speciality_id' => $speciality_id,
+                  'matricule' => $matricule,
+                  'description' => $description,
+                  'schedule' => $schedule,
+                  'validated' => $validated,
+                  'speciality' => $speciality,
+                  'review_id' => $review_id,
+                  'stars' => $stars,
+                  'review' => $review,
+                  'dateCreated' => $dateCreated,
+                  'AVGstars' => $AVGstars,
+                  'doctorID' => $doctorID,
+                );
+
+          
+                // Push to "data"
+                array_push($doctors_arr, $user_item);
+            }
+            echo json_encode($doctors_arr);
+
+        } else {
+          echo json_encode(array('message' => 'No doctor Found'));
+        }
+      }
 
       function getSingleDoctorProfileData() {
 
@@ -368,6 +533,42 @@ class doctorController {
         // Make JSON
         print_r(json_encode($review_item));
       }
+
+      function getDoctorPosts() {
+        $this->user->doctor_id = $this->data->doctor_id;
+          // Get user
+          $result = $this->user->getDoctorPosts();
+
+          $num = $result->rowCount();
+
+        if($num > 0) {
+                  $posts_arr = array();
+
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+        
+          // Create array
+          $post_item = array(
+                  'post_id' => $post_id,
+                  'doctor_id' => $doctor_id,
+                  'category_id' => $category_id,
+                  'title' => $title,
+                  'body' => $body,
+                  'image' => $image,
+                  'resources' => $resources,
+                  'dislikeControle' => $dislikeControle,
+                  'commentControle' => $commentControle,
+                  'dateCreated' => $dateCreated,
+                );
+          // Make JSON
+          array_push($posts_arr, $post_item);
+        }
+        echo json_encode($posts_arr);
+        }else {
+          echo json_encode(array('message' => 'No post Found'));
+        }
+      }
+     
 }
 
 

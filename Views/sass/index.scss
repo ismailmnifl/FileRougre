@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+
+$mainblue : #0188df;
+$maindark : #354046;
+
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  border: none ;
+  outline: none ;
+  text-decoration: none !important;
+  font-weight: 400;
+  transition: all 0.2s linear;
+}
+
+section {
+  overflow: hidden;
+}
+
+.button {
+  height: 40px;
+  width: 150px;
+  background: $mainblue;
+  color: #fff;
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  font-size: 18px;
+  border: none;
+  margin-left: 20px;
+
+  &:hover {
+    box-shadow: 0.1rem 0.3rem $maindark, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  }
+}
+.heading {
+  text-align: center;
+  padding: 1rem;
+  color: $maindark;
+
+  span {
+    color: $mainblue;
+  }
+}
+
+#mynavi {
+  background-color: white;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+
+  .container {
+    .mynaviItem {
+      color: $maindark;
+    }
+
+    a {
+      color: $maindark;
+      text-decoration: none;
+      font-size: 20px;
+
+      &:hover {
+        color: $mainblue;
+      }
+    }
+
+    .logo {
+      span {
+        color: $mainblue;
+        font-size: 25px;
+      }
+
+      font-size: 25px;
+    }
+  }
+}
+
+.navbar .dropdown-menu {
+  background-color: $mainblue;
+  color: #354046;
+
+  li:hover {
+    background-color: #354046;
+  }
+}
+
+.home .content {
+  h1 {
+    color: $maindark;
+
+    span {
+      color: $mainblue;
+    }
+  }
+
+  h3 {
+    color: $maindark;
+  }
+}
+
+.about {
+  background: #eee;
+
+  .content .box {
+    margin: 3rem 0;
+
+    h3 {
+      color: $maindark;
+
+      i {
+        padding: 0 1rem;
+        color: $mainblue;
+      }
+    }
+
+    p {
+      padding-left: 6rem;
+      color: #666;
+    }
+  }
+}
+
+.facility {
+  min-height: 100vh;
+
+  .box-container {
+    @include displayFlexWrap();
+    padding-bottom: 3rem;
+
+    .box {
+      height: 20rem;
+      width: 30rem;
+      margin: 0.3rem;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      &:hover img {
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+
+.review {
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-color: #354046;
+
+  .heading {
+    color: #fff;
+  }
+
+  .box-container {
+    @include displayFlexWrap();
+    padding-bottom: 30px;
+    width: 100%;
+
+    .box {
+      background: #fff;
+      width: 320px;
+      padding: 1.5rem;
+      margin: 20px;
+      position: relative;
+      border-radius: 10px;
+
+      img {
+        position: absolute;
+        bottom: 1rem;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      p {
+        color: $maindark;
+        font-size: 15px;
+      }
+
+      h5 {
+        text-align: end;
+        color: $mainblue;
+      }
+
+      span {
+        text-align: end;
+        color: $maindark;
+        display: block;
+      }
+    }
+  }
+}
+
+.counter .box-container {
+    @include displayFlexWrap();
+  padding: 2rem 0;
+
+  .box {
+    text-align: center;
+    border-radius: 10%;
+
+    i {
+      color: $mainblue;
+    }
+
+    span {
+      color: $maindark;
+      display: block;
+      padding: 1rem 0;
+    }
+
+    h3 {
+      color: #666;
+    }
+  }
+}
+
+.contact {
+  background: $maindark;
+
+  .heading {
+    color: #fff;
+  }
+}
+
+.loginContainer {
+  height: 500px;
+  width: 400px;
+  background-color: #EEEEEE;
+  box-shadow: 5px 5px 10px grey;
+  width: 70%;
+  margin: 8% auto 0;
+  flex-direction: row;
+  @include displayFlex();
+
+}
+
+.formContainer {
+  width: 70%;
+  padding: 10px;
+  position: relative;
+  left: 20px;
+}
+
+.contentWrapper {
+  width: 100%;
+  @include displayFlex();
+  flex-wrap: wrap;
+
+  padding: 40px;
+}
+
+.inputInline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  input {
+    width: 49%;
+  }
+
+  select {
+    width: 49%;
+    margin-bottom: 5px;
+  }
+}
+
+.post .box-container {
+    @include displayFlexWrap();
+
+  .box {
+    width: 320px;
+    margin: 2rem 1rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+
+    img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 15px;
+
+      .button {
+        font-size: 20px;
+      }
+
+      span {
+        color: #666;
+        display: block;
+        padding: 15px;
+      }
+
+      h4 {
+        color: $maindark;
+      }
+
+      &:hover h4 {
+        color: $mainblue;
+      }
+
+      p {
+        color: $maindark;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.footer {
+  background: $maindark;
+
+  .logo span {
+    font-size: 25px;
+  }
+}
+
+a {
+  font-size: 25px;
+}
+
+.footer {
+  p {
+    color: #eee;
+    padding: 1rem 0;
+  }
+
+  .col-md-4 {
+    padding: 1.3rem;
+
+    &:nth-child(1) a {
+      color: #fff;
+
+      span {
+        color: $mainblue;
+      }
+    }
+  }
+
+  a {
+    color: #ccc;
+    display: block;
+  }
+
+  h4 {
+    color: #fff;
+  }
+
+  a:hover {
+    color: $mainblue;
+  }
+
+  .credit {
+    color: #fff;
+    width: 80%;
+    margin: 0;
+    padding: 2rem 0;
+    padding-bottom: 4rem;
+    border-top: 0.1rem solid #ccc !important;
+
+    span {
+      color: $mainblue;
+    }
+  }
+}
+
+header .fa-times {
+  transform: rotate(180deg);
+}
+
+/* media queries  */
+
+@media (max-width: 768px) {
+  header {
+    .fa-bars {
+      display: block;
+    }
+
+    .nav {
+      position: fixed;
+      top: -100rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.3);
+      border-radius: 0.5rem;
+      border: 0.3rem solid $mainblue !important;
+      background: #fff;
+      width: 95%;
+      opacity: 0;
+
+      ul {
+        width: 100%;
+        flex-flow: column;
+        padding: 2rem 0;
+
+        li {
+          width: 100%;
+          text-align: center;
+          margin: 1rem 0;
+
+          a {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .nav-toggle {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+
+  .contact form .inputBox input, select, .contact form input[type="submit"] {
+    width: 100%;
+  }
+}
+
+/*login container styles*/
+
+.logincontainer {
+  width: 100%;
+}

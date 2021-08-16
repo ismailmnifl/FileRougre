@@ -1,0 +1,779 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none !important;
+  text-decoration: none !important;
+  text-transform: capitalize;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.button {
+  height: 40px;
+  width: 150px;
+  background: #0188df;
+  color: #fff;
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  border: none;
+}
+
+.button:hover {
+  -webkit-box-shadow: 0.1rem 0.3rem #354046, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.3rem #354046, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.heading {
+  text-align: center;
+  padding: 1rem;
+  color: #354046;
+}
+
+.heading span {
+  color: #0188df;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px 10px;
+  z-index: 1000;
+  background-color: #fff;
+}
+
+header nav ul li a {
+  font-size: 20px;
+}
+
+.header-active {
+  background: #fff;
+  -webkit-box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+header .headeCcontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header a {
+  color: #354046;
+}
+
+header a:hover {
+  color: #0188df;
+}
+
+header .headeCcontainer .logo {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+header .headeCcontainer .logo span {
+  color: #0188df;
+}
+
+header .nav ul {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+}
+
+header .nav ul li {
+  margin: 0 1rem;
+}
+
+header .fa-bars {
+  color: #0188df;
+  cursor: pointer;
+  display: none;
+}
+
+.footer {
+  background: #354046;
+}
+
+.footer p {
+  color: #eee;
+  padding: 1rem 0;
+}
+
+.footer .col-md-4 {
+  padding: 1.3rem;
+}
+
+.footer .col-md-4:nth-child(1) a {
+  color: #fff;
+}
+
+.footer .col-md-4:nth-child(1) a span {
+  color: #0188df;
+}
+
+.footer a {
+  color: #ccc;
+  display: block;
+}
+
+.footer h3 {
+  color: #fff;
+}
+
+.footer a:hover {
+  color: #0188df;
+}
+
+.footer .credit {
+  color: #fff;
+  width: 80%;
+  margin: 0;
+  padding: 2rem 0;
+  padding-bottom: 4rem;
+  border-top: 0.1rem solid #ccc !important;
+}
+
+.footer .credit span {
+  color: #0188df;
+}
+
+header .fa-times {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+/* my content styles */
+.spacer {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle {
+  width: 100%;
+  height: 150px;
+}
+
+.headerTitle h2 {
+  text-align: center;
+  color: #0188df;
+}
+
+/* doctor profile container */
+/* buuton reverse styles */
+.buttonReverse {
+  height: 40px;
+  width: 150px;
+  background: #0188df;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.buttonReverse:hover {
+  -webkit-box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+/*new doctor profile section starts*/
+/* new profile styles start */
+/*************to take********************/
+.mapWrapper {
+  background-color: white;
+  height: 300px;
+  width: 25%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.mapWrapper .stars img {
+  width: 30px;
+  padding: 3px;
+}
+
+.mapWrapper .totalRating {
+  margin-top: 15px;
+  color: grey;
+}
+
+.tubeWrapper {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-left: 50px;
+}
+
+.tubeWrapper p {
+  margin-bottom: 0;
+}
+
+.ratingTube {
+  width: 60%;
+  height: 10px;
+  background-color: #354046;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  position: relative;
+  top: 8px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.ratingTube .fillable1, .ratingTube .fillable2, .ratingTube .fillable3, .ratingTube .fillable4, .ratingTube .fillable5 {
+  background-color: #ffd041;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/************************************************/
+/* new profile styles start */
+/*test*/
+.timeTableWrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.timeTableWrapper .smallerWrapper {
+  width: 66.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 29px;
+  -webkit-box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.timeTableWrapper .AddingRating {
+  background-color: white;
+  width: 21%;
+  height: 145px;
+  height: 230px;
+  border-radius: 10px;
+  position: relative;
+  left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+}
+
+.timeTableWrapper .smallerWrapper .schadulContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  height: 210px;
+}
+
+.timeTableWrapper .smallerWrapper .schadulContainer .day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 14%;
+}
+
+.timeTableWrapper .smallerWrapper .schadulContainer .day .end {
+  color: white;
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #bdc3c7;
+}
+
+.start {
+  color: white;
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #bdc3c7;
+}
+
+.DoctorProfileSection .smallInfoContainer {
+  height: 300px;
+  width: 25%;
+  border-radius: 10px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.DoctorProfileSection .smallInfoContainer .imageCon {
+  height: 120px;
+  width: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  bottom: 260px;
+}
+
+.DoctorProfileSection .smallInfoContainer .imageCon img {
+  height: 120px;
+  width: auto;
+}
+
+.smallTextContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+}
+
+.smallTextContainer p {
+  text-align: center;
+  margin: 0;
+}
+
+.smallTextContainer h5 {
+  color: #0188df;
+}
+
+.DoctorProfileSection .moreInfo {
+  height: 300px;
+  width: 50%;
+  border-radius: 10px;
+  background-color: white;
+  margin: 40px;
+  padding: 5px;
+}
+
+.DoctorProfileSection .moreInfo iframe {
+  border-radius: 10px;
+  border: none;
+}
+
+.newProfileWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  margin-top: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.DoctorProfileSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #354046;
+}
+
+/*test*/
+/*new doctor profile section starts*/
+.AddingRating .stars img {
+  width: 30px;
+  padding: 2px;
+}
+
+.AddingRating #textarea1 {
+  border-radius: 5px;
+  width: 90%;
+  margin-bottom: 10px;
+  border: 1px solid #354046;
+}
+
+/*people's review*/
+.reviews {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.reviews .userReview {
+  margin: 20px;
+  width: 90%;
+  background-color: white;
+  height: 150px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 10px #354046;
+          box-shadow: 0 0 10px #354046;
+}
+
+.reviews .userReview .vl {
+  border-left: 3px solid #354046;
+  height: 100%;
+}
+
+.reviews .userReview .userPart {
+  height: 100%;
+  width: 30%;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.reviews .userReview .userPart .contextReview {
+  margin-left: 20px;
+}
+
+.reviews .userReview .userPart .contextReview h4 {
+  color: #3498db;
+}
+
+.reviews .userReview .userPart .contextReview h5 {
+  color: #354046;
+}
+
+.reviews .userReview .userPart .contextReview p {
+  margin-top: 20px;
+  color: gray;
+}
+
+.reviews .userReview .userPart .imageWrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reviews .userReview .userPart .imageWrapper img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  height: 100%;
+}
+
+.reviews .userReview .reviewPart {
+  height: 100%;
+  width: 70%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.reviews .userReview .reviewPart .reviewBody {
+  color: #354046;
+  margin-top: 15px;
+}
+
+.reviews .userReview .reviewPart .stars img {
+  width: 30px;
+  margin: 2px;
+}
+
+@media (max-width: 768px) {
+  .DoctorProfileSection .moreInfo {
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .DoctorProfileSection .smallInfoContainer {
+    width: 100%;
+  }
+  .timeTableWrapper .smallerWrapper .schadulContainer {
+    height: auto;
+  }
+  .timeTableWrapper .smallerWrapper .schadulContainer .day {
+    width: 50%;
+  }
+  .newProfileWrapper {
+    width: 90%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .mapWrapper {
+    width: 100%;
+  }
+  .DoctorProfileSection .moreInfo {
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .DoctorProfileSection .smallInfoContainer {
+    width: 100%;
+  }
+  .timeTableWrapper .smallerWrapper {
+    width: 90%;
+    margin: 0;
+    margin-top: 20px;
+  }
+  .timeTableWrapper .AddingRating {
+    width: 90%;
+    margin-left: 0;
+    margin-top: 20px;
+    left: 0;
+  }
+  .reviews {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: auto;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .reviews .userReview {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: hidden;
+    padding: 5px;
+  }
+  .reviews .userReview .vl {
+    display: none;
+  }
+  .reviews .userReview .userPart {
+    height: 45%;
+    width: 95%;
+    margin: 0%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .reviews .userReview .userPart .imageWrapper {
+    width: 90px;
+    height: 90px;
+    margin-left: 0;
+    position: relative;
+    bottom: 15px;
+    left: 15px;
+  }
+  .reviews .userReview .userPart .contextReview {
+    margin-left: 10px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .reviews .userReview .reviewPart {
+    height: 45%;
+    width: 90%;
+    border-radius: 10px;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+  }
+  .reviews .userReview .reviewPart .reviewBody {
+    color: #354046;
+    margin-top: 15px;
+  }
+  .reviews .userReview .reviewPart .stars img {
+    width: 30px;
+    margin: 2px;
+  }
+}
+/*# sourceMappingURL=doctorProfile.css.map */

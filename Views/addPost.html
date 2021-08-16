@@ -24,6 +24,7 @@
 		/>
 		<!-- custom css file link  -->
 		<link rel="stylesheet" href="addPost.css" />
+		<link rel="stylesheet" href="sass/addPost.css">
 	</head>
 	<body>
 		<!-- header section starts  -->
@@ -68,6 +69,9 @@
             <div class="addPostContainer">
 				<div class="wrapper">
 					<div class="formHolder">
+						<div id="alertSuccess" style="display: none;" class="alert " role="alert">
+							Registration was successfull
+						  </div>
 							<input type="text" id="title"  placeholder="Post title..." name="adresse" class="form-control mb-2">					  
 							<input type="file" placeholder="Post image..." name="avatar" id="avatar" class="form-control mb-2">
 							<textarea class="form-control mb-2" placeholder="Post body..." name="content" id="content" rows="10"></textarea>
@@ -82,7 +86,7 @@
 						</div>
 							<label for="">Add post source</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="">
+								<input type="text" class="form-control" id="source">
 								<button  class="buttonSource" type="button" id="">Add</button>
 							  </div>
 							
@@ -100,7 +104,7 @@
 							<div class="input-group">
 							<select id="likeControle" name="" class="form-control">
 								<option value="Anable">Anable</option>
-								<option class="Disable" value="">Disable</option>
+								<option value="Disable">Disable</option>
 							</select> 
 						</div>
 					</div>
@@ -172,90 +176,6 @@
 		<script>
 			CKEDITOR.replace('content');
 		</script>
-		<script>
-			document.getElementById('sendDataBtn').addEventListener('click',insertPost);
-			function get() {
-				var title = document.getElementById('title').value;
-				var data = CKEDITOR.instances.content.getData();
-				console.log(data);
-				console.log(title);
-			}
-			function uploadImage() {
-
-				var formData = new FormData();
-				var imgFile = document.getElementById('avatar').files[0];
-				if(imgFile === undefined) 
-				return null;
-
-				var ext = imgFile.name.split('.').pop();
-				var uniqName = Math.floor(Math.random()*Math.pow(10,10)).toString() + '.' + ext;
-				formData.append('uniqName', uniqName);
-				formData.append('avatar', imgFile);
-				// console.log(...formData);
-
-				fetch("http://localhost/fileRouge/Includes/upload.php", {
-				method: "post",
-				body: formData
-
-				}).catch(console.error);
-
-				return uniqName;
-			}
-			function insertPost(){
-				var postImage = uploadImage();
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-				"doctor_id": "17",
-				"category_id": document.getElementById('categories').value,
-				"title": document.getElementById('title').value,
-				"body": CKEDITOR.instances.content.getData(),
-				"image": postImage,
-				"resources": "www.who.int",
-				"dislikeControle": document.getElementById('likeControle').value,
-				"commentControle": document.getElementById('comControle').value,
-				});
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				};
-
-				fetch("http://localhost/fileRouge/post/insertPost", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-			}
-			window.addEventListener('load',getCategories);
-
-			function getCategories() {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch("http://localhost/fileRouge/post/getAllCategories", requestOptions)
-				.then(response => response.text())
-				.then(function(result) {
-					console.log(result);
-					var data = JSON.parse(result);
-					console.log(data);
-
-					data.forEach(da => {
-						document.getElementById('categories').innerHTML += `<option value="${da.category_id }">${da.category}</option>`;
-					});
-					
-				})
-				.catch(error => console.log('error', error));
-			}
-		</script>
+		<script src="js/addPost.js"></script>
 	</body>
 </html>

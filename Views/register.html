@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="sass/register.css">
 
 
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -18,26 +18,26 @@
    
     <div class="contentWrapper">
       <div  class="formContainer">
-        <div id="succesMessage" style="display: none;" class="alert alert-success" role="alert">
+        <div id="alertSuccess" style="display: none;" class="alert " role="alert">
           Registration was successfull
         </div>
         <form name="registerForm">
          <div class="mar form-group mb-1 inputInline">
-           <input type="text" placeholder="First Name..." name="FirstName" class="form-control">
-           <input type="text" placeholder="Last Name..." name="LastName" class="form-control">
+           <input id="FirstName" type="text" placeholder="First Name..." name="FirstName" class="form-control">
+           <input id="LastName" type="text" placeholder="Last Name..." name="LastName" class="form-control">
          </div>
    
          <div class="form-group mb-1 inputInline">
-           <input type="text" placeholder="Phone..." name="phone" class="form-control">
-           <input type="text" placeholder="Email..." name="email" class="form-control">
+           <input id="phone" type="text" placeholder="Phone..." name="phone" class="form-control">
+           <input id="email" type="text" placeholder="Email..." name="email" class="form-control">
          </div>
    
          <div class="input-group mb-1">
-           <input type="number" placeholder="Age..." name="age" class="form-control">
+           <input id="age" type="number" placeholder="Age..." name="age" class="form-control">
          </div>
    
          <div class="input-group mb-1">
-           <input type="text"  placeholder="Adresse..." name="adresse" class="form-control">
+           <input id="adresse" type="text"  placeholder="Adresse..." name="adresse" class="form-control">
          </div>
    
          <div class="input-group mb-1">
@@ -57,8 +57,8 @@
          </div>
    
          <div class="form-group mb-1 inputInline">
-           <input type="text" placeholder="Username..." name="username" class="form-control">
-           <input type="password" placeholder="Password..." name="password" class="form-control">
+           <input id="username" type="text" placeholder="Username..." name="username" class="form-control">
+           <input id="password" type="password" placeholder="Password..." name="password" class="form-control">
          </div>
    
          <div class="input-group mb-2">
@@ -79,123 +79,14 @@
 
   <script src="Bootstrap/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/register.js"></script>
 
   <script>
     AOS.init();
   </script>
     <!-- logic -->
 <script>
-  /* function calls start */
-
-  window.addEventListener('load', getLocations);
-  document.getElementById('sendDataBtn').addEventListener('click', bigOperation);
-  //document.getElementById('redirectbtn').addEventListener('click',redirect)
-  function redirect() {
-    var role = document.getElementById('role').value;
-   if (role == "Doctor") {
-    //window.location.replace("doctorRegister.html");
-    window.location.href = "doctorRegister.html";
-   }
-      
-  }
-
-  /* function calls end */
-
-  /* functions start */
-  function getLocations() {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-    fetch("http://localhost/fileRouge/user/getAllLocation", requestOptions)
-      .then(response => response.text())
-      .then(function(result) {
-
-        var data = JSON.parse(result);
-
-        data.forEach( da => {
-          document.getElementById('locations').innerHTML += `<option value="${da.location_id}">${da.location}</option>`;
-        });
-        
-      })
-      .catch(error => console.log('error', error));
-  }
-
-  function uploadImage() {
-
-    var formData = new FormData();
-    var imgFile = document.getElementById('avatar').files[0];
-    if(imgFile === undefined) 
-      return null;
-
-    var ext = imgFile.name.split('.').pop();
-    var uniqName = Math.floor(Math.random()*Math.pow(10,10)).toString() + '.' + ext;
-    formData.append('uniqName', uniqName);
-    formData.append('avatar', imgFile);
-    // console.log(...formData);
-
-    fetch("http://localhost/fileRouge/Includes/upload.php", {
-      method: "post",
-      body: formData
-
-    }).catch(console.error);
-
-    return uniqName;
-  }
-    
-  function insertUser() {
-
-    var uniqName = uploadImage();
-
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var formElements = document.forms['registerForm'].elements;
-    var dataObj = {};
-
-    for (var i = 0; i < formElements.length; i++) {
-      //uploadImage
-      element = formElements[i];
-      if(element.type == "file") {
-        
-        dataObj[element.name] = uniqName ? uniqName : 'defaultAvatar.png';
-        continue;
-      }
-      dataObj[element.name] = element.value;
-    }
-    
-    var raw = JSON.stringify(dataObj);
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch("http://localhost/fileRouge/user/insertUser", requestOptions)
-      .then(response => response.text())
-      .then(function(result) {
-        console.log(result);
-        
-      })
-      .catch(error => console.log('error', error));
-      document.getElementById('succesMessage').style.display ="block";
-  }
-
-  function bigOperation() {
-    insertUser();
-    setTimeout(function(){
-      redirect();
-    },2000);
-    }
  
-      /* functions start */
 </script>
 </body>
 </html>

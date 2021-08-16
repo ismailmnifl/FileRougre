@@ -1,0 +1,101 @@
+/* cards beginning */
+.container_cards {
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.big_title {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.container_cards .card {
+  position: relative;
+  width: 300px;
+  height: 215px;
+  background-color: #fff;
+  margin: 30px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.container_cards .card .conent_card {
+  position: relative;
+  margin-top: -100px;
+  padding: 10px 15px;
+  text-align: center;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.container_cards .card:hover .conent_card {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.container_cards .card:hover .conent_card h2 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container_cards .card:hover {
+  height: 350px;
+}
+
+.container_cards .card .imgBx {
+  position: relative;
+  width: 260px;
+  height: 180px;
+  top: -100px;
+  left: 20px;
+  z-index: 1;
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container_cards .card .imgBx img {
+  width: 100%;
+  border-radius: 4px;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* card end */
+/*# sourceMappingURL=card.css.map */

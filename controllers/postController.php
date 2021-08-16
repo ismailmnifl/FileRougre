@@ -411,4 +411,174 @@ function search() {
          echo json_encode(array('message' => 'no dislikes'));
        }
     }
+    function deletePost(){
+      $this->post->post_id = $this->data->post_id;
+
+      // Delete user
+      if($this->post->deletePost()) {
+        echo json_encode(
+          array('message' => 'post Deleted')
+        );
+      } else {
+        echo json_encode(
+          array('message' => 'post Not Deleted')
+        );
+      }
+    }
+
+    function selectSingpost(){
+      $this->post->post_id = $this->data->post_id;
+      // Get user
+      $result = $this->post->selectSingpost();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $posts_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $post_item = array(
+              'post_id' => $post_id,
+              'doctor_id' => $doctor_id,
+              'category_id' => $category_id,
+              'title' => $title,
+              'body' => $body,
+              'image' => $image,
+              'resources' => $resources,
+              'dislikeControle' => $dislikeControle,
+              'commentControle' => $commentControle,
+              'dateCreated' => $dateCreated,
+            );
+      // Make JSON
+      array_push($posts_arr, $post_item);
+    }
+    echo json_encode($posts_arr);
+    }else {
+      echo json_encode(array('message' => 'No post Found'));
+    }
+    }
+    function getSearchedPost(){
+      $this->post->title = $this->data->title;
+      // Get user
+      $result = $this->post->getSearchedPost();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $posts_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $post_item = array(
+              'post_id' => $post_id,
+              'doctor_id' => $doctor_id,
+              'category_id' => $category_id,
+              'title' => $title,
+              'body' => $body,
+              'image' => $image,
+              'resources' => $resources,
+              'dislikeControle' => $dislikeControle,
+              'commentControle' => $commentControle,
+              'dateCreated' => $dateCreated,
+            );
+      // Make JSON
+      array_push($posts_arr, $post_item);
+    }
+    echo json_encode($posts_arr);
+    }else {
+      echo json_encode(array('message' => 'No post Found'));
+    }
+    }
+    function getSearchedPostByCategories(){
+      $this->post->category_id = $this->data->category_id;
+      // Get user
+      $result = $this->post->getSearchedPostByCategories();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $posts_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $post_item = array(
+              'post_id' => $post_id,
+              'doctor_id' => $doctor_id,
+              'category_id' => $category_id,
+              'title' => $title,
+              'body' => $body,
+              'image' => $image,
+              'resources' => $resources,
+              'dislikeControle' => $dislikeControle,
+              'commentControle' => $commentControle,
+              'dateCreated' => $dateCreated,
+            );
+      // Make JSON
+      array_push($posts_arr, $post_item);
+    }
+    echo json_encode($posts_arr);
+    }else {
+      echo json_encode(array('message' => 'No post Found'));
+    }
+    }
+
+    function updateSingePost() {
+      $this->post->post_id = $this->data->post_id;
+      $this->post->title = $this->data->title;
+      $this->post->image = $this->data->image;
+      $this->post->resources = $this->data->resources;
+      $this->post->dislikeControle = $this->data->dislikeControle;
+      $this->post->commentControle = $this->data->commentControle;
+      $this->post->body = $this->data->body;
+      
+      // Update user
+      if($this->post->updateSingePost()) {
+        echo json_encode(
+          array('message' => 'doctor Updated')
+        );
+      } else {
+        echo json_encode(
+          array('message' => 'doctor Not Updated')
+        );
+      }
+    }
+    function getAllpostAdmin() {
+      $result = $this->post->getAllpostAdmin();
+
+      $num = $result->rowCount();
+
+    if($num > 0) {
+              $posts_arr = array();
+
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+    
+      // Create array
+      $post_item = array(
+              'post_id' => $post_id,
+              'doctor_id' => $doctor_id,
+              'category_id' => $category_id,
+              'title' => $title,
+              'body' => $body,
+              'image' => $image,
+              'resources' => $resources,
+              'dislikeControle' => $dislikeControle,
+              'commentControle' => $commentControle,
+              'dateCreated' => $dateCreated,
+            );
+      // Make JSON
+      array_push($posts_arr, $post_item);
+    }
+    echo json_encode($posts_arr);
+    }else {
+      echo json_encode(array('message' => 'No post Found'));
+    }
+    }
 }

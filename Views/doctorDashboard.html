@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DoctorCO | Admin dashboard</title>
+		<link rel="stylesheet" href="sass/doctorDashboard.css" />
+		<link rel="stylesheet" href="table-responsive.css">
+		<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="sass/table.css">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+		
+		<script>
+			if (sessionStorage.getItem("role") != "Doctor") {
+				window.location.href = "index.html";
+			}
+			</script>
+		
+	</head>
+	<body>
+		<div class="main">
+			<div class="MYside-navbar">
+				<ul>
+					<li>
+						<a href="index.html">
+							<span class="icon"
+								><abbr style="cursor: pointer;" title="Go back Home"><i class="fas fa-tachometer-alt"></i></abbr></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-home"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="addPost.html">
+							<span class="icon"><abbr style="cursor: pointer;" title="Add new Post"><i class="fas fa-plus-square"></i></abbr></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-comments"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-user"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-upload"></i
+							></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="icon"
+								><i class="fas fa-cog"></i>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span id="logoutDashboard" class="icon"
+								>
+								<abbr style="cursor: pointer;" title="Log out"><i
+									class="
+										fas
+										fa-sign-out-alt fa-flip-horizontal
+									"
+								></i
+							></abbr></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="top-navbar">
+					<div style="color: white;" class="fas fa-bars" id="menu-icon"></div>
+					<div class="profile">
+						<img id="navbarimage" src="" alt="" />
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="ContenCcontainer">
+					
+					
+					<div class="newTableWrapper">
+                        <div class="persanalInfoHolder">
+                            <div class="imageHolder">
+                                <img id="avatar" src="" alt="">
+                            </div>
+                            <div class="infoHolder">
+								<div class="wrapper">
+									<div class="herderinfo">
+										<input id="SingleDoctID" type="hidden" name="">
+										<h3>Your infos</h3>
+									</div>
+									<div class="name">
+										Name : <span style="color: #0188DF;" id="name" class="data"></span>
+									</div>
+									<div class="phone">
+										Phone : <span style="color: #0188DF;" id="phone" class="data"></span>
+									</div>
+									<div class="adress">
+									  Adress :  <span style="color: #0188DF;" id="adress" class="data"></span>
+									</div>
+									<div class="username"> 
+										Username : <span style="color: #0188DF;" id="username" class="data"></span>
+									</div>
+									<div class="email">
+										Email :   <span style="color: #0188DF;" id="email" class="data"></span>
+									</div>
+									<div class="password">
+										Password :  <span style="color: #0188DF;" id="password" class="data"></span>
+									</div>
+									<div class="age">
+										Age : <span style="color: #0188DF;" id="age" class="data"></span>
+									</div>
+								</div>
+									<div class="spacerline"></div>
+									
+									<div class="wrapper">
+										<div class="herderinfo">
+											<h3>Actions</h3>
+										</div>
+									<div class="actions">
+										<button onclick="readSingleUser()" class="button" data-bs-toggle="modal" data-bs-target="#personalinfos">update</button>
+										<button id="disactivateAccount" style="background-color: rgb(182, 50, 50);" class="button">Desctivate</button>
+										<button onclick="readSingleDoctor()" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="button">doctor</button>
+
+									</div>
+								</div>
+								</div>
+							
+							</div>
+						<div class="tableWrapper">
+							<div class="container mt-2">
+
+										<ul style="padding: 0%;" class="responsive-table">
+											<li class="table-header">
+
+											<div class="col ">Avatar</div>
+											<div class="col ">Title</div>
+											<div class="col ">Reaction</div>
+											<div class="col ">Comment</div>
+											<div class="col ">Date created</div>
+											<div class="col ">Actions</div>
+											
+											
+										</li>
+										</ul>
+								
+										<ul id="doctorsPost"  class="responsive-table Dscroll">
+										
+										
+										</ul>
+							  </div>
+							  
+						</div>
+						<!-- chart js start -->
+						
+						<!-- chart js end -->
+
+						</div>
+						
+						<footer class="footer">
+							<div class="footerSection">
+								<img src="images/DoctorCoWhite.png" alt="">
+							</div>
+							<div class="footerSection">
+								<h5>All Right Reserved 2021</h5>
+							</div>
+							<div class="footerSection">
+								<i class="fab fa-facebook-square fa-2x"></i>
+								<i class="fab fa-linkedin fa-2x"></i>
+								<i class="fab fa-twitter-square fa-2x"></i>
+							</div>
+							
+
+						</footer>
+						
+					</div>
+
+
+
+					
+        <!-- modal 3 -->
+        <div class="modal fade" id="personalinfos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">update your informations</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <form name="doctorregisterForm">
+                          <div id="alertSuccessUser" style="display: none;" class="" role="alert">
+                            information updated
+                          </div>
+                            <div style="display: none;" id="updateduser" class="alert alert-success" role="alert">
+                                The data was updated succefuly
+                              </div>
+                            <input type="hidden" name="user_id" id="Muser_id">
+                            
+                            <div class="form-group mb-2 inputInline">
+                              <input type="text" placeholder="First Name..." id="MFirstName" name="FirstName" class="form-control">
+                              <input type="text" placeholder="Last Name..." id="MLastName" name="LastName" class="form-control">
+                            </div>
+                      
+                            <div class="form-group mb-2 inputInline">
+                              <input type="text" placeholder="Phone..." id="Mphone" name="phone" class="form-control">
+                              <input type="text" placeholder="Email..." id="Memail" name="email" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="number" placeholder="Age..." id="Mage" name="age" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="text"  placeholder="Adresse..." id="Madresse" name="adresse" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 input-group">
+                              <input type="file" placeholder="Avatar..." name="avatar" id="Mavatar" class="form-control">
+                            </div>
+                      
+                            <div class="mb-2 form-group">
+                              <select name="location_id" id="Mlocations" class="form-select">
+                              </select>
+                            </div>
+                      
+                            <div class="mb-2 form-group inputInline">
+                              <input type="text" placeholder="Username..." id="Musername" name="username" class="form-control">
+                              <input type="text" placeholder="Password..." id="Mpassword" name="password" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                       
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" onclick="updateUser()" class="btn btn-primary">update infos</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- modal 3 -->
+		<!-- modal doctor info -->
+		<div class="zindex modal fade" id="exampleModal2" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Doctor Informations</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+				<!-- form will be used to update user data -->
+
+				<div  class="doctorinfoformContainer">
+
+					<form name="doctorinfo">
+						<div style="display: none;" id="updatedoctor" class="alert alert-success" role="alert">
+							The data was updated succefuly
+						  </div>
+						<input type="hidden" name="doctor_id" id="doctor_id">
+					 <div class="mb-1 form-group inputInline">
+					  <select name="speciality" id="speciality" class="form-select">
+						<option disabled selected>Choose speciality</option>
+					  </select>
+					  <input type="text" id="matricule" placeholder="Matricule..." name="matricule" class="form-control">
+					 </div>
+			   
+					<div class="mb-1 input-group">
+					  <input type="text" id="description" placeholder="Description..." name="description" class="form-control">
+					  </div>
+					  
+					  <div class="schedule">
+						<div class="mb-1 input-group">
+						  <select name="days" id="days" class="form-select">
+						  </select>
+						</div>
+						<div class="mb-1 form-group inputInline">
+						  <div  style="width: 49%;" class="input-group">
+							<span class="input-group-text" >start Time</span>
+							<input type="time" id="startTime" name="startTime" class="form-control">
+						  </div>
+						  <div  style="width: 49%;"  class="input-group">
+							<span class="input-group-text" >close Time</span>
+							<input type="time" id="closeTime" name="closeTime" class="form-control">
+						  </div>         
+						</div>
+						<div  class="mb-1 inputInline">
+						  <button style="width: 49%;background-color: #0188DF;color: white;" id="scheduleBtn" class="button" type="button">Send</button>
+						  <button onclick="reset()" style="width: 49%;background-color: #0188DF;color: white;" id="resetBtn" class="button" type="button">reset</button>
+						</div>
+
+						<textarea disabled class="form-control" id="displaySchedule" rows="3"></textarea>
+			
+					  </div>
+				</form>
+				
+				 </div>
+					
+					</div>
+				<div class="modal-footer">
+					<button id="exitDoctorModel" type="button" class=" button" data-bs-dismiss="modal">Close</button>
+					<button type="button" onclick="updateDoctor()" class=" button">Update</button>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- modal doctor info -->
+		<!-- modal 1 -->
+        <div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div id="alertSuccessReview" style="display: none;" class="" role="alert">
+                    post updated
+                  </div>
+                    <input id="postID" type="hidden" name="">
+					<div class="input-group mb-1">
+						<img id="postimage" src="" width="100%" height="200px" alt="">
+					</div>
+                    <div class="input-group mb-1">
+                        <input id="title" type="text" placeholder="Title..." name="stars" max="5" min="1" class="form-control">
+                      </div>
+					  <div class="input-group mb-1">
+						<input type="file" placeholder="Post image..." name="avatar" id="postavatar" class="form-control mb-2">
+					</div>
+                      <div class="input-group mb-2">
+						<textarea class="form-control mb-2" placeholder="Post body..." name="content" id="content" rows="10"></textarea>
+                    </div>
+					<div class="input-group mb-1">
+                        <input id="source" type="text" placeholder="Source..." name="stars" max="5" min="1" class="form-control">
+                      </div>
+
+					<div class="input-group mb-2">
+
+						<label for="">comments controle</label>
+							<div class="input-group">
+								<select id="comControle" name="" class="form-control">
+									<option value="Anable">Anable</option>
+									<option value="Disable">Disable</option>
+								</select> 
+				  			</div>
+					 </div>
+					<div class="input-group mb-1">
+
+						<label for="">dislikes controle</label>
+							<div class="input-group">
+								<select id="likeControle" name="" class="form-control">
+									<option value="Anable">Anable</option>
+									<option value="Disable">Disable</option>
+								</select>                      
+					 		</div>
+                	</div>
+                <div class="modal-footer">
+                  <button type="button" onclick="reload()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" onclick="updatePost()" class="btn btn-primary">update post</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- modal 1 -->
+				
+				
+			</div>
+		</div>
+	</div>
+	
+		<script src="js/DoctorDashboard.js"></script>
+		<script src="Bootstrap/bootstrap.bundle.min.js"></script>
+		<script src="js/dashboard.js"></script>
+		
+		
+		
+		<script>
+			 
+		</script>
+
+		<script src="ckeditor/ckeditor.js"></script>
+		<script>
+			CKEDITOR.replace('content');
+		</script>
+	</body>
+</html>

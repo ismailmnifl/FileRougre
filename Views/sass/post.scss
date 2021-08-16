@@ -1,0 +1,368 @@
+$mainblue : #0188df;
+$maindark : #354046;
+
+
+@mixin displayFlexWrap{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @mixin displayFlex{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  * {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    transition: all 0.2s linear;
+  }
+  
+  .spacer {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .headerTitle {
+    width: 100%;
+    height: 150px;
+@include displayFlex();
+  
+    h2 {
+      text-align: center;
+      color: $mainblue;
+    }
+  
+    span {
+      color: $mainblue;
+    }
+  }
+  
+  .button {
+    height: 40px;
+    width: 150px;
+    background: $mainblue;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    border: none;
+    margin-left: 20px;
+  
+    &:hover {
+      box-shadow: 0.1rem 0.3rem $maindark, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  .buttonReverse {
+    height: 40px;
+    width: 150px;
+    background: $maindark;
+    color: #fff;
+    text-transform: capitalize;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  
+    &:hover {
+      box-shadow: 0.1rem 0.3rem white, 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  .post {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: $maindark;
+    height: auto;
+  
+    .doctorPost {
+      width: 60%;
+      background-color: white;
+      border-radius: 10px;
+      height: auto;
+      margin: 20px;
+  
+      .title {
+        margin-top: 20px;
+        text-align: center;
+      }
+  
+      .body {
+        padding: 10px;
+        text-align: left;
+      }
+  
+      .dateCreated {
+        color: rgb(128, 128, 128);
+        padding: 10px;
+      }
+  
+      .title:hover {
+        color: $mainblue;
+      }
+  
+      .imageHolder img {
+        height: 400px;
+        width: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+    }
+  
+    .wrapper {
+      width: 25%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 20px;
+  
+      .commentPart {
+        width: 90%;
+        height: 250px;
+        background-color: white;
+        border-radius: 10px;
+        @include displayFlex();
+
+        flex-direction: column;
+  
+        h3 {
+          margin: 10px;
+          text-align: center;
+        }
+  
+        textarea {
+          width: 95%;
+        }
+  
+        button {
+          margin: 10px;
+        }
+      }
+    }
+  
+    .sidebar {
+      width: 90%;
+      background-color: white;
+      border-radius: 10px;
+      height: 400px;
+      margin: 20px;
+      @include displayFlex();
+
+      flex-direction: column;
+  
+      .underline {
+        width: 90%;
+        height: 2px;
+        background-color: $mainblue;
+      }
+  
+      .doctorPart {
+        @include displayFlex();
+
+        flex-direction: column;
+        
+  
+        .avatar {
+          border-radius: 50%;
+          width: 140px;
+          height: 140px;
+          background-color: $mainblue;
+          overflow: hidden;
+          @include displayFlex();
+
+  
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+  
+        .doctorName {
+          a {
+            color: $mainblue;
+          }
+  
+          &:hover a {
+            color: $maindark;
+          }
+        }
+  
+        .speciality p {
+          font-size: 20px;
+        }
+      }
+  
+      .postReactions {
+        margin-top: 10px;
+        background-color: #ddd;
+        border-radius: 10px;
+        width: 90%;
+      }
+  
+      h4 {
+        margin: 10px;
+      }
+  
+      .postReactions {
+        .reactionsHeader h4 {
+          text-align: center;
+        }
+  
+        .rections {
+            @include displayFlex();
+
+  
+          .likebar {
+            width: 180px;
+            height: 8px;
+            border-radius: 5px;
+            background-color: $maindark;
+            position: relative;
+            bottom: 20px;
+  
+            .filler {
+              height: 8px;
+              background-color: $mainblue;
+              width: 0%;
+              border-radius: 5px;
+            }
+          }
+  
+          .like {
+            @include displayFlex();
+            flex-direction: column;
+            
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+  
+  .dislike {
+    @include displayFlex();
+    flex-direction: column;
+    
+    margin: 5px;
+  }
+  
+  .post .sidebar .postReactions .rections {
+    .like i {
+      font-size: 30px;
+      color: $mainblue;
+      margin: 5px;
+      text-align: center;
+    }
+  
+    .dislike i {
+      font-size: 30px;
+      color: $maindark;
+      margin: 5px;
+    }
+  }
+  
+  /* commnet part */
+  
+  .comments {
+    width: 100%;
+    background-color: white;
+    height: auto;
+    @include displayFlex();
+
+    flex-direction: row;
+  
+    .box-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-bottom: 30px;
+      width: 100%;
+  
+      .box {
+        background: #fff;
+        width: 320px;
+        padding: 1.5rem;
+        margin: 20px;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0 0 10px $maindark;
+  
+        img {
+          position: absolute;
+          bottom: 1rem;
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+  
+        p {
+          color: $maindark;
+          font-size: 15px;
+        }
+  
+        h5 {
+          text-align: end;
+          color: $mainblue;
+        }
+  
+        span {
+          text-align: end;
+          color: $maindark;
+          display: block;
+        }
+      }
+    }
+  }
+  
+  .headering {
+    text-align: center;
+    margin-top: 20px;
+    color: $maindark;
+  
+    span {
+      color: $mainblue;
+    }
+  }
+  
+  /* commnet part */
+  @media (max-width: 768px) {
+    .post {
+      flex-direction: column;
+  
+      .doctorPost {
+        width: 90%;
+      }
+  
+      .wrapper {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+  
+      .sidebar {
+        width: 90%;
+      }
+  
+      .doctorPost {
+        .body {
+          text-align: center;
+        }
+  
+        .imageHolder img {
+          height: 200px;
+        }
+      }
+    }
+  }
