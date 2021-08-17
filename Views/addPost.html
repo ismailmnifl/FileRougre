@@ -23,36 +23,16 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 		/>
 		<!-- custom css file link  -->
-		<link rel="stylesheet" href="addPost.css" />
+		<!-- addons -->
+		<link rel="stylesheet" href="addOns/navbar.css">
+		<link rel="stylesheet" href="addOns/footer.css">
 		<link rel="stylesheet" href="sass/addPost.css">
+		
 	</head>
 	<body>
 		<!-- header section starts  -->
 
-		<header>
-			<div class="headeCcontainer">
-				<a href="index.html" class="logo"><img width="50px" src="images/DoctorCo.png" alt=""><span>D</span>octor<span>C</span>o.</a>
-
-				<nav class="nav">
-					<ul>
-						<li><a href="#home">home</a></li>
-						<li><a href="#about">about</a></li>
-						<li><a href="#review">review</a></li>
-						<li><a href="#contact">contact</a></li>
-						<li><a href="#post">post</a></li>
-						<li>
-							<a href="#"
-								><a href="login.html"
-									><button class="button">Join</button></a
-								></a
-							>
-						</li>
-					</ul>
-				</nav>
-
-				<div class="fas fa-bars"></div>
-			</div>
-		</header>
+		<header id="header"></header>
 		<!-- to keep the header away from the content -->
 		<div class="spacer"></div>
 		<!-- bage heading -->
@@ -177,5 +157,7 @@
 			CKEDITOR.replace('content');
 		</script>
 		<script src="js/addPost.js"></script>
+		<script src="js/addOns.js"></script>
+		
 	</body>
 </html>

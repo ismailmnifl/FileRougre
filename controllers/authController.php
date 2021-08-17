@@ -89,8 +89,8 @@ function logedIn() {
 
       if (isset($_SESSION['auth'])) {
         # code...
-/*           session_destroy();
-*/          unset($_SESSION['auth']);
+
+         unset($_SESSION['auth']);
       }
 
       } else {
