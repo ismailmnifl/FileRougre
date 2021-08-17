@@ -160,7 +160,7 @@
             var regex = regexObj[id].regex;
             var error = regexObj[id].error;
 
-            if( !regex.test(value)) {
+            if(!regex.test(value)) {
 
                 document.getElementById('alertSuccess').innerHTML = error;
                 document.getElementById('alertSuccess').classList.remove("alert-success");

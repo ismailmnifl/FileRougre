@@ -9,23 +9,25 @@ spl_autoload_register(function ($class) {
         require_once "$path";
      }
 });
+
 $params = explode('/', $_GET['p']);
 
-if (isset($params[0]) & !empty($params[0])) {
+if (isset($params[0]) && !empty($params[0])) {
 
-   
-    $controller = ucfirst($params[0]) . "Controller";
+
+    $controller = ucfirst($params[0]) . "Controller"; 
 
     if (file_exists("Controllers/" . $controller . ".php")) {
 
         require_once 'Controllers/' . $controller . ".php";
         $obj = new $controller();
 
-        if (isset($params[1]) & !empty($params[1])) {
+        if (isset($params[1]) && !empty($params[1])) {
+            
             if (method_exists($obj, $params[1])) {
                 $action = $params[1];
 
-                if (isset($params[2]) & !empty($params[2])) {
+                if (isset($params[2]) && !empty($params[2])) {
                     $obj->$action($params[2]);
                 } else {
                     $obj->$action();
@@ -43,5 +45,5 @@ if (isset($params[0]) & !empty($params[0])) {
         echo "this page doesn't exsit";
     }
 } else {
-    echo "test";
+    echo "this directory doesn't exsit";
 }

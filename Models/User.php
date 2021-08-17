@@ -1025,7 +1025,7 @@ function retreveDoctorRecomendationFromFilterInput() {
                       ON user.user_id = doctor.user_id
                       GROUP BY doctor.doctor_id 
                       ORDER by starcount DESC
-                      LIMIT 3 
+                      LIMIT 5
             ;';
             
             // Prepare statement
