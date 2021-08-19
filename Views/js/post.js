@@ -193,7 +193,6 @@
                     if (message == "true") {
                         reaction = res.data[0].postLike;                 
                     }
-                    
                 })
                 .catch(error => console.log('error', error));
             }
